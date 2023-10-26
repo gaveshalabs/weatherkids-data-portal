@@ -1,6 +1,6 @@
-@import '../../styles/themes';
-@import '@nebular/theme/styles/global/breakpoints';
-@import 'bootstrap/scss/mixins/breakpoints';
+@import "../../styles/themes";
+@import "@nebular/theme/styles/global/breakpoints";
+@import "bootstrap/scss/mixins/breakpoints";
 
 @include nb-install-component() {
   width: 100%;
@@ -25,6 +25,23 @@
   @include media-breakpoint-down(is) {
     .socials {
       font-size: 1.5rem;
+    }
+  }
+
+  .footer-text {
+    font-size: 0.6rem;
+    color: nb-theme(color-basic-800);
+
+    &.copyright {
+      max-width: 50%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @include media-breakpoint-up(sm) {
+      font-size: 0.8rem;
     }
   }
 }

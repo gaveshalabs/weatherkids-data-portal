@@ -20,9 +20,13 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { HomeComponent } from './pages/home/home.component';
+import { MapComponent } from './@components/map/map.component';
+import { PrivacyPolicyComponent } from './@components/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './@components/terms-and-conditions/terms-and-conditions.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent, MapComponent, PrivacyPolicyComponent, TermsAndConditionsComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
