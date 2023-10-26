@@ -6,10 +6,10 @@ import { MENU_ITEMS } from "./pages-menu";
   selector: "ngx-pages",
   styleUrls: ["pages.component.scss"],
   template: `
-    <weather-portal-layout>
+    <ngx-weather-portal-layout>
       <nb-menu [items]="menu"></nb-menu>
       <router-outlet></router-outlet>
-    </weather-portal-layout>
+    </ngx-weather-portal-layout>
   `,
 })
 export class PagesComponent {
