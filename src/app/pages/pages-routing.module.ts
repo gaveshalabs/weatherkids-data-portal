@@ -9,41 +9,41 @@ import { PrivacyPolicyComponent } from '../@components/privacy-policy/privacy-po
 import { TermsAndConditionsComponent } from '../@components/terms-and-conditions/terms-and-conditions.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: PagesComponent,
-    children: [
-      {
+    {
         path: '',
-        component: HomeComponent,
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-      },
-      // {
-      //   path: "",
-      //   redirectTo: "dashboard",
-      //   pathMatch: "full",
-      // },
-      {
-        path: 'privacy-policy',
-        component: PrivacyPolicyComponent,
-      },
-      {
-        path: 't&c',
-        component: TermsAndConditionsComponent,
-      },
-      {
-        path: '**',
-        component: NotFoundComponent,
-      },
-    ],
-  },
+        component: PagesComponent,
+        children: [
+            {
+                path: '',
+                component: HomeComponent,
+            },
+            {
+                path: 'dashboard',
+                component: DashboardComponent,
+            },
+            // {
+            //   path: "",
+            //   redirectTo: "dashboard",
+            //   pathMatch: "full",
+            // },
+            {
+                path: 'privacy-policy',
+                component: PrivacyPolicyComponent,
+            },
+            {
+                path: 't&c',
+                component: TermsAndConditionsComponent,
+            },
+            {
+                path: '**',
+                component: NotFoundComponent,
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class PagesRoutingModule {}

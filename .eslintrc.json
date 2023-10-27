@@ -1,61 +1,170 @@
-// https://github.com/angular-eslint/angular-eslint#notes-for-eslint-plugin-prettier-users
 {
-  "root": true,
-  "ignorePatterns": ["projects/**/*"],
-  "overrides": [
-    {
-      "files": ["*.ts"],
-      "parserOptions": {
-        "project": ["tsconfig.json", "e2e/tsconfig.json"],
-        "createDefaultProgram": true
-      },
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:prettier/recommended"
-      ],
-      "rules": {
-        "@angular-eslint/component-class-suffix": [
-          "error",
-          {
-            "suffixes": ["Page", "Component"]
-          }
-        ],
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": ["prettier"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "tsconfig.json",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "eslint-plugin-import",
+        "@angular-eslint/eslint-plugin",
+        "@typescript-eslint",
+        "@typescript-eslint/tslint"
+    ],
+    "root": true,
+    "rules": {
+        "@angular-eslint/component-class-suffix": "error",
         "@angular-eslint/component-selector": [
-          "error",
-          {
-            "prefix": "ngx",
-            "style": "kebab-case",
-            "type": "element"
-          }
+            "error",
+            {
+                "type": "element",
+                "prefix": "ngx",
+                "style": "kebab-case"
+            }
         ],
+        "@angular-eslint/directive-class-suffix": "error",
         "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "prefix": "ngx",
-            "style": "camelCase",
-            "type": "attribute"
-          }
+            "error",
+            {
+                "type": "attribute",
+                "prefix": "ngx",
+                "style": "camelCase"
+            }
         ],
-        "@typescript-eslint/member-ordering": 0,
-        "@typescript-eslint/naming-convention": 0
-      }
-    },
-    // NOTE: WE ARE NOT APPLYING PRETTIER IN THIS OVERRIDE, ONLY @ANGULAR-ESLINT/TEMPLATE
-    {
-      "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
-      "rules": {}
-    },
-    // NOTE: WE ARE NOT APPLYING @ANGULAR-ESLINT/TEMPLATE IN THIS OVERRIDE, ONLY PRETTIER
-    {
-      "files": ["*.html"],
-      "excludedFiles": ["*inline-template-*.component.html"],
-      "extends": ["plugin:prettier/recommended"],
-      "rules": {
-        // NOTE: WE ARE OVERRIDING THE DEFAULT CONFIG TO ALWAYS SET THE PARSER TO ANGULAR (SEE BELOW)
-        "prettier/prettier": ["error", { "parser": "angular" }]
-      }
+        "@angular-eslint/no-inputs-metadata-property": "error",
+        "@angular-eslint/no-output-rename": "error",
+        "@angular-eslint/no-outputs-metadata-property": "error",
+        "@angular-eslint/use-lifecycle-interface": "error",
+        "@angular-eslint/use-pipe-transform-interface": "error",
+        "@typescript-eslint/consistent-type-definitions": "error",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/explicit-member-accessibility": [
+            "off",
+            { "accessibility": "explicit" }
+        ],
+        "@typescript-eslint/indent": "error",
+        "@typescript-eslint/member-delimiter-style": [
+            "error",
+            {
+                "multiline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                },
+                "singleline": {
+                    "delimiter": "semi",
+                    "requireLast": false
+                }
+            }
+        ],
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "variable",
+                "format": ["camelCase", "UPPER_CASE"],
+                "leadingUnderscore": "forbid",
+                "trailingUnderscore": "forbid"
+            }
+        ],
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-empty-interface": "error",
+        "@typescript-eslint/no-misused-new": "error",
+        "@typescript-eslint/no-non-null-assertion": "error",
+        "@typescript-eslint/no-shadow": ["error", { "hoist": "all" }],
+        "@typescript-eslint/prefer-function-type": "error",
+        "@typescript-eslint/quotes": ["error", "single"],
+        "@typescript-eslint/semi": ["error", "always"],
+        "@typescript-eslint/type-annotation-spacing": "error",
+        "@typescript-eslint/unified-signatures": "error",
+        "arrow-body-style": "error",
+        "brace-style": ["error", "1tbs"],
+        "comma-dangle": ["error", "always-multiline"],
+        "constructor-super": "error",
+        "dot-notation": "off",
+        "eol-last": "error",
+        "eqeqeq": ["error", "smart"],
+        "guard-for-in": "error",
+        "id-denylist": "off",
+        "id-match": "off",
+        "import/no-deprecated": "warn",
+        "indent": "off",
+        "max-len": ["error", { "code": 120, "ignoreComments": true }],
+        "no-caller": "error",
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn",
+                    "dir",
+                    "timeLog",
+                    "assert",
+                    "clear",
+                    "count",
+                    "countReset",
+                    "group",
+                    "groupEnd",
+                    "table",
+                    "info",
+                    "dirxml",
+                    "error",
+                    "groupCollapsed",
+                    "Console",
+                    "profile",
+                    "profileEnd",
+                    "timeStamp",
+                    "context"
+                ]
+            }
+        ],
+        "no-debugger": "error",
+        "no-empty": "off",
+        "no-empty-function": "off",
+        "no-eval": "error",
+        "no-fallthrough": "error",
+        "no-new-wrappers": "error",
+        "no-restricted-imports": "error",
+        "no-shadow": "off",
+        "no-throw-literal": "error",
+        "no-trailing-spaces": "error",
+        "no-undef-init": "error",
+        "no-underscore-dangle": "off",
+        "no-unused-labels": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "quotes": "off",
+        "radix": "error",
+        "semi": "off",
+        "spaced-comment": ["error", "always", { "markers": ["/"] }],
+        "valid-typeof": "error",
+        "@typescript-eslint/tslint/config": [
+            "error",
+            {
+                "rules": {
+                    "ban": [
+                        true,
+                        "eval",
+                        "fit",
+                        "fdescribe",
+                        {
+                            "name": "$",
+                            "message": "please don't"
+                        }
+                    ],
+                    "import-spacing": true,
+                    "whitespace": [
+                        true,
+                        "check-branch",
+                        "check-decl",
+                        "check-operator",
+                        "check-separator",
+                        "check-type"
+                    ]
+                }
+            }
+        ]
     }
-  ]
 }

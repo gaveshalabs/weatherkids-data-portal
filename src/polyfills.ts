@@ -14,7 +14,7 @@
  * Learn more in https://angular.io/guide/browser-support
  */
 
-/***************************************************************************************************
+/** *************************************************************************************************
  * BROWSER POLYFILLS
  */
 
@@ -31,12 +31,12 @@ import 'core-js/es7/reflect';
 /** ALL Firefox browsers require the following to support `@angular/animation`. **/
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
-/***************************************************************************************************
+/** *************************************************************************************************
  * Zone JS is required by Angular itself.
  */
 import 'zone.js'; // Included with Angular CLI.
 
-/***************************************************************************************************
+/** *************************************************************************************************
  * APPLICATION IMPORTS
  */
 
@@ -48,5 +48,5 @@ import 'core-js/es7/array';
 import 'core-js/es7/object';
 
 if (typeof SVGElement.prototype.contains === 'undefined') {
-  SVGElement.prototype.contains = HTMLDivElement.prototype.contains;
+    SVGElement.prototype.contains = HTMLDivElement.prototype.contains;
 }

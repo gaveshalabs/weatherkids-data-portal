@@ -6,14 +6,14 @@ import { TemperatureHumidityService } from './temperature-humidity.service';
 const SERVICES = [TemperatureHumidityService];
 
 @NgModule({
-  imports: [CommonModule],
-  providers: [...SERVICES],
+    imports: [CommonModule],
+    providers: [...SERVICES],
 })
 export class MockDataModule {
-  static forRoot(): ModuleWithProviders<MockDataModule> {
-    return {
-      ngModule: MockDataModule,
-      providers: [...SERVICES],
-    };
-  }
+    static forRoot(): ModuleWithProviders<MockDataModule> {
+        return {
+            ngModule: MockDataModule,
+            providers: [...SERVICES],
+        };
+    }
 }

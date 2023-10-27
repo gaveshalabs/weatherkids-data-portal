@@ -1,4 +1,4 @@
 export enum EnumUserContextMenu {
-  Profile = 'Profile',
-  Logout = 'Log out',
+    Profile = 'Profile',
+    Logout = 'Log out',
 }

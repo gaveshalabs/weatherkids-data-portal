@@ -5,6 +5,6 @@ import { defaultEnvironment } from './environment.default';
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 export const environment = {
-  ...defaultEnvironment,
-  production: true,
+    ...defaultEnvironment,
+    production: true,
 };

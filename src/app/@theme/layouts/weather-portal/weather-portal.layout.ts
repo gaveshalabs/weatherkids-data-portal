@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngx-weather-portal-layout',
-  styleUrls: ['./weather-portal.layout.scss'],
-  template: `
+    selector: 'ngx-weather-portal-layout',
+    styleUrls: ['./weather-portal.layout.scss'],
+    template: `
     <nb-layout windowMode>
       <nb-layout-header fixed>
         <ngx-header></ngx-header>

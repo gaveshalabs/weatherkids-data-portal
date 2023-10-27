@@ -3,20 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TermsAndConditionsComponent } from './terms-and-conditions.component';
 
 describe('TermsAndConditionsComponent', () => {
-  let component: TermsAndConditionsComponent;
-  let fixture: ComponentFixture<TermsAndConditionsComponent>;
+    let component: TermsAndConditionsComponent;
+    let fixture: ComponentFixture<TermsAndConditionsComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [TermsAndConditionsComponent],
-    }).compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [TermsAndConditionsComponent],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(TermsAndConditionsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(TermsAndConditionsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
