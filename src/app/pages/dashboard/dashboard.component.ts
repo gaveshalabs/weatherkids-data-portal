@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -6,11 +6,9 @@ import {Component, OnDestroy} from '@angular/core';
   templateUrl: './dashboard.component.html',
 })
 export class DashboardComponent implements OnDestroy {
-
   private alive = true;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnDestroy() {
     this.alive = false;

@@ -1,4 +1,4 @@
-import { defaultEnvironment } from "./environment.default";
+import { defaultEnvironment } from './environment.default';
 /**
  * @license
  * Copyright Akveo. All Rights Reserved.

@@ -1,22 +1,22 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { AngularFireAuth } from "@angular/fire/compat/auth";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   NbMediaBreakpointsService,
   NbMenuService,
   NbThemeService,
-} from "@nebular/theme";
+} from '@nebular/theme';
 
-import { Subject } from "rxjs";
-import { map, takeUntil } from "rxjs/operators";
-import { AuthService } from "../../../modules/auth/auth.service";
-import { EnumUserContextMenu } from "../../../common/enums/user-action-context";
-import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
-import { DomSanitizer } from "@angular/platform-browser";
+import { Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { AuthService } from '../../../modules/auth/auth.service';
+import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: "ngx-header",
-  styleUrls: ["./header.component.scss"],
-  templateUrl: "./header.component.html",
+  selector: 'ngx-header',
+  styleUrls: ['./header.component.scss'],
+  templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   loggedIn: boolean = false;
@@ -26,24 +26,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   themes = [
     {
-      value: "default",
-      name: "Light",
+      value: 'default',
+      name: 'Light',
     },
     {
-      value: "dark",
-      name: "Dark",
+      value: 'dark',
+      name: 'Dark',
     },
     {
-      value: "cosmic",
-      name: "Cosmic",
+      value: 'cosmic',
+      name: 'Cosmic',
     },
     {
-      value: "corporate",
-      name: "Corporate",
+      value: 'corporate',
+      name: 'Corporate',
     },
   ];
 
-  currentTheme = "default";
+  currentTheme = 'default';
 
   // The dropdown by clicking user profile icon
   userMenu = [{}];
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     domSanitizer: DomSanitizer
   ) {
     // Listen for auth changes
-    this.afAuth.authState.subscribe((user) => {
+    this.afAuth.authState.subscribe(user => {
       if (user) {
         this.loggedIn = true;
         this.userMenu = [
@@ -75,9 +75,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     // Add Google Logo to MatIconRegistry
     matIconRegistry.addSvgIcon(
-      "googleLogo",
+      'googleLogo',
       domSanitizer.bypassSecurityTrustResourceUrl(
-        "assets/images/google-logo.svg"
+        'assets/images/google-logo.svg'
       )
     );
   }
@@ -103,10 +103,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         map(({ name }) => name),
         takeUntil(this.destroy$)
       )
-      .subscribe((themeName) => (this.currentTheme = themeName));
+      .subscribe(themeName => (this.currentTheme = themeName));
 
     // The dropdown by clicking user profile icon.
-    this.menuService.onItemClick().subscribe((event) => {
+    this.menuService.onItemClick().subscribe(event => {
       this.onContextItemSelection(event.item.title);
     });
   }
@@ -134,7 +134,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // Auth Stuff
   async onSignIn() {
-    return this.authService.googleAuth().catch((e) => {
+    return this.authService.googleAuth().catch(e => {
       console.log(e);
     });
   }

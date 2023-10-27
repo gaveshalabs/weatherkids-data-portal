@@ -41,4 +41,4 @@ import { FormsModule } from '@angular/forms';
     WeatherComponent,
   ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

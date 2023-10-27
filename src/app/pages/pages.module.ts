@@ -15,9 +15,6 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     DashboardModule,
     MiscellaneousModule,
   ],
-  declarations: [
-    PagesComponent,
-  ],
+  declarations: [PagesComponent],
 })
-export class PagesModule {
-}
+export class PagesModule {}

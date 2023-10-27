@@ -1,24 +1,24 @@
-import { RouterModule, Routes } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import { PagesComponent } from "./pages.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { NotFoundComponent } from "./miscellaneous/not-found/not-found.component";
-import { HomeComponent } from "./home/home.component";
-import { PrivacyPolicyComponent } from "../@components/privacy-policy/privacy-policy.component";
-import { TermsAndConditionsComponent } from "../@components/terms-and-conditions/terms-and-conditions.component";
+import { PagesComponent } from './pages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { PrivacyPolicyComponent } from '../@components/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from '../@components/terms-and-conditions/terms-and-conditions.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: PagesComponent,
     children: [
       {
-        path: "",
+        path: '',
         component: HomeComponent,
       },
       {
-        path: "dashboard",
+        path: 'dashboard',
         component: DashboardComponent,
       },
       // {
@@ -27,15 +27,15 @@ const routes: Routes = [
       //   pathMatch: "full",
       // },
       {
-        path: "privacy-policy",
+        path: 'privacy-policy',
         component: PrivacyPolicyComponent,
       },
       {
-        path: "t&c",
+        path: 't&c',
         component: TermsAndConditionsComponent,
       },
       {
-        path: "**",
+        path: '**',
         component: NotFoundComponent,
       },
     ],
