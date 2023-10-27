@@ -140,6 +140,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     async onContextItemSelection(title) {
         switch (title) {
             case EnumUserContextMenu.Profile:
+                console.log(await this.afAuth.currentUser);
                 break;
             case EnumUserContextMenu.Logout:
                 this.authService.signOut();
