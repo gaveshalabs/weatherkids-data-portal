@@ -7,7 +7,7 @@
     "extends": ["prettier"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        // "project": "tsconfig.json",
+        "project": "tsconfig.json",
         "sourceType": "module"
     },
     "plugins": [
@@ -47,7 +47,7 @@
             "off",
             { "accessibility": "explicit" }
         ],
-        "@typescript-eslint/indent": "error",
+        "@typescript-eslint/indent": "warn",
         "@typescript-eslint/member-delimiter-style": [
             "error",
             {
@@ -80,7 +80,7 @@
         "@typescript-eslint/semi": ["error", "always"],
         "@typescript-eslint/type-annotation-spacing": "error",
         "@typescript-eslint/unified-signatures": "error",
-        "arrow-body-style": "error",
+        "arrow-body-style": "warn",
         "brace-style": ["error", "1tbs"],
         "comma-dangle": ["error", "always-multiline"],
         "constructor-super": "error",
