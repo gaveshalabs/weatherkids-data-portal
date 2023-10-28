@@ -40,3 +40,7 @@
         text-shadow: 0 0 nb-theme(color-secondary-900);
     }
 }
+
+.leaflet-container {
+    filter: grayscale(100%);
+}

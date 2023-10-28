@@ -25,6 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OAuth2Module } from './modules/oauth2/oauth2.module';
 import { HomeComponent } from './pages/home/home.component';
+import { ApiModule } from './api/api.module';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,8 @@ import { HomeComponent } from './pages/home/home.component';
         TermsAndConditionsComponent,
     ],
     imports: [
+        ApiModule,
+
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,

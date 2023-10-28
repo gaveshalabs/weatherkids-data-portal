@@ -59,19 +59,19 @@ export class MapComponent implements OnInit, AfterViewInit {
             });
         this.markerIcons = {
             darkBlue: new CustomIcon({
-                iconUrl: 'assets/54x82_Pointer.png',
+                iconUrl: 'assets/images/54x82_Pointer.png',
                 iconSize: [27, 41],
                 iconAnchor: [14, 41],
                 id: 'darkBlue',
             }),
             darkOrange: new CustomIcon({
-                iconUrl: 'assets/54x82_Pointer_Orange.png',
+                iconUrl: 'assets/images/54x82_Pointer_Orange.png',
                 iconSize: [38, 57],
                 iconAnchor: [19, 57],
                 id: 'darkOrange',
             }),
             darkGray: new CustomIcon({
-                iconUrl: 'assets/54x82_Pointer_Gray.png',
+                iconUrl: 'assets/images/54x82_Pointer_Gray.png',
                 iconSize: [27, 41],
                 iconAnchor: [14, 41],
                 id: 'darkGray',
