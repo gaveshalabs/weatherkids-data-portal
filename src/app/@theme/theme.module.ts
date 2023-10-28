@@ -1,21 +1,22 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbSecurityModule } from '@nebular/security';
 import {
     NbActionsModule,
+    NbButtonModule,
+    NbContextMenuModule,
+    NbIconModule,
     NbLayoutModule,
     NbMenuModule,
     NbSearchModule,
-    NbSidebarModule,
-    NbUserModule,
-    NbContextMenuModule,
-    NbButtonModule,
     NbSelectModule,
-    NbIconModule,
+    NbSidebarModule,
     NbThemeModule,
+    NbUserModule,
 } from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbSecurityModule } from '@nebular/security';
 
+import { MatIconModule } from '@angular/material/icon';
 import {
     FooterComponent,
     HeaderComponent,
@@ -23,23 +24,22 @@ import {
     TinyMCEComponent,
 } from './components';
 import {
-    CapitalizePipe,
-    PluralPipe,
-    RoundPipe,
-    TimingPipe,
-    NumberWithCommasPipe,
-} from './pipes';
-import {
     OneColumnLayoutComponent,
     ThreeColumnsLayoutComponent,
     TwoColumnsLayoutComponent,
     WeatherPortalLayoutComponent,
 } from './layouts';
-import { DEFAULT_THEME } from './styles/theme.default';
-import { COSMIC_THEME } from './styles/theme.cosmic';
+import {
+    CapitalizePipe,
+    NumberWithCommasPipe,
+    PluralPipe,
+    RoundPipe,
+    TimingPipe,
+} from './pipes';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import { COSMIC_THEME } from './styles/theme.cosmic';
 import { DARK_THEME } from './styles/theme.dark';
-import { MatIconModule } from '@angular/material/icon';
+import { DEFAULT_THEME } from './styles/theme.default';
 
 const NB_MODULES = [
     NbLayoutModule,

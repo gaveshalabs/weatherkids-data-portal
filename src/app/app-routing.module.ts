@@ -8,11 +8,13 @@ import {
     NbRequestPasswordComponent,
     NbResetPasswordComponent,
 } from '@nebular/auth';
+import { OAuth2CallbackComponent } from './modules/oauth2/oauth2-callback.component';
 
 export const routes: Routes = [
     {
         path: 'pages',
-        loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
+        loadChildren: () =>
+            import('./pages/pages.module').then(m => m.PagesModule),
     },
     {
         path: 'auth',
@@ -41,6 +43,10 @@ export const routes: Routes = [
             {
                 path: 'reset-password',
                 component: NbResetPasswordComponent,
+            },
+            {
+                path: 'callback',
+                component: OAuth2CallbackComponent,
             },
         ],
     },

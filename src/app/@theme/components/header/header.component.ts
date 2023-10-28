@@ -1,17 +1,24 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
     NbMediaBreakpointsService,
     NbMenuService,
     NbThemeService,
 } from '@nebular/theme';
 
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import {
+    NbAuthOAuth2Token,
+    NbAuthResult,
+    NbAuthService,
+    NbAuthToken,
+} from '@nebular/auth';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
-import { AuthService } from '../../../modules/auth/auth.service';
 import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+import { UserProfile } from '../../../common/interfaces/user.interface';
+import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
+import { OAuth2CallbackComponent } from '../../../modules/oauth2/oauth2-callback.component';
 
 @Component({
     selector: 'ngx-header',
@@ -19,10 +26,12 @@ import { DomSanitizer } from '@angular/platform-browser';
     templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-    loggedIn: boolean = false;
     private destroy$: Subject<void> = new Subject<void>();
+    loggedIn: boolean = false;
+
     userPictureOnly: boolean = false;
-    user: any;
+
+    user: UserProfile;
 
     themes = [
         {
@@ -48,43 +57,124 @@ export class HeaderComponent implements OnInit, OnDestroy {
     // The dropdown by clicking user profile icon
     userMenu = [{}];
 
+    token: NbAuthOAuth2Token;
+
     constructor(
+        private oAuthService: OAuth2Service,
         private menuService: NbMenuService,
         private themeService: NbThemeService,
         private breakpointService: NbMediaBreakpointsService,
-        private authService: AuthService,
-        private afAuth: AngularFireAuth,
+        private authService: NbAuthService,
         private matIconRegistry: MatIconRegistry,
         domSanitizer: DomSanitizer
     ) {
-        // Listen for auth changes
-        this.afAuth.authState.subscribe(user => {
+        this.oAuthService.getUser().subscribe(user => {
+            console.log('the subscribed user', user);
             if (user) {
                 this.loggedIn = true;
+
                 this.userMenu = [
                     { title: EnumUserContextMenu.Profile },
                     { title: EnumUserContextMenu.Logout },
                 ];
-                this.user = { name: user.displayName, picture: user.photoURL };
+
+                this.user = user;
             } else {
                 this.loggedIn = false;
                 this.userMenu = [{ title: EnumUserContextMenu.Profile }];
-                this.user = {};
+                this.user = null;
             }
         });
 
         // Add Google Logo to MatIconRegistry
-        matIconRegistry.addSvgIcon(
+        this.matIconRegistry.addSvgIcon(
             'googleLogo',
             domSanitizer.bypassSecurityTrustResourceUrl(
                 'assets/images/google-logo.svg'
             )
         );
+
+        // this.authService
+        //     .onTokenChange()
+        //     .pipe(takeUntil(this.destroy$))
+        //     .subscribe((token: NbAuthToken) => {
+        //         this.token = null;
+        //         if (token && token.isValid()) {
+        //             this.token = token as NbAuthOAuth2Token;
+        //         }
+        //     });
+
+        // this.authService.onAuthenticationChange().subscribe(authenticated => {
+        //     if (authenticated) {
+        //         this.loggedIn = true;
+
+        //         this.userMenu = [
+        //             { title: EnumUserContextMenu.Profile },
+        //             { title: EnumUserContextMenu.Logout },
+        //         ];
+
+        //         // this.oAuthService.getUser().subscribe(user => {
+        //         //     console.log('the subscribed user', user);
+        //         // });
+
+        //         // this.user = JSON.parse(
+        //         //     localStorage.getItem('user')
+        //         // ) as UserProfile;
+        //     } else {
+        //         this.loggedIn = false;
+        //         this.userMenu = [{ title: EnumUserContextMenu.Profile }];
+        //         this.user = null;
+        //     }
+        // });
+
+        // Listen for auth changes
+        // this.afAuth.authState.subscribe(user => {
+        //     if (user) {
+        //         this.loggedIn = true;
+        //         this.userMenu = [
+        //             { title: EnumUserContextMenu.Profile },
+        //             { title: EnumUserContextMenu.Logout },
+        //         ];
+        //         this.user = { name: user.displayName, picture: user.photoURL };
+        //     } else {
+        //         this.loggedIn = false;
+        //         this.userMenu = [{ title: EnumUserContextMenu.Profile }];
+        //         this.user = {};
+        //     }
+        // });
+    }
+
+    async onSignIn() {
+        return this.oAuthService.login();
+    }
+
+    async onLogout() {
+        return this.oAuthService.logout();
+    }
+
+    // Context menu when click on user profile icon
+    async onContextItemSelection(title) {
+        switch (title) {
+            case EnumUserContextMenu.Profile:
+                console.log('Profile');
+
+                console.log(this.user);
+
+                // console.log(await this.afAuth.currentUser);
+                break;
+            case EnumUserContextMenu.Logout:
+                // this.authService.signOut();
+                return this.onLogout();
+        }
+    }
+
+    navigateHome() {
+        this.menuService.navigateHome();
+        return false;
     }
 
     ngOnInit() {
         this.currentTheme = this.themeService.currentTheme;
-        this.user = {};
 
         const { xl } = this.breakpointService.getBreakpointsMap();
         this.themeService
@@ -126,25 +216,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     //   return false;
     // }
-
-    navigateHome() {
-        this.menuService.navigateHome();
-        return false;
-    }
-
-    // Auth Stuff
-    async onSignIn() {
-        return this.authService.googleAuth().catch(e => {});
-    }
-
-    async onContextItemSelection(title) {
-        switch (title) {
-            case EnumUserContextMenu.Profile:
-                console.log(await this.afAuth.currentUser);
-                break;
-            case EnumUserContextMenu.Logout:
-                this.authService.signOut();
-                break;
-        }
-    }
 }

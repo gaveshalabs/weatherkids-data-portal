@@ -5,7 +5,12 @@ import {
     SkipSelf,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NbAuthModule, NbDummyAuthStrategy } from '@nebular/auth';
+import {
+    NbAuthModule,
+    NbDummyAuthStrategy,
+    NbOAuth2AuthStrategy,
+    NbOAuth2ResponseType,
+} from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
 
@@ -21,6 +26,7 @@ import { TemperatureHumidityData } from './data/temperature-humidity';
 
 import { TemperatureHumidityService } from './mock/temperature-humidity.service';
 import { MockDataModule } from './mock/mock-data.module';
+import { environment } from '../../environments/environment';
 
 const socialLinks = [
     {
@@ -46,7 +52,7 @@ const DATA_SERVICES = [
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
     getRole() {
-    // here you could provide any role based on any auth flow
+        // here you could provide any role based on any auth flow
         return observableOf('guest');
     }
 }
@@ -59,6 +65,16 @@ export const NB_CORE_PROVIDERS = [
             NbDummyAuthStrategy.setup({
                 name: 'email',
                 delay: 3000,
+            }),
+            NbOAuth2AuthStrategy.setup({
+                name: 'google',
+                clientId: environment.googleWebClientId,
+                authorize: {
+                    endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
+                    responseType: NbOAuth2ResponseType.TOKEN,
+                    scope: 'profile email',
+                    redirectUri: environment.googleRedirectUri,
+                },
             }),
         ],
         forms: {
