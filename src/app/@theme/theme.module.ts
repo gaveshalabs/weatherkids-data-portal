@@ -1,92 +1,95 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  NbActionsModule,
-  NbLayoutModule,
-  NbMenuModule,
-  NbSearchModule,
-  NbSidebarModule,
-  NbUserModule,
-  NbContextMenuModule,
-  NbButtonModule,
-  NbSelectModule,
-  NbIconModule,
-  NbThemeModule,
-} from '@nebular/theme';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
-
 import {
-  FooterComponent,
-  HeaderComponent,
-  SearchInputComponent,
-  TinyMCEComponent,
+    NbActionsModule,
+    NbButtonModule,
+    NbContextMenuModule,
+    NbIconModule,
+    NbLayoutModule,
+    NbMenuModule,
+    NbSearchModule,
+    NbSelectModule,
+    NbSidebarModule,
+    NbThemeModule,
+    NbUserModule,
+} from '@nebular/theme';
+
+import { MatIconModule } from '@angular/material/icon';
+import {
+    FooterComponent,
+    HeaderComponent,
+    SearchInputComponent,
+    TinyMCEComponent,
 } from './components';
 import {
-  CapitalizePipe,
-  PluralPipe,
-  RoundPipe,
-  TimingPipe,
-  NumberWithCommasPipe,
-} from './pipes';
-import {
-  OneColumnLayoutComponent,
-  ThreeColumnsLayoutComponent,
-  TwoColumnsLayoutComponent,
+    OneColumnLayoutComponent,
+    ThreeColumnsLayoutComponent,
+    TwoColumnsLayoutComponent,
+    WeatherPortalLayoutComponent,
 } from './layouts';
-import { DEFAULT_THEME } from './styles/theme.default';
-import { COSMIC_THEME } from './styles/theme.cosmic';
+import {
+    CapitalizePipe,
+    NumberWithCommasPipe,
+    PluralPipe,
+    RoundPipe,
+    TimingPipe,
+} from './pipes';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import { COSMIC_THEME } from './styles/theme.cosmic';
 import { DARK_THEME } from './styles/theme.dark';
+import { DEFAULT_THEME } from './styles/theme.default';
 
 const NB_MODULES = [
-  NbLayoutModule,
-  NbMenuModule,
-  NbUserModule,
-  NbActionsModule,
-  NbSearchModule,
-  NbSidebarModule,
-  NbContextMenuModule,
-  NbSecurityModule,
-  NbButtonModule,
-  NbSelectModule,
-  NbIconModule,
-  NbEvaIconsModule,
+    NbLayoutModule,
+    NbMenuModule,
+    NbUserModule,
+    NbActionsModule,
+    NbSearchModule,
+    NbSidebarModule,
+    NbContextMenuModule,
+    NbSecurityModule,
+    NbButtonModule,
+    NbSelectModule,
+    NbIconModule,
+    NbEvaIconsModule,
 ];
 const COMPONENTS = [
-  HeaderComponent,
-  FooterComponent,
-  SearchInputComponent,
-  TinyMCEComponent,
-  OneColumnLayoutComponent,
-  ThreeColumnsLayoutComponent,
-  TwoColumnsLayoutComponent,
+    HeaderComponent,
+    FooterComponent,
+    SearchInputComponent,
+    TinyMCEComponent,
+    OneColumnLayoutComponent,
+    ThreeColumnsLayoutComponent,
+    TwoColumnsLayoutComponent,
+    WeatherPortalLayoutComponent,
 ];
 const PIPES = [
-  CapitalizePipe,
-  PluralPipe,
-  RoundPipe,
-  TimingPipe,
-  NumberWithCommasPipe,
+    CapitalizePipe,
+    PluralPipe,
+    RoundPipe,
+    TimingPipe,
+    NumberWithCommasPipe,
 ];
 
 @NgModule({
-  imports: [CommonModule, ...NB_MODULES],
-  exports: [CommonModule, ...PIPES, ...COMPONENTS],
-  declarations: [...COMPONENTS, ...PIPES],
+    imports: [CommonModule, ...NB_MODULES, MatIconModule],
+    exports: [CommonModule, ...PIPES, ...COMPONENTS],
+    declarations: [...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
-  static forRoot(): ModuleWithProviders<ThemeModule> {
-    return {
-      ngModule: ThemeModule,
-      providers: [
-        ...NbThemeModule.forRoot(
-          {
-            name: 'default',
-          },
-          [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME ],
-        ).providers,
-      ],
-    };
-  }
+    static forRoot(): ModuleWithProviders<ThemeModule> {
+        return {
+            ngModule: ThemeModule,
+            providers: [
+                ...NbThemeModule.forRoot(
+                    {
+                        name: 'default',
+                    },
+                    [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME]
+                ).providers,
+            ],
+        };
+    }
 }

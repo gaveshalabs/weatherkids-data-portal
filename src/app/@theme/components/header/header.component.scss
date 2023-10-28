@@ -24,7 +24,7 @@
   }
 
   ::ng-deep nb-search button {
-    padding: 0!important;
+    padding: 0 !important;
   }
 
   .header-container {
@@ -67,4 +67,9 @@
       display: none;
     }
   }
+}
+
+.google-signin {
+  padding: 0 6px;
+  background-color: white;
 }

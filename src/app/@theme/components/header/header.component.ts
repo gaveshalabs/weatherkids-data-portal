@@ -1,89 +1,219 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import {
+    NbMediaBreakpointsService,
+    NbMenuService,
+    NbThemeService,
+} from '@nebular/theme';
 
-import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import {
+    NbAuthOAuth2Token,
+    NbAuthResult,
+    NbAuthService,
+    NbAuthToken,
+} from '@nebular/auth';
 import { Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
+import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
+import { UserProfile } from '../../../common/interfaces/user.interface';
+import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
+import { OAuth2CallbackComponent } from '../../../modules/oauth2/oauth2-callback.component';
 
 @Component({
-  selector: 'ngx-header',
-  styleUrls: ['./header.component.scss'],
-  templateUrl: './header.component.html',
+    selector: 'ngx-header',
+    styleUrls: ['./header.component.scss'],
+    templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+    private destroy$: Subject<void> = new Subject<void>();
+    loggedIn: boolean = false;
 
-  private destroy$: Subject<void> = new Subject<void>();
-  userPictureOnly: boolean = false;
-  user: any;
+    userPictureOnly: boolean = false;
 
-  themes = [
-    {
-      value: 'default',
-      name: 'Light',
-    },
-    {
-      value: 'dark',
-      name: 'Dark',
-    },
-    {
-      value: 'cosmic',
-      name: 'Cosmic',
-    },
-    {
-      value: 'corporate',
-      name: 'Corporate',
-    },
-  ];
+    user: UserProfile;
 
-  currentTheme = 'default';
+    themes = [
+        {
+            value: 'default',
+            name: 'Light',
+        },
+        {
+            value: 'dark',
+            name: 'Dark',
+        },
+        {
+            value: 'cosmic',
+            name: 'Cosmic',
+        },
+        {
+            value: 'corporate',
+            name: 'Corporate',
+        },
+    ];
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out' } ];
+    currentTheme = 'default';
 
-  constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
-  }
+    // The dropdown by clicking user profile icon
+    userMenu = [{}];
 
-  ngOnInit() {
-    this.currentTheme = this.themeService.currentTheme;
-    this.user = { name: 'Nick Jones', picture: 'assets/images/nick.png' };
+    token: NbAuthOAuth2Token;
 
-    const { xl } = this.breakpointService.getBreakpointsMap();
-    this.themeService.onMediaQueryChange()
-      .pipe(
-        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+    constructor(
+        private oAuthService: OAuth2Service,
+        private menuService: NbMenuService,
+        private themeService: NbThemeService,
+        private breakpointService: NbMediaBreakpointsService,
+        private authService: NbAuthService,
+        private matIconRegistry: MatIconRegistry,
+        domSanitizer: DomSanitizer
+    ) {
+        this.oAuthService.getUser().subscribe(user => {
+            console.log('the subscribed user', user);
+            if (user) {
+                this.loggedIn = true;
 
-    this.themeService.onThemeChange()
-      .pipe(
-        map(({ name }) => name),
-        takeUntil(this.destroy$),
-      )
-      .subscribe(themeName => this.currentTheme = themeName);
-  }
+                this.userMenu = [
+                    { title: EnumUserContextMenu.Profile },
+                    { title: EnumUserContextMenu.Logout },
+                ];
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+                this.user = user;
+            } else {
+                this.loggedIn = false;
+                this.userMenu = [{ title: EnumUserContextMenu.Profile }];
+                this.user = null;
+            }
+        });
 
-  changeTheme(themeName: string) {
-    this.themeService.changeTheme(themeName);
-  }
+        // Add Google Logo to MatIconRegistry
+        this.matIconRegistry.addSvgIcon(
+            'googleLogo',
+            domSanitizer.bypassSecurityTrustResourceUrl(
+                'assets/images/google-logo.svg'
+            )
+        );
 
-  toggleSidebar(): boolean {
-    this.sidebarService.toggle(true, 'menu-sidebar');
-    this.layoutService.changeLayoutSize();
+        // this.authService
+        //     .onTokenChange()
+        //     .pipe(takeUntil(this.destroy$))
+        //     .subscribe((token: NbAuthToken) => {
+        //         this.token = null;
+        //         if (token && token.isValid()) {
+        //             this.token = token as NbAuthOAuth2Token;
+        //         }
+        //     });
 
-    return false;
-  }
+        // this.authService.onAuthenticationChange().subscribe(authenticated => {
+        //     if (authenticated) {
+        //         this.loggedIn = true;
 
-  navigateHome() {
-    this.menuService.navigateHome();
-    return false;
-  }
+        //         this.userMenu = [
+        //             { title: EnumUserContextMenu.Profile },
+        //             { title: EnumUserContextMenu.Logout },
+        //         ];
+
+        //         // this.oAuthService.getUser().subscribe(user => {
+        //         //     console.log('the subscribed user', user);
+        //         // });
+
+        //         // this.user = JSON.parse(
+        //         //     localStorage.getItem('user')
+        //         // ) as UserProfile;
+        //     } else {
+        //         this.loggedIn = false;
+        //         this.userMenu = [{ title: EnumUserContextMenu.Profile }];
+        //         this.user = null;
+        //     }
+        // });
+
+        // Listen for auth changes
+        // this.afAuth.authState.subscribe(user => {
+        //     if (user) {
+        //         this.loggedIn = true;
+        //         this.userMenu = [
+        //             { title: EnumUserContextMenu.Profile },
+        //             { title: EnumUserContextMenu.Logout },
+        //         ];
+        //         this.user = { name: user.displayName, picture: user.photoURL };
+        //     } else {
+        //         this.loggedIn = false;
+        //         this.userMenu = [{ title: EnumUserContextMenu.Profile }];
+        //         this.user = {};
+        //     }
+        // });
+    }
+
+    async onSignIn() {
+        return this.oAuthService.login();
+    }
+
+    async onLogout() {
+        return this.oAuthService.logout();
+    }
+
+    // Context menu when click on user profile icon
+    async onContextItemSelection(title) {
+        switch (title) {
+            case EnumUserContextMenu.Profile:
+                console.log('Profile');
+
+                console.log(this.user);
+
+                // console.log(await this.afAuth.currentUser);
+                break;
+            case EnumUserContextMenu.Logout:
+                // this.authService.signOut();
+                return this.onLogout();
+        }
+    }
+
+    navigateHome() {
+        this.menuService.navigateHome();
+        return false;
+    }
+
+    ngOnInit() {
+        this.currentTheme = this.themeService.currentTheme;
+
+        const { xl } = this.breakpointService.getBreakpointsMap();
+        this.themeService
+            .onMediaQueryChange()
+            .pipe(
+                map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+                takeUntil(this.destroy$)
+            )
+            .subscribe(
+                (isLessThanXl: boolean) => (this.userPictureOnly = isLessThanXl)
+            );
+
+        this.themeService
+            .onThemeChange()
+            .pipe(
+                map(({ name }) => name),
+                takeUntil(this.destroy$)
+            )
+            .subscribe(themeName => (this.currentTheme = themeName));
+
+        // The dropdown by clicking user profile icon.
+        this.menuService.onItemClick().subscribe(event => {
+            this.onContextItemSelection(event.item.title);
+        });
+    }
+
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+
+    // changeTheme(themeName: string) {
+    //   this.themeService.changeTheme(themeName);
+    // }
+
+    // toggleSidebar(): boolean {
+    //   this.sidebarService.toggle(true, "menu-sidebar");
+    //   this.layoutService.changeLayoutSize();
+
+    //   return false;
+    // }
 }

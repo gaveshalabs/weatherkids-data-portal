@@ -30,10 +30,11 @@
               "node_modules/socicon/css/socicon.css",
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
-              "src/app/@theme/styles/styles.scss"
+              "src/app/@theme/styles/styles.scss",
+              "leaflet/dist/leaflet.css"
             ],
             "scripts": [
-              "node_modules/pace-js/pace.min.js",
+              "node_modules/pace-js/pace.min.js"
             ],
             "allowedCommonJsDependencies": [
               "lodash",
@@ -150,5 +151,11 @@
     "@schematics/angular:directive": {
       "prefix": "ngx"
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@angular-eslint/schematics",
+      "@angular-eslint/schematics"
+    ]
   }
 }
