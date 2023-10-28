@@ -43,7 +43,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     constructor() {
         // const CustomIcon: {new(options: any): any} & typeof Class = DivIcon.extend({
-        const CustomIcon: { new (options: any): any } & typeof Class =
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        const CustomIcon: (new (options: any) => any) & typeof Class =
             Icon.extend({
                 options: {
                     // iconRetinaUrl: 'assets/marker-icon-2x.png',
@@ -120,7 +121,7 @@ export class MapComponent implements OnInit, AfterViewInit {
             if (location instanceof Marker) {
                 this._showMarkerWithActiveStatus(
                     m,
-                    m == location,
+                    m === location,
                     this.originalIconsOfMarkers[i]
                 );
             } else {
