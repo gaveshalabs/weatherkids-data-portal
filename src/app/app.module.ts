@@ -39,6 +39,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
         TermsAndConditionsComponent,
     ],
     imports: [
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideAuth(() => getAuth()),
         ApiModule,
 
         BrowserModule,
@@ -58,8 +60,6 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
         ThemeModule.forRoot(),
 
         OAuth2Module,
-        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-        provideAuth(() => getAuth()),
     ],
     bootstrap: [AppComponent],
 })

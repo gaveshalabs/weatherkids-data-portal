@@ -11,6 +11,7 @@ import {
     GoogleAuthProvider,
     UserCredential,
     signInWithPopup,
+    signOut,
     // } from '@angular/fire/auth/firebase';
 } from '@angular/fire/auth';
 import { Subject, BehaviorSubject, Observable, throwError } from 'rxjs';
@@ -99,7 +100,31 @@ export class OAuth2Service {
 
     // Call the methods using NbAuthService
     async login() {
-        signInWithPopup(this.afAuth, new GoogleAuthProvider());
+        // console.log('OAuth2Service.login()');
+
+        return signInWithPopup(this.afAuth, new GoogleAuthProvider()).then(
+            result => {
+                // console.log('OAuth2Service.login() result:', result);
+                // this.setUserData(result.user);
+                console.log('OAuth2Service.login() result:', result);
+
+                const idToken = result['_tokenResponse']['idToken'];
+                console.log('OAuth2Service.login() idToken:', idToken);
+
+                this.userData = convertToUserProfile(result.user);
+                localStorage.setItem('user', JSON.stringify(this.userData));
+                this.userSubject.next(this.userData);
+                this.router.navigate(['dashboard']);
+            },
+            error => {
+                console.error('OAuth2Service.login() error:', error);
+                return throwError(() => new Error('Error logging in'));
+            }
+        );
+        // return signInWithPopup(this.afAuth, new GoogleAuthProvider()).subscribe(
+        //     (authResult: NbAuthResult) => {}
+        // );
+        // return signInWithPopup(this.afAuth, new GoogleAuthProvider());
         // try {
         //     const provider = new firebase.default.auth.GoogleAuthProvider();
         //     const result = await this.afAuth.signInWithPopup(provider);
@@ -116,10 +141,17 @@ export class OAuth2Service {
     }
 
     logout() {
-        return this.afAuth.signOut().then(() => {
-            localStorage.removeItem('user');
-            this.router.navigate(['sign-in']);
-        });
+        return signOut(this.afAuth).then(
+            result => {
+                localStorage.removeItem('user');
+                this.userSubject.next(null);
+                this.router.navigate(['sign-in']);
+            },
+            error => {
+                console.error('OAuth2Service.logout() error:', error);
+                return throwError(() => new Error('Error logging out'));
+            }
+        );
         // return this.authService
         //     .logout('google')
         //     .pipe(takeUntil(this.destroy$))

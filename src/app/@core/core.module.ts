@@ -66,16 +66,16 @@ export const NB_CORE_PROVIDERS = [
                 name: 'email',
                 delay: 3000,
             }),
-            NbOAuth2AuthStrategy.setup({
-                name: 'google',
-                clientId: environment.googleWebClientId,
-                authorize: {
-                    endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
-                    responseType: NbOAuth2ResponseType.TOKEN,
-                    scope: 'profile email',
-                    redirectUri: environment.googleRedirectUri,
-                },
-            }),
+            // NbOAuth2AuthStrategy.setup({
+            //     name: 'google',
+            //     clientId: environment.googleWebClientId,
+            //     authorize: {
+            //         endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
+            //         responseType: NbOAuth2ResponseType.TOKEN,
+            //         scope: 'profile email',
+            //         redirectUri: environment.googleRedirectUri,
+            //     },
+            // }),
         ],
         forms: {
             login: {
