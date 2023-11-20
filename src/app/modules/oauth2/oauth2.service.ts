@@ -118,13 +118,15 @@ export class OAuth2Service {
 
                 // After user has signed in, call API to establish Gavesha session with the Gavesha API
                 this.sessionApiService
-                    .establishGaveshaSession({
-                        userId: result.user['uid'],
-                        email: result.user['email'],
-                        name: result.user['displayName'],
-                        photo_url: result.user['photoURL'],
-                        idToken: idToken,
-                    })
+                    .establishGaveshaSession(
+                        {
+                            userId: result.user['uid'],
+                            email: result.user['email'],
+                            name: result.user['displayName'],
+                            photo_url: result.user['photoURL'],
+                        },
+                        idToken
+                    )
                     .subscribe(
                         response => {
                             console.log(

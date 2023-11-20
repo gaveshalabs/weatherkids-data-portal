@@ -3,5 +3,4 @@ export interface IGaveshaSession {
     email: string;
     name: string;
     photo_url: string;
-    idToken: string;
 }
