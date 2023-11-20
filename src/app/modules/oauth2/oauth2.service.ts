@@ -120,7 +120,7 @@ export class OAuth2Service {
                 this.sessionApiService
                     .establishGaveshaSession(
                         {
-                            userId: result.user['uid'],
+                            uid: result.user['uid'],
                             email: result.user['email'],
                             name: result.user['displayName'],
                             photo_url: result.user['photoURL'],

@@ -1,5 +1,5 @@
 export interface IGaveshaSession {
-    userId: string;
+    uid: string;
     email: string;
     name: string;
     photo_url: string;
