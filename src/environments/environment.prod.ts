@@ -6,5 +6,6 @@ import { defaultEnvironment } from './environment.default';
  */
 export const environment = {
     ...defaultEnvironment,
+    apiBaseUrl: 'https://us-central1-weatherkids-f85f4.cloudfunctions.net/api',
     production: true,
 };

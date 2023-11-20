@@ -1,12 +1,22 @@
-import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserProfile } from '../../common/interfaces/user.interface';
-import { catchError, map, takeUntil } from 'rxjs/operators';
-import { NbAuthResult, NbAuthService } from '@nebular/auth';
-import { EnumUserContextMenu } from '../../common/enums/user-action-context';
-import { HeaderComponent } from '../../@theme/components';
+
+import {
+    UserProfile,
+    convertToUserProfile,
+} from '../../common/interfaces/user.interface';
+import {
+    Auth,
+    GoogleAuthProvider,
+    UserCredential,
+    signInWithPopup,
+    signOut,
+    // } from '@angular/fire/auth/firebase';
+} from '@angular/fire/auth';
+import { Subject, BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { SessionApiService } from '../../api/session-api.service';
 
 @Injectable({
     providedIn: 'root',
@@ -15,14 +25,18 @@ export class OAuth2Service {
     private destroy$: Subject<void> = new Subject<void>();
 
     // userData: User;
-    // authResult: firebase.default.auth.UserCredential;
+    userData: UserProfile | null = null;
+    authResult: UserCredential | null = null;
     userSubject: BehaviorSubject<UserProfile | null> =
         new BehaviorSubject<UserProfile | null>(null);
 
     user: Observable<UserProfile | null> = this.userSubject.asObservable();
 
     constructor(
-        public authService: NbAuthService,
+        private sessionApiService: SessionApiService,
+        private afAuth: Auth,
+        // public afAuth: AngularFireAuth,
+        // public authService: NbAuthService,
         public ngZone: NgZone,
         public router: Router,
         private http: HttpClient
@@ -32,28 +46,29 @@ export class OAuth2Service {
             ? (JSON.parse(storedUser) as UserProfile)
             : null;
         this.userSubject = new BehaviorSubject<UserProfile | null>(initialUser);
+
         // this.user = this.userSubject.asObservable();
 
-        this.authService.onAuthenticationChange().subscribe(authenticated => {
-            if (authenticated) {
-                console.log('User is authenticated');
-            } else {
-                console.log('User is not authenticated.');
+        // this.authService.onAuthenticationChange().subscribe(authenticated => {
+        //     if (authenticated) {
+        //         console.log('User is authenticated');
+        //     } else {
+        //         console.log('User is not authenticated.');
 
-                // The user observer is cleared for state management
-                // this.userSubject.next(null);
-            }
-        });
+        //         // The user observer is cleared for state management
+        //         // this.userSubject.next(null);
+        //     }
+        // });
 
         /* Saving user data in localstorage when logged in and setting up null when logged out */
         // this.afAuth.authState.subscribe(user => {
         //     if (user) {
         //         console.log('User is authenticated:', user);
-        //         this.userData = user;
+        //         this.userData = convertToUserProfile(user);
         //         localStorage.setItem('user', JSON.stringify(this.authResult));
         //         const url = `${environment.apiBaseUrl}/auth/id-token`;
         //         // const body = { 'idToken':this.authResult.credential.providerId }; // Assuming you only need to send idToken
-        //         // console.log(this.authResult.credential);
+        //         console.log(this.authResult.credential);
         //         const body = { idToken: 'this.authResult.credential.idToken' };
         //         return this.http.post(url, body);
         //     } else {
@@ -86,24 +101,103 @@ export class OAuth2Service {
     }
 
     // Call the methods using NbAuthService
-    login() {
-        return this.authService
-            .authenticate('google')
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((authResult: NbAuthResult) => {});
+    async login() {
+        // console.log('OAuth2Service.login()');
+
+        return signInWithPopup(this.afAuth, new GoogleAuthProvider()).then(
+            result => {
+                // console.log('OAuth2Service.login() result:', result);
+                // this.setUserData(result.user);
+                console.log(
+                    'OAuth2Service.login() firebase login result:',
+                    result
+                );
+                // console.log('OAuth2Service.login() idToken:', idToken);
+
+                const idToken = result['_tokenResponse']['oauthIdToken'];
+
+                // After user has signed in, call API to establish Gavesha session with the Gavesha API
+                this.sessionApiService
+                    .establishGaveshaSession(
+                        {
+                            uid: result.user['uid'],
+                            email: result.user['email'],
+                            name: result.user['displayName'],
+                            photo_url: result.user['photoURL'],
+                        },
+                        idToken
+                    )
+                    .subscribe(
+                        response => {
+                            console.log(
+                                'OAuth2Service.login() session API response:',
+                                response
+                            );
+
+                            this.userData = convertToUserProfile(
+                                response as Map<string, string>
+                            );
+                            localStorage.setItem(
+                                'user',
+                                JSON.stringify(this.userData)
+                            );
+                            this.userSubject.next(this.userData);
+                            this.router.navigate(['dashboard']);
+                        },
+                        error => {
+                            console.error(
+                                'OAuth2Service.login() session API error:',
+                                error
+                            );
+                        }
+                    );
+            },
+            error => {
+                console.error('OAuth2Service.login() error:', error);
+                return throwError(() => new Error('Error logging in'));
+            }
+        );
+        // return signInWithPopup(this.afAuth, new GoogleAuthProvider()).subscribe(
+        //     (authResult: NbAuthResult) => {}
+        // );
+        // return signInWithPopup(this.afAuth, new GoogleAuthProvider());
+        // try {
+        //     const provider = new firebase.default.auth.GoogleAuthProvider();
+        //     const result = await this.afAuth.signInWithPopup(provider);
+        //     this.router.navigate(['dashboard']);
+        //     // this.setUserData(result.user);
+        //     this.userData = convertToUserProfile(result.user);
+        // } catch (error) {
+        //     window.alert(error);
+        // }
+        // return this.authService
+        //     .authenticate('google')
+        //     .pipe(takeUntil(this.destroy$))
+        //     .subscribe((authResult: NbAuthResult) => {});
     }
 
     logout() {
-        return this.authService
-            .logout('google')
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((authResult: NbAuthResult) => {
-                // Clear user state
+        return signOut(this.afAuth).then(
+            result => {
+                localStorage.removeItem('user');
                 this.userSubject.next(null);
+                this.router.navigate(['sign-in']);
+            },
+            error => {
+                console.error('OAuth2Service.logout() error:', error);
+                return throwError(() => new Error('Error logging out'));
+            }
+        );
+        // return this.authService
+        //     .logout('google')
+        //     .pipe(takeUntil(this.destroy$))
+        //     .subscribe((authResult: NbAuthResult) => {
+        //         // Clear user state
+        //         this.userSubject.next(null);
 
-                // Clear local storage
-                localStorage.setItem('user', null);
-            });
+        //         // Clear local storage
+        //         localStorage.setItem('user', null);
+        //     });
     }
 
     getUser(): Observable<UserProfile | null> {

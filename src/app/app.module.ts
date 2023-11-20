@@ -26,6 +26,9 @@ import { AppComponent } from './app.component';
 import { OAuth2Module } from './modules/oauth2/oauth2.module';
 import { HomeComponent } from './pages/home/home.component';
 import { ApiModule } from './api/api.module';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 @NgModule({
     declarations: [
@@ -36,6 +39,8 @@ import { ApiModule } from './api/api.module';
         TermsAndConditionsComponent,
     ],
     imports: [
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideAuth(() => getAuth()),
         ApiModule,
 
         BrowserModule,
