@@ -16,6 +16,7 @@ import {
 } from '@angular/fire/auth';
 import { Subject, BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { SessionApiService } from '../../api/session-api.service';
 
 @Injectable({
     providedIn: 'root',
@@ -32,6 +33,7 @@ export class OAuth2Service {
     user: Observable<UserProfile | null> = this.userSubject.asObservable();
 
     constructor(
+        private sessionApiService: SessionApiService,
         private afAuth: Auth,
         // public afAuth: AngularFireAuth,
         // public authService: NbAuthService,
@@ -106,15 +108,47 @@ export class OAuth2Service {
             result => {
                 // console.log('OAuth2Service.login() result:', result);
                 // this.setUserData(result.user);
-                console.log('OAuth2Service.login() result:', result);
+                console.log(
+                    'OAuth2Service.login() firebase login result:',
+                    result
+                );
+                // console.log('OAuth2Service.login() idToken:', idToken);
 
-                const idToken = result['_tokenResponse']['idToken'];
-                console.log('OAuth2Service.login() idToken:', idToken);
+                const idToken = result['_tokenResponse']['oauthIdToken'];
 
-                this.userData = convertToUserProfile(result.user);
-                localStorage.setItem('user', JSON.stringify(this.userData));
-                this.userSubject.next(this.userData);
-                this.router.navigate(['dashboard']);
+                // After user has signed in, call API to establish Gavesha session with the Gavesha API
+                this.sessionApiService
+                    .establishGaveshaSession({
+                        userId: result.user['uid'],
+                        email: result.user['email'],
+                        name: result.user['displayName'],
+                        photo_url: result.user['photoURL'],
+                        idToken: idToken,
+                    })
+                    .subscribe(
+                        response => {
+                            console.log(
+                                'OAuth2Service.login() session API response:',
+                                response
+                            );
+
+                            this.userData = convertToUserProfile(
+                                response as Map<string, string>
+                            );
+                            localStorage.setItem(
+                                'user',
+                                JSON.stringify(this.userData)
+                            );
+                            this.userSubject.next(this.userData);
+                            this.router.navigate(['dashboard']);
+                        },
+                        error => {
+                            console.error(
+                                'OAuth2Service.login() session API error:',
+                                error
+                            );
+                        }
+                    );
             },
             error => {
                 console.error('OAuth2Service.login() error:', error);
