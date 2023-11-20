@@ -85,12 +85,10 @@ export class OAuth2Service {
 
         return this.http
             .get<UserProfile>('https://www.googleapis.com/oauth2/v3/userinfo', {
-                headers,
-            })
+            headers,
+        })
             .pipe(
-                map(response => {
-                    return response;
-                }),
+                map(response => response),
                 catchError(error => {
                     console.error('Error fetching Google user info:', error);
                     return throwError(
