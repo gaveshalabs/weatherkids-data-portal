@@ -1,0 +1,50 @@
+@use '@angular/material' as mat;
+// @use 'sass:map';
+
+@mixin angular-material() {
+  @include mat.core();
+
+  $blue-palette: (
+    primary: #1976d2,
+    primaryDark: #004ba0,
+    primaryLight: #63a4ff,
+    contrast: (
+      primary: white,
+      primaryDark: white,
+      primaryLight: rgba(black, 0.87),
+    )
+  );
+  $orange-palette: (
+    secondary: #d27619,
+    secondaryDark: #9b4900,
+    secondaryLight: #ffa54b,
+    contrast: (
+      secondary: rgba(black, 0.87),
+      secondaryDark: white,
+      secondaryLight: rgba(black, 0.87),
+    )
+  );
+  $my-primary: mat.define-palette($blue-palette, primary, primaryLight, primaryDark);
+  $my-secondary: mat.define-palette($orange-palette, secondary, secondaryLight, secondaryDark);
+  $my-typography: mat.define-typography-config(
+    $font-family: unquote('Outfit, Noto Sans Sinhala, sans-serif'),
+  );
+
+  $custom-light-theme: mat.define-light-theme((
+    color: (
+      primary: $my-primary,
+      accent: $my-secondary
+    ),
+    typography: $my-typography,
+  ));
+  // @include mat.all-component-themes($custom-light-theme);
+  // TODO: can list only themes for used components to reduce file size
+  // ex: @include mat.button-theme($my-theme);
+
+  // Emit theme-dependent styles for common features used across multiple components.
+  @include mat.core-theme($custom-light-theme);
+  @include mat.autocomplete-theme($custom-light-theme);
+  @include mat.button-theme($custom-light-theme);
+  @include mat.icon-theme($custom-light-theme);
+  @include mat.tooltip-theme($custom-light-theme);
+}

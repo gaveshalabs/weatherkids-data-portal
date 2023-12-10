@@ -40,6 +40,7 @@ import { CORPORATE_THEME } from './styles/theme.corporate';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { DARK_THEME } from './styles/theme.dark';
 import { DEFAULT_THEME } from './styles/theme.default';
+import { LoaderComponent } from './components/loader/loader.component';
 
 const NB_MODULES = [
     NbLayoutModule,
@@ -64,6 +65,7 @@ const COMPONENTS = [
     ThreeColumnsLayoutComponent,
     TwoColumnsLayoutComponent,
     WeatherPortalLayoutComponent,
+    LoaderComponent,
 ];
 const PIPES = [
     CapitalizePipe,

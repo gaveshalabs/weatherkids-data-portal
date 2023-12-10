@@ -1,0 +1,88 @@
+@import 'node_modules/@nebular/theme/styles/global/typography/_typography.scss';
+@import '../../../@theme/styles/themes.scss';
+@import '../../../@theme/styles/overlay.scss';
+
+.close-btn {
+  top: -10px;
+  color: nb-theme(color-basic-500);
+}
+
+.row.with-bottom-border:after {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 95%;
+  padding-top: 5px;
+  border-bottom: 1px solid nb-theme(color-basic-default-border);
+}
+
+.data-group {
+  padding-top: 10px;
+}
+
+.description {
+  color: nb-theme(text-sub-color);
+  &.description-sm {
+    line-height: 1rem;
+    font-size: 70%;
+    display: flex;
+    align-items: center;
+
+    .mat-icon {
+      font-size: inherit;
+      width: auto;
+      height: auto;
+      padding-right: 3px;
+    }
+  }
+}
+
+@include nb-install-component() {
+  ::ng-deep .ws-milestone-progress {
+    padding-top: 10px;
+    padding-bottom: 5px;
+  }
+}
+
+.sensor-reading-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  .mat-mdc-unelevated-button.small {
+    line-height: 2rem;
+    padding: 0 10px;
+  }
+}
+
+.ws-milestone-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.uppercase-small-title {
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.ws-outline.overlay {
+  border-color: nb-theme(color-primary-100);
+  border-style: solid;
+  border-top-width: 15px;
+  border-left-width: 0;
+  border-bottom-width: 0;
+  border-right-width: 0;
+  padding-top: 0;
+  position: absolute;
+  top: 5px;
+
+  .row:nth-child(1) {
+    background-color: nb-theme(color-primary-100);
+    padding-bottom: 5px;
+  }
+}

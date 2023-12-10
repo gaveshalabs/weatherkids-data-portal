@@ -16,7 +16,7 @@ import {
     NbToastrModule,
     NbWindowModule,
 } from '@nebular/theme';
-import { MapComponent } from './@components/map/map.component';
+// import { MapComponent } from './@components/map/map.component';
 import { PrivacyPolicyComponent } from './@components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './@components/terms-and-conditions/terms-and-conditions.component';
 import { CoreModule } from './@core/core.module';
@@ -24,17 +24,22 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OAuth2Module } from './modules/oauth2/oauth2.module';
-import { HomeComponent } from './pages/home/home.component';
+// import { HomeComponent } from './pages/home/home.component';
 import { ApiModule } from './api/api.module';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { AlertMessageComponent } from './@components/alert-message/alert-message.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent,
-        MapComponent,
+        // HomeComponent,
+        // MapComponent,
+        AlertMessageComponent,
         PrivacyPolicyComponent,
         TermsAndConditionsComponent,
     ],
@@ -60,6 +65,9 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
         ThemeModule.forRoot(),
 
         OAuth2Module,
+        MatButtonModule,
+        MatIconModule,
+        MatSnackBarModule,
     ],
     bootstrap: [AppComponent],
 })

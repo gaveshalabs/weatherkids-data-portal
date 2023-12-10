@@ -1,0 +1,11 @@
+@import '../../../@theme/styles/themes.scss';
+
+.h6.text-si {
+  font-size: 0.9rem;
+}
+
+.description {
+  color: nb-theme(text-sub-color);
+  font-variant-caps: small-caps;
+  letter-spacing: 1px;
+}
