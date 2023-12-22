@@ -4,7 +4,7 @@
 
 @include nb-install-component() {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row-reverse;
   width: 100%;
 
   .logo-container {
@@ -36,8 +36,10 @@
       @include nb-ltr(padding-right, 1.25rem);
       @include nb-rtl(padding-left, 1.25rem);
       text-decoration: none;
-      color: nb-theme(text-hint-color);
-      nb-icon {
+      // color: nb-theme(text-hint-color);
+      color: nb-theme(color-basic-1000);
+      background-color: nb-theme(sidebar-background-color);
+      mat-icon {
         font-size: 1.75rem;
       }
     }
@@ -72,4 +74,14 @@
 .google-signin {
   padding: 0 6px;
   background-color: white;
+}
+
+.btn-signin {
+  @include media-breakpoint-down(is) {
+    padding: 0 0 0 8px;
+
+    .mdc-button {
+      padding: 0 8px;
+    }
+  }
 }

@@ -33,27 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     user: UserProfile;
 
-    themes = [
-        {
-            value: 'default',
-            name: 'Light',
-        },
-        {
-            value: 'dark',
-            name: 'Dark',
-        },
-        {
-            value: 'cosmic',
-            name: 'Cosmic',
-        },
-        {
-            value: 'corporate',
-            name: 'Corporate',
-        },
-    ];
-
-    currentTheme = 'default';
-
     // The dropdown by clicking user profile icon
     userMenu = [{}];
 
@@ -174,8 +153,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.currentTheme = this.themeService.currentTheme;
-
         const { xl } = this.breakpointService.getBreakpointsMap();
         this.themeService
             .onMediaQueryChange()
@@ -187,14 +164,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 (isLessThanXl: boolean) => (this.userPictureOnly = isLessThanXl)
             );
 
-        this.themeService
-            .onThemeChange()
-            .pipe(
-                map(({ name }) => name),
-                takeUntil(this.destroy$)
-            )
-            .subscribe(themeName => (this.currentTheme = themeName));
-
         // The dropdown by clicking user profile icon.
         this.menuService.onItemClick().subscribe(event => {
             this.onContextItemSelection(event.item.title);
@@ -205,10 +174,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.destroy$.next();
         this.destroy$.complete();
     }
-
-    // changeTheme(themeName: string) {
-    //   this.themeService.changeTheme(themeName);
-    // }
 
     // toggleSidebar(): boolean {
     //   this.sidebarService.toggle(true, "menu-sidebar");

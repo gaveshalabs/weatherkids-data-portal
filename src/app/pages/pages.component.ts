@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-
+import {
+    NbMenuService,
+    NbSidebarService,
+} from '@nebular/theme';
 import { MENU_ITEMS } from './pages-menu';
 
 @Component({
@@ -14,4 +17,25 @@ import { MENU_ITEMS } from './pages-menu';
 })
 export class PagesComponent {
     menu = MENU_ITEMS;
+
+    constructor(
+        menuService: NbMenuService,
+        sidebarService: NbSidebarService
+    ) {
+        menuService.onItemClick().subscribe(event => {
+            if (event.item.title === 'Menu') {
+                sidebarService.toggle(true, 'menu-sidebar');
+
+                sidebarService.getSidebarState('menu-sidebar').subscribe((sidebarState) => {
+                    if (sidebarState === 'expanded') {
+                        event.item.icon = 'menu-arrow-outline';
+                    } else {
+                        event.item.icon = 'menu-outline';
+                    }
+                });
+            }
+        });
+    }
+
+
 }
