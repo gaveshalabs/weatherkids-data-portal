@@ -12,9 +12,7 @@
   background-color: nb-theme(color-basic-100);
   pointer-events: auto;
   border-radius: 8px;
-  box-shadow: unquote(
-    '0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)'
-  );
+  box-shadow: unquote($string: "0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02)");
 }
 
 @include media-breakpoint-down(sm) {

@@ -43,4 +43,20 @@
       padding: 1.25rem;
     }
   }
+
+  nb-layout .layout .layout-container nb-sidebar.fixed {
+    top: 0;
+  }
+
+  nb-layout .layout .layout-container nb-sidebar .main-container-fixed {
+    top: 0;
+
+    .scrollable {
+      padding-top: 0;
+    }
+  }
+
+  nb-sidebar {
+    background-color: nb-theme(color-basic-100);
+  }
 }
