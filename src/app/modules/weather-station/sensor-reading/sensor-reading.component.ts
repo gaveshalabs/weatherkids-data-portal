@@ -6,6 +6,7 @@ type Sensor = 'temperature' |
 'precipitation' |
 'solar_irradiance' |
 'percentage_light_intensity' |
+'tvoc' |
 'date' |
 null ;
 

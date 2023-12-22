@@ -78,11 +78,20 @@
   border-bottom-width: 0;
   border-right-width: 0;
   padding-top: 0;
-  position: absolute;
-  top: 5px;
+  position: relative;
+  top: -42px;
+
+  @include media-breakpoint-down(is) {
+    top: 16px;
+  }
 
   .row:nth-child(1) {
     background-color: nb-theme(color-primary-100);
     padding-bottom: 5px;
+  }
+
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
   }
 }

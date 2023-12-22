@@ -17,7 +17,8 @@ export interface WeatherDataSummary {
     pressure: number;
     temperature: number;
     humidity: number;
-    percentage_light_intensity;
+    percentage_light_intensity: number;
+    tvoc: number;
 }
 
 export interface WeatherStationSummary {

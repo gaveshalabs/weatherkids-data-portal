@@ -10,8 +10,12 @@
   align-items: center;
   justify-content: space-between;
   color: nb-theme(color-basic-500);
-  position: absolute;
-  top: 5px;
+  position: relative;
+  top: -42px;
+
+  @include media-breakpoint-down(is) {
+    top: 16px;
+  }
 }
 
 .search-input {

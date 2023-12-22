@@ -7,3 +7,4 @@
   <app-data-value-card type="precipitation" [value]="(reading ? reading.toFixed(0) : '-') +' mm'" icon="water_drop" *ngIf="sensor === 'precipitation'"></app-data-value-card>
   <app-data-value-card type="solar irradiance" [value]="(reading ? reading.toFixed(2) : '-') +' W/m²'" icon="solar_power" *ngIf="sensor === 'solar_irradiance'"></app-data-value-card>
   <app-data-value-card type="light intensity" [value]="(reading ? reading.toFixed(2) : '-') +'%'" icon="solar_power" *ngIf="sensor === 'percentage_light_intensity'"></app-data-value-card>
+  <app-data-value-card type="tvoc" [value]="(reading || '-') +' ppb'" icon="water_voc" *ngIf="sensor === 'tvoc'"></app-data-value-card>

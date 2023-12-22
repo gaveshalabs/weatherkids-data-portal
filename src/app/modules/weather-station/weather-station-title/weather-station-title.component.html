@@ -1,10 +1,10 @@
 <div class="row user-info" style="align-items: center;">
-  <div class="col-2" [ngClass]="{'col-md-1': compactPictureContainer}">
+  <div class="col-3 col-md-2" [ngClass]="{'col-md-1': compactPictureContainer}">
     <nb-user
     onlyPicture="true"
     [name]="user?.name"></nb-user>
   </div>
-  <div class="col-10 ws-user-name">
+  <div class="col-9 col-md-10 ws-user-name">
     <span class="h6">{{user.name}}</span><span class="h6 text-si"></span><br/>
     <span class="description">{{user.nearest_city}}</span>
   </div>

@@ -1,9 +1,9 @@
 <div class="ws-outline overlay">
   <div class="row">
-    <div class="col-10">
+    <div class="col-9 col-md-10">
       <ngx-weather-station-title [user]="ws"></ngx-weather-station-title>
     </div>
-    <div style="float: left; align-self: self-start;">
+    <div class="col-3 col-md-2" style="align-self: self-start;">
       <button mat-icon-button class="close-btn" (click)="closeThis()">
         <mat-icon>close</mat-icon>
       </button>
@@ -21,10 +21,11 @@
           <!-- <td><ngx-sensor-reading [sensor]="'precipitation'" [reading]="ws_summary.weatherData?.precipitation"></ngx-sensor-reading></td> -->
           <!-- <td *ngIf="ws_summary.weatherData?.solar_irradiance"><ngx-sensor-reading [sensor]="'solar_irradiance'" [reading]="ws_summary.weatherData?.solar_irradiance"></ngx-sensor-reading></td> -->
           <td><ngx-sensor-reading [sensor]="'pressure'" [reading]="ws_summary.weatherData?.pressure"></ngx-sensor-reading></td>
-          <td *ngIf="ws_summary.weatherData?.percentage_light_intensity"><ngx-sensor-reading [sensor]="'percentage_light_intensity'" [reading]="ws_summary.weatherData?.percentage_light_intensity"></ngx-sensor-reading></td>
+          <td><ngx-sensor-reading [sensor]="'percentage_light_intensity'" [reading]="ws_summary.weatherData?.percentage_light_intensity"></ngx-sensor-reading></td>
         </tr>
         <tr>
-          <td colspan="2"><app-data-value-card type="last update" [value]="updatedOnFormatted" icon="today"></app-data-value-card></td>
+          <td><ngx-sensor-reading [sensor]="'tvoc'" [reading]="ws_summary.weatherData?.tvoc"></ngx-sensor-reading></td>
+          <td><app-data-value-card type="last update" [value]="updatedOnFormatted" icon="today"></app-data-value-card></td>
         </tr>
       </table>
     </div>
@@ -32,7 +33,7 @@
       <div>
         <button mat-button color="primary" class="small"
         (click)="viewWeatherStationHistory()"
-        [disabled]="btnHistoryDisabled">
+        [disabled]="true">
           <mat-icon>timeline</mat-icon>
         History</button>
       </div>
