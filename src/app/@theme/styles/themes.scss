@@ -1,24 +1,26 @@
+@use 'sass:string';
+
 // @nebular theming framework
 @import '@nebular/theme/styles/theming';
+
 // @nebular out of the box themes
 @import '@nebular/theme/styles/themes/default';
-
 
 $nb-themes: nb-register-theme((
   color-primary-100: #bbdefb,
   color-primary-200: #64b5f6,
   color-primary-300: #42a5f5,
-  color-primary-400: #2095f3, //#1e87e5
-  color-primary-500: #1976d2, //0078ae,
+  color-primary-400: #2095f3, // #1e87e5
+  color-primary-500: #1976d2, // 0078ae,
   color-primary-600: #1564c0,
   color-primary-700: #0d46a1,
   color-primary-800: #013180,
   color-primary-900: #002171,
 
   color-secondary-100: #f4dbb3,
-  color-secondary-200: #e5ad54, //#ecc483
+  color-secondary-200: #e5ad54, // #ecc483
   color-secondary-300: #e19d34,
-  color-secondary-400: #dc8e20, //#d8831d
+  color-secondary-400: #dc8e20, // #d8831d
   color-secondary-500: #d27619,
   color-secondary-600: #cb6816,
   color-secondary-700: #bf5213,
@@ -100,7 +102,7 @@ $nb-themes: nb-register-theme((
   color-danger-transparent-500: rgba(255, 56, 30, 0.4),
   color-danger-transparent-600: rgba(255, 56, 30, 0.48),
 
-  color-basic-100: #ffffff,
+  color-basic-100: #fff,
   color-basic-200: #f5f5f5,
   color-basic-300: #ebebeb,
   color-basic-400: #e0e0e0,
@@ -110,7 +112,7 @@ $nb-themes: nb-register-theme((
   color-basic-800: #424242,
   color-basic-900: #242424,
   color-basic-1000: #1b1b1b,
-  color-basic-1100: #000000,
+  color-basic-1100: #000,
 
   color-basic-transparent-100: rgba(131, 131, 131, 0.08),
   color-basic-transparent-200: rgba(131, 131, 131, 0.16),
@@ -382,11 +384,11 @@ $nb-themes: nb-register-theme((
   text-danger-active-color: color-danger-active,
   text-danger-disabled-color: color-danger-400,
 
-  font-family-primary: unquote('Outfit, Noto Sans Sinhala, sans-serif'),
+  font-family-primary: string.unquote('Outfit, Noto Sans Sinhala, sans-serif'),
 
-  shadow: unquote('0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)'),
+  shadow: string.unquote('0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12)'),
   card-shadow: shadow,
-  header-shadow: unquote(
+  header-shadow: string.unquote(
     '0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12)'
   ),
 

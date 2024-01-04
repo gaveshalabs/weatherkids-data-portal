@@ -1,7 +1,6 @@
-@mixin material-overrides() {
+@mixin material-overrides {
   @include nb-for-themes(clownfish) {
     nb-layout-header {
-
       nav a {
         color: nb-theme(color-primary-500);
       }

@@ -1,11 +1,13 @@
-@import '../../../@theme/styles/themes.scss';
+@import '../../../@theme/styles/themes';
 
 .sensor-reading {
   display: flex;
   align-items: center;
+
   .sensor-reading-icon .material-symbols-outlined {
     font-size: 2rem;
   }
+
   .sensor-reading-data {
     display: flex;
     flex-direction: column;

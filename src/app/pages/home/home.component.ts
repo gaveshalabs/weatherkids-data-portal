@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
         this.loader.show();
         this.weatherStationsApiService.getWeatherStations().subscribe(
             (data: WeatherStation[]) => {
-                console.log(data);
                 this.weatherStations = data || [];
                 this.weatherStations.forEach(ws => {
                     const loc = {

@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         domSanitizer: DomSanitizer
     ) {
         this.oAuthService.getUser().subscribe(user => {
-            console.log('the subscribed user', user);
+            // console.log('the subscribed user', user);
             if (user) {
                 this.loggedIn = true;
 
@@ -135,9 +135,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     async onContextItemSelection(title) {
         switch (title) {
             case EnumUserContextMenu.Profile:
-                console.log('Profile');
+                // console.log('Profile');
 
-                console.log(this.user);
+                // console.log(this.user);
 
                 // console.log(await this.afAuth.currentUser);
                 break;

@@ -2,7 +2,7 @@
 @import 'bootstrap/scss/mixins/breakpoints';
 @import '@nebular/theme/styles/global/breakpoints';
 
-@include nb-install-component() {
+@include nb-install-component {
   .solar-card nb-card-header {
     border: none;
     padding-bottom: 0;

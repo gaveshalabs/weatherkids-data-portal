@@ -1,5 +1,5 @@
-@import 'node_modules/@nebular/theme/styles/global/typography/_typography.scss';
-@import '../../../@theme/styles/overlay.scss';
+@import 'node_modules/@nebular/theme/styles/global/typography/typography';
+@import '../../../@theme/styles/overlay';
 
 .overlay {
   height: 48px;
@@ -20,22 +20,16 @@
 
 .search-input {
   border: none;
-  margin: 0px;
+  margin: 0;
   outline: none;
-  padding: 0px;
+  padding: 0;
   width: 100%;
 }
 
 
-@include nb-install-component() {
-}
-
 .ws-info {
   line-height: 20px;
 }
-// .ws-info-line {
-//   width: 100%;
-// }
 
 .ws-info-line {
   color: nb-theme(color-basic-700);

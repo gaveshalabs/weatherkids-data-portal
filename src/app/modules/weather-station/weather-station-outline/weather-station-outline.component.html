@@ -25,7 +25,7 @@
         </tr>
         <tr>
           <td><ngx-sensor-reading [sensor]="'tvoc'" [reading]="ws_summary.weatherData?.tvoc"></ngx-sensor-reading></td>
-          <td><app-data-value-card type="last update" [value]="updatedOnFormatted" icon="today"></app-data-value-card></td>
+          <td><ngx-data-value-card type="last update" [value]="updatedOnFormatted" icon="today"></ngx-data-value-card></td>
         </tr>
       </table>
     </div>
@@ -41,7 +41,7 @@
   </div>
   <div class="row with-bottom-border data-group" *ngIf="ws_summary.pointsOfUser">
     <div class="col-12" style="padding-left: 10px; padding-right=10px;">
-      <app-data-value-card type="accumulated points" [value]="ws_summary.pointsOfUser.amount" icon="loyalty"></app-data-value-card>
+      <ngx-data-value-card type="accumulated points" [value]="ws_summary.pointsOfUser.amount" icon="loyalty"></ngx-data-value-card>
     </div>
   </div>
   <!-- {{screenwidth}} / {{screenheight}} -->

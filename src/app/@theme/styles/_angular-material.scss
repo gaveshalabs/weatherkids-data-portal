@@ -1,8 +1,8 @@
 @use '@angular/material' as mat;
-// @use 'sass:map';
+@use 'sass:string';
 
-@mixin angular-material() {
-  @include mat.core();
+@mixin angular-material {
+  @include mat.core;
 
   $blue-palette: (
     primary: #1976d2,
@@ -27,9 +27,8 @@
   $my-primary: mat.define-palette($blue-palette, primary, primaryLight, primaryDark);
   $my-secondary: mat.define-palette($orange-palette, secondary, secondaryLight, secondaryDark);
   $my-typography: mat.define-typography-config(
-    $font-family: unquote('Outfit, Noto Sans Sinhala, sans-serif'),
+    $font-family: string.unquote('Outfit, Noto Sans Sinhala, sans-serif'),
   );
-
   $custom-light-theme: mat.define-light-theme((
     color: (
       primary: $my-primary,
@@ -37,6 +36,7 @@
     ),
     typography: $my-typography,
   ));
+
   // @include mat.all-component-themes($custom-light-theme);
   // TODO: can list only themes for used components to reduce file size
   // ex: @include mat.button-theme($my-theme);

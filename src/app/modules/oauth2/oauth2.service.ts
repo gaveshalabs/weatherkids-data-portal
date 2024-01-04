@@ -106,10 +106,10 @@ export class OAuth2Service {
             result => {
                 // console.log('OAuth2Service.login() result:', result);
                 // this.setUserData(result.user);
-                console.log(
-                    'OAuth2Service.login() firebase login result:',
-                    result
-                );
+                // console.log(
+                //     'OAuth2Service.login() firebase login result:',
+                //     result
+                // );
                 // console.log('OAuth2Service.login() idToken:', idToken);
 
                 const idToken = result['_tokenResponse']['oauthIdToken'];
@@ -127,10 +127,10 @@ export class OAuth2Service {
                     )
                     .subscribe(
                         response => {
-                            console.log(
-                                'OAuth2Service.login() session API response:',
-                                response
-                            );
+                            // console.log(
+                            //     'OAuth2Service.login() session API response:',
+                            //     response
+                            // );
 
                             this.userData = convertToUserProfile(
                                 response as Map<string, string>

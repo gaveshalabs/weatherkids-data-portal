@@ -1,13 +1,13 @@
-@import 'node_modules/@nebular/theme/styles/global/typography/_typography.scss';
-@import '../../../@theme/styles/themes.scss';
-@import '../../../@theme/styles/overlay.scss';
+@import 'node_modules/@nebular/theme/styles/global/typography/typography';
+@import '../../../@theme/styles/themes';
+@import '../../../@theme/styles/overlay';
 
 .close-btn {
   top: -10px;
   color: nb-theme(color-basic-500);
 }
 
-.row.with-bottom-border:after {
+.row.with-bottom-border::after {
   content: '';
   display: block;
   margin: 0 auto;
@@ -22,6 +22,7 @@
 
 .description {
   color: nb-theme(text-sub-color);
+
   &.description-sm {
     line-height: 1rem;
     font-size: 70%;
@@ -37,12 +38,12 @@
   }
 }
 
-@include nb-install-component() {
-  ::ng-deep .ws-milestone-progress {
-    padding-top: 10px;
-    padding-bottom: 5px;
-  }
-}
+// @include nb-install-component {
+//   ::ng-deep .ws-milestone-progress {
+//     padding-top: 10px;
+//     padding-bottom: 5px;
+//   }
+// }
 
 .sensor-reading-list {
   display: flex;
@@ -73,10 +74,7 @@
 .ws-outline.overlay {
   border-color: nb-theme(color-primary-100);
   border-style: solid;
-  border-top-width: 15px;
-  border-left-width: 0;
-  border-bottom-width: 0;
-  border-right-width: 0;
+  border-width: 15px 0 0;
   padding-top: 0;
   position: relative;
   top: -42px;
@@ -85,13 +83,13 @@
     top: 16px;
   }
 
-  .row:nth-child(1) {
-    background-color: nb-theme(color-primary-100);
-    padding-bottom: 5px;
-  }
-
   .row {
     margin-left: -15px;
     margin-right: -15px;
+  }
+
+  .row:nth-child(1) {
+    background-color: nb-theme(color-primary-100);
+    padding-bottom: 5px;
   }
 }

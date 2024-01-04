@@ -11,6 +11,7 @@ import { takeUntil } from 'rxjs/operators';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { OAuth2Service } from './oauth2.service';
 import { UserProfile } from '../../common/interfaces/user.interface';
+import { AlertMessageService } from '../../@components/alert-message/alert-message.service';
 
 @Component({
     selector: 'ngx-nb-oauth2-callback',
@@ -26,7 +27,8 @@ export class OAuth2CallbackComponent implements OnDestroy {
     constructor(
         private authService: NbAuthService,
         private router: Router,
-        private oauth2Service: OAuth2Service
+        private oauth2Service: OAuth2Service,
+        private alert: AlertMessageService,
     ) {
         // This is where the server redirects to after the user has authenticated with Google
         this.authService
@@ -56,7 +58,7 @@ export class OAuth2CallbackComponent implements OnDestroy {
 
                     this.router.navigateByUrl(authResult.getRedirect());
                 } else {
-                    console.log('login failed');
+                    alert.alertError('Login failed');
                 }
             });
     }

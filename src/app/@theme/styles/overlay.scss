@@ -1,6 +1,7 @@
+@use 'sass:string';
 @import 'bootstrap/scss/mixins/breakpoints';
-@import 'node_modules/@nebular/theme/styles/global/_breakpoints.scss';
-@import 'themes.scss';
+@import 'node_modules/@nebular/theme/styles/global/breakpoints';
+@import 'themes';
 
 .overlay {
   height: auto;
@@ -12,7 +13,7 @@
   background-color: nb-theme(color-basic-100);
   pointer-events: auto;
   border-radius: 8px;
-  box-shadow: unquote($string: "0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02)");
+  box-shadow: string.unquote($string: "0 2px 4px rgba(0,0,0,0.2),0 -1px 0px rgba(0,0,0,0.02)");
 }
 
 @include media-breakpoint-down(sm) {

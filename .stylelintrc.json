@@ -1,6 +1,10 @@
 {
+  "extends": "stylelint-config-standard-scss",
   "rules": {
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
     "color-no-invalid-hex": true,
+    "property-no-vendor-prefix": null,
 
     "function-calc-no-unspaced-operator": true,
     "function-name-case": "lower",
@@ -11,7 +15,7 @@
     "string-no-newline": true,
 
     "unit-no-unknown": true,
-    "unit-whitelist": ["px", "%", "deg", "ms", "em", "vh", "vw", "s", "rem"],
+    "unit-allowed-list": ["px", "%", "deg", "ms", "em", "vh", "vw", "s", "rem"],
 
     "shorthand-property-no-redundant-values": true,
 
@@ -19,7 +23,7 @@
       "ignore": ["consecutive-duplicates-with-different-values"]
     }],
     "declaration-block-single-line-max-declarations": 1,
-    "declaration-property-value-blacklist": [
+    "declaration-property-value-disallowed-list": [
       { "/.*/": ["initial"] },
       { "message": "The `initial` value is not supported in IE."}
     ],
