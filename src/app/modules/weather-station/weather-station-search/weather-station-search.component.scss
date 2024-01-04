@@ -1,0 +1,38 @@
+@import 'node_modules/@nebular/theme/styles/global/typography/typography';
+@import '../../../@theme/styles/overlay';
+
+.overlay {
+  height: 48px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: nb-theme(color-basic-500);
+  position: relative;
+  top: -42px;
+
+  @include media-breakpoint-down(is) {
+    top: 16px;
+  }
+}
+
+.search-input {
+  border: none;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+
+
+.ws-info {
+  line-height: 20px;
+}
+
+.ws-info-line {
+  color: nb-theme(color-basic-700);
+}
+
+

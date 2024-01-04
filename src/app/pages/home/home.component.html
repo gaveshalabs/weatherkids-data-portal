@@ -1,5 +1,8 @@
-<!-- <ngx-map (markerSelect)="onWeatherStationSelected($event)" (mapSelect)="deselectAllWS()"></ngx-map> -->
-<!-- <div>THIS IS HOME</div> -->
-<!-- <ngx-map></ngx-map> -->
-
-<ngx-map></ngx-map>
+<div class="overlay header">
+  <ngx-header></ngx-header>
+</div>
+<ngx-map (markerSelect)="onWeatherStationSelected($event)" (mapSelect)="deselectAllWS()"></ngx-map>
+<ngx-weather-station-search [wsList]="weatherStations" (selected)="onWeatherStationSelected($event)" *ngIf="!renderWSOutline"></ngx-weather-station-search>
+<div #wsOutline *ngIf="renderWSOutline">
+  <ngx-weather-station-outline [ws_summary]="selectedStationData" [ws]="selectedStation" (close)="onWeatherStationDeselected()"></ngx-weather-station-outline>
+</div>

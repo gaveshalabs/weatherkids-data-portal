@@ -1,0 +1,48 @@
+<div class="ws-outline overlay">
+  <div class="row">
+    <div class="col-9 col-md-10">
+      <ngx-weather-station-title [user]="ws"></ngx-weather-station-title>
+    </div>
+    <div class="col-3 col-md-2" style="align-self: self-start;">
+      <button mat-icon-button class="close-btn" (click)="closeThis()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row with-bottom-border data-group">
+    <div class="col-12 sensor-reading-list">
+      <table width="100%">
+        <tr>
+          <td><ngx-sensor-reading [sensor]="'temperature'" [reading]="ws_summary.weatherData?.temperature"></ngx-sensor-reading></td>
+          <td><ngx-sensor-reading [sensor]="'humidity'" [reading]="ws_summary.weatherData?.humidity"></ngx-sensor-reading></td>
+        </tr>
+        <tr>
+        <!-- <tr *ngIf="ws_summary.weatherData?.precipitation || ws_summary.weatherData?.solar_irradiance || ws_summary.weatherData?.percentage_light_intensity"> -->
+          <!-- <td><ngx-sensor-reading [sensor]="'precipitation'" [reading]="ws_summary.weatherData?.precipitation"></ngx-sensor-reading></td> -->
+          <!-- <td *ngIf="ws_summary.weatherData?.solar_irradiance"><ngx-sensor-reading [sensor]="'solar_irradiance'" [reading]="ws_summary.weatherData?.solar_irradiance"></ngx-sensor-reading></td> -->
+          <td><ngx-sensor-reading [sensor]="'pressure'" [reading]="ws_summary.weatherData?.pressure"></ngx-sensor-reading></td>
+          <td><ngx-sensor-reading [sensor]="'percentage_light_intensity'" [reading]="ws_summary.weatherData?.percentage_light_intensity"></ngx-sensor-reading></td>
+        </tr>
+        <tr>
+          <td><ngx-sensor-reading [sensor]="'tvoc'" [reading]="ws_summary.weatherData?.tvoc"></ngx-sensor-reading></td>
+          <td><ngx-data-value-card type="last update" [value]="updatedOnFormatted" icon="today"></ngx-data-value-card></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-12 sensor-reading-list" style="padding-top: 10px; flex-direction: row-reverse;">
+      <div>
+        <button mat-button color="primary" class="small"
+        (click)="viewWeatherStationHistory()"
+        [disabled]="true">
+          <mat-icon>timeline</mat-icon>
+        History</button>
+      </div>
+    </div>
+  </div>
+  <div class="row with-bottom-border data-group" *ngIf="ws_summary.pointsOfUser">
+    <div class="col-12" style="padding-left: 10px; padding-right=10px;">
+      <ngx-data-value-card type="accumulated points" [value]="ws_summary.pointsOfUser.amount" icon="loyalty"></ngx-data-value-card>
+    </div>
+  </div>
+  <!-- {{screenwidth}} / {{screenheight}} -->
+</div>

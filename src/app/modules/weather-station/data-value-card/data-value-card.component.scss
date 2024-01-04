@@ -1,0 +1,17 @@
+@import '../../../@theme/styles/themes';
+
+.data-value-card {
+  display: flex;
+  align-items: center;
+
+  .data-value-icon .material-symbols-outlined {
+    font-size: 2rem;
+    color: nb-theme(color-secondary-300);
+  }
+
+  .data-value {
+    display: flex;
+    flex-direction: column;
+    color: nb-theme(color-primary-900);
+  }
+}

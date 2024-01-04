@@ -1,29 +1,33 @@
-<div class="header-container">
-  <div class="logo-container">
-    <!-- <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
-      <nb-icon icon="menu-2-outline"></nb-icon>
-    </a> -->
-    <a class="logo" href="/" (click)="navigateHome()">Gavesha WeatherKids</a>
-  </div>
+<!-- <div class="header-container" style="flex-grow: 1;"> -->
+  <!-- <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+    <nb-icon icon="menu-2-outline"></nb-icon>
+    <mat-icon>menu</mat-icon>
+  </a> -->
+  <!-- <div class="overlay">placeholder</div> -->
   <!-- <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">
     <nb-option *ngFor="let theme of themes" [value]="theme.value"> {{ theme.name }}</nb-option>
   </nb-select> -->
-</div>
+<!-- </div> -->
 
-<div class="header-container">
+<!-- <div class="header-container" style="justify-self: flex-start;"></div> -->
+
+<div class="header-container" style="justify-self: flex-end;">
   <nb-actions size="small">
     <!-- <nb-action class="control-item">
       <nb-search type="rotate-layout"></nb-search>
     </nb-action> -->
     <!-- <nb-action class="control-item" icon="email-outline"></nb-action> -->
     <!-- <nb-action c1`Zxcv  lass="control-item" icon="bell-outline"></nb-action> -->
-    <nb-action *ngIf="!loggedIn">
-      <button nbButton mat-stroked-button color="basic" class="google-signin" (click)="onSignIn()">
+    <nb-action *ngIf="!loggedIn" class="btn-signin">
+      <!-- <button mat-stroked-button color="basic" class="google-signin" (click)="onSignIn()">
         <div style="display: flex; align-items: baseline">
           <mat-icon svgIcon="googleLogo" style="width: 30px"></mat-icon>
           <span style="width: 5px"></span>
           Sign in
         </div>
+      </button> -->
+      <button mat-raised-button color="primary" (click)="onSignIn()">
+        Sign in
       </button>
     </nb-action>
 
@@ -33,4 +37,10 @@
       </nb-user>
     </nb-action>
   </nb-actions>
+</div>
+
+<div class="header-container" style="justify-self: flex-end;">
+  <!-- <div class="logo-container"> -->
+    <a class="logo" href="/" (click)="navigateHome()"><img src="assets/WK logo.png"></a>
+  <!-- </div> -->
 </div>

@@ -1,0 +1,13 @@
+@import '../../@theme/styles/overlay';
+
+.overlay.header {
+  width: 100%;
+  background-color: unset;
+  box-shadow: none;
+  border-radius: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+}

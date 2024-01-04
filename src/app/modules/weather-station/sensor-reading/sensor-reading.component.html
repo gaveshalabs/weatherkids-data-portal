@@ -1,0 +1,10 @@
+<ngx-data-value-card type="temperature" [value]="(reading ? reading.toFixed(2) : '-') +' °C'" icon="thermometer" *ngIf="sensor === 'temperature'"></ngx-data-value-card>
+<ngx-data-value-card type="relative humidity" [value]="(reading ? reading.toFixed(2) : '-') +'%'" icon="humidity_mid" *ngIf="sensor === 'humidity'"></ngx-data-value-card>
+<ngx-data-value-card icon="speed" *ngIf="sensor === 'pressure'"
+  [type]="(reading > 90000 ? ' station pressure' : ' msl pressure')"
+  [value]="(reading > 90000 ? (reading || '-') + ' Pa' : (reading ? reading.toFixed(2) : '-') + ' mbar')"
+  [tooltip]="(reading > 90000 ? 'station pressure' : 'mean sea level pressure')"></ngx-data-value-card>
+  <ngx-data-value-card type="precipitation" [value]="(reading ? reading.toFixed(0) : '-') +' mm'" icon="water_drop" *ngIf="sensor === 'precipitation'"></ngx-data-value-card>
+  <ngx-data-value-card type="solar irradiance" [value]="(reading ? reading.toFixed(2) : '-') +' W/m²'" icon="solar_power" *ngIf="sensor === 'solar_irradiance'"></ngx-data-value-card>
+  <ngx-data-value-card type="light intensity" [value]="(reading ? reading.toFixed(2) : '-') +'%'" icon="solar_power" *ngIf="sensor === 'percentage_light_intensity'"></ngx-data-value-card>
+  <ngx-data-value-card type="tvoc" [value]="(reading || '-') +' ppb'" icon="water_voc" *ngIf="sensor === 'tvoc'"></ngx-data-value-card>

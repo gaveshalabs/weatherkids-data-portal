@@ -2,8 +2,7 @@
 @import 'bootstrap/scss/mixins/breakpoints';
 @import '@nebular/theme/styles/global/breakpoints';
 
-@include nb-install-component() {
-
+@include nb-install-component {
   nb-tabset {
     display: flex;
     flex-direction: column;
@@ -13,6 +12,7 @@
       // make same size as card header
       border-color: transparent;
       padding-bottom: 1px;
+
       .tab-link {
         padding: 1.25rem 2rem;
       }

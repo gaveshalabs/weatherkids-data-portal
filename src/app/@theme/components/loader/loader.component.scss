@@ -1,0 +1,13 @@
+.progress-loader{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.mat-mdc-progress-spinner circle {
+  stroke: #665b7d;
+}

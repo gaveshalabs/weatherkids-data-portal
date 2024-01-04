@@ -1,0 +1,62 @@
+@mixin material-overrides {
+  @include nb-for-themes(clownfish) {
+    nb-layout-header {
+      nav a {
+        color: nb-theme(color-primary-500);
+      }
+    }
+
+    nb-sidebar {
+      transition: width 0.3s;
+
+      .main-container {
+        transition: width 0.3s;
+      }
+    }
+
+    nb-card {
+      border-bottom-left-radius: 0.125rem;
+      border-bottom-right-radius: 0.125rem;
+
+      nb-card-header, .tabset {
+        background-color: nb-theme(card-divider-color);
+      }
+    }
+
+    [nbinput] {
+      font-weight: 400;
+
+      &.status-basic:focus:hover {
+        border-color: nb-theme(color-primary-focus) !important;
+      }
+    }
+
+    [nbbutton] {
+      box-shadow: none !important;
+    }
+
+    .mat-mdc-mini-fab:focus {
+      outline: none;
+    }
+
+    .mat-mdc-fab:focus {
+      outline: none;
+    }
+
+    .mat-mdc-icon-button:focus {
+      outline: none;
+    }
+
+    .mat-mdc-snack-bar-container.alert-success {
+      border-left: 15px solid nb-theme(color-success-500);
+    }
+
+    .mat-mdc-snack-bar-container.alert-danger {
+      border-left: 15px solid nb-theme(color-danger-500);
+    }
+
+    .mat-mdc-snack-bar-container.alert-warn {
+      border-left: 15px solid nb-theme(color-warn-500);
+    }
+  }
+}

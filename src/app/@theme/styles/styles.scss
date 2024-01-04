@@ -1,14 +1,10 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
-
 // themes - our custom or/and out of the box themes
 @import 'themes';
 
 // framework component themes (styles tied to theme variables)
 @import '@nebular/theme/styles/globals';
-@import '@nebular/auth/styles/globals';
 
+// bootstrap styles
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
@@ -17,18 +13,47 @@
 // loading progress bar theme
 @import './pace.theme';
 
+// app
 @import './layout';
 @import './overrides';
+@import './angular-material';
+@import './material-overrides';
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap';
+
 
 // install the framework and custom global styles
-@include nb-install() {
+@include nb-install {
+  @include angular-material;
+
   // framework global styles
-  @include nb-theme-global();
-  @include nb-auth-global();
+  @include nb-theme-global;
+  @include ngx-layout;
 
-  @include ngx-layout();
   // loading progress bar
-  @include ngx-pace-theme();
+  @include ngx-pace-theme;
 
-  @include nb-overrides();
+  // app
+  @include nb-overrides;
+  @include material-overrides;
+
+  .h1, .h2, .h3, .h4, .h5, .h6, label {
+    letter-spacing: 0.05rem;  // for Outfit font
+  }
+};
+
+.uppercase-small-title {
+  font-size: 0.6rem;
+  line-height: 0.8rem;
+  letter-spacing: 0.1em;
+  color: nb-theme(text-sub-color);
+  text-transform: uppercase;
+}
+
+.text-si {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.padding-rigt-none {
+  padding-right: 0;
 }
