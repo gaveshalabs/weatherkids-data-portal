@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/weatherkids-data-portal/browser",
+    "public": "dist/weatherkids-data-portal",
     "ignore": [
       "firebase.json",
       "**/.*",
