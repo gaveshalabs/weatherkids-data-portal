@@ -54,7 +54,7 @@
             "namedChunks": true
           },
           "configurations": {
-            "production": {
+            "prod": {
               "budgets": [
                 {
                   "type": "anyComponentStyle",
@@ -74,9 +74,28 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "dev": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.ts"
+                }
+              ]
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "prod"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -84,10 +103,17 @@
             "browserTarget": "ngx-admin-demo:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "ngx-admin-demo:build:production"
+            "prod": {
+              "browserTarget": "ngx-admin-demo:build:prod"
+            },
+            "dev": {
+              "browserTarget": "ngx-admin-demo:build:dev"
+            },
+            "local": {
+              "browserTarget": "ngx-admin-demo:build:local"
             }
-          }
+          },
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
