@@ -27,7 +27,6 @@ import packageJson from '../../../../../package.json';
     templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-    public version: string = packageJson.version;
 
     private destroy$: Subject<void> = new Subject<void>();
     loggedIn: boolean = false;
@@ -50,6 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private matIconRegistry: MatIconRegistry,
         domSanitizer: DomSanitizer
     ) {
+        console.info(`v${packageJson.version}`);
         this.oAuthService.getUser().subscribe(user => {
             // console.log('the subscribed user', user);
             if (user) {
