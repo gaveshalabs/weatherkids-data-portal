@@ -33,6 +33,8 @@ import { MatButtonModule } from '@angular/material/button';
         MatTooltipModule,
     ],
     exports: [
+        DataValueCardComponent,
+        SensorReadingComponent,
         WeatherStationSearchComponent,
         WeatherStationTitleComponent,
         WeatherStationOutlineComponent,

@@ -11,6 +11,7 @@ export class WeatherStationTitleComponent implements OnInit {
         _id: null, name: 'Lanka', nearest_city: 'Colombo', coordinates: {lat: 0, long: 0}, user_ids: []};
     @Input() user: WeatherStation = this._defaultUser;
     @Input() compactPictureContainer = false;
+    @Input() showPicture = true;
 
     constructor() { }
 

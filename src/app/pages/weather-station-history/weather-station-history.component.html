@@ -1,0 +1,228 @@
+<div class="overlay header">
+  <ngx-header></ngx-header>
+</div>
+<div class="row">
+  <div class="col-md-3 col-sm-12" style="display:flex; flex-direction:column; padding-right: 20px;">
+    <div class="row">
+      <!-- <ngx-weather-station-search [wsList]="weatherStations" (selected)="onWeatherStationSelected($event)" (close)="hideSearch()" class="history-search" style="margin-bottom: 5px;"></ngx-weather-station-search> -->
+      <ngx-weather-station-search [wsList]="weatherStations" (selected)="onWeatherStationSelected($event)" class="history-search"></ngx-weather-station-search>
+      <mat-card class="col-12">
+        <mat-card-content>
+          <ngx-map mapId="history-map" [zoom]=7 [center]="mapCenter" (markerSelect)="onWeatherStationSelected($event)" (mapSelect)="deselectAllWS()" class="ws-map" style="margin-bottom: 5px;"></ngx-map>
+          <ngx-weather-station-title [user]="thisWeatherStation" [showPicture]="false"></ngx-weather-station-title>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="col-12">
+        <mat-card-header>
+          <mat-card-title class="uppercase-small-title title-with-icon">filter dataset by date</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="row" style="display: flex;">
+          <div class="col-12">
+            <!-- <p>Filter by date:</p> -->
+            <!-- <p>Select date range to view more data. </p> -->
+            <!-- <p><span class="text-si">දත්ත වෙනස් වු හැටි බලන්න දින පරාසයක් තෝරන්න. </span></p>
+            <p><span class="text-si">மேலும் தரவுகளை பார்வையிட திகதிகளை தெரிவு செய்க.</span></p> -->
+          </div>
+          <form class="col-12" [formGroup]="dataFilteringForm" style="display: flex; flex-direction: column;">
+            <!-- <label style="margin-right: 10px;">Select date range</label> -->
+            <mat-form-field>
+              <mat-label>Select date range</mat-label>
+              <mat-select (selectionChange)="loadDataForPresetDateRange($event)" formControlName="datePreset">
+                <mat-option *ngFor="let preset of presetDateRanges" [value]="preset">
+                  {{preset.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date" formControlName="dateRangeStart">
+                <input matEndDate placeholder="End date" formControlName="dateRangeEnd">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker (closed)="onDateRangePickerClosed()"></mat-date-range-picker>
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="col-md-9 col-sm-12">
+    <!-- <div class="row " *ngIf="!showSearchBar" [@inAnimation]>
+      <mat-card class="col-12" style="padding: 7px;">
+        <mat-card-content class="row" style="display: flex;">
+          <div class="col-9 col-md-8" style="padding-bottom: 10px;">
+            <ngx-weather-station-title [user]="thisWeatherStation" [compactPictureContainer]="true"></ngx-weather-station-title>
+          </div>
+          <div class="col-3 d-sm-none" style="display: flex; align-items: center;">
+            <button mat-mini-fab color="primary" (click)="showSearch()">
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-4 d-none d-md-block">
+            <ngx-weather-station-search [wsList]="weatherStations" (selected)="onWeatherStationSelected($event)" *ngIf="!renderWSOutline" class="history-search"></ngx-weather-station-search>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+    <!-- <div class="row" style="margin-bottom: 6px;" *ngIf="showSearchBar" [@inAnimation]>
+      <mat-card class="col-12" style="padding: 0px;">
+        <mat-card-content>
+          <ngx-weather-station-search [wsList]="weatherStations" (selected)="onWeatherStationSelected($event)" (close)="hideSearch()" class="history-search"></ngx-weather-station-search>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+    <div class="row">
+      <mat-card class="col-12">
+        <mat-card-header>
+          <mat-card-title class="uppercase-small-title title-with-icon">latest observations</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="sensor-reading-list on-pc">
+            <ngx-sensor-reading [sensor]="'temperature'" [reading]="thisWeatherStationLatestData.weatherData?.temperature"></ngx-sensor-reading>
+            <ngx-sensor-reading [sensor]="'humidity'" [reading]="thisWeatherStationLatestData.weatherData?.humidity"></ngx-sensor-reading>
+            <ngx-sensor-reading [sensor]="'pressure'" [reading]="thisWeatherStationLatestData.weatherData?.pressure"></ngx-sensor-reading>
+            <ngx-sensor-reading [sensor]="'precipitation'" [reading]="thisWeatherStationLatestData.weatherData?.precipitation"></ngx-sensor-reading>
+            <!-- <ngx-sensor-reading [sensor]="'solar_irradiance'" [reading]="thisWeatherStationLatestData.weatherData?.solar_irradiance"></ngx-sensor-reading> -->
+            <ngx-sensor-reading [sensor]="'percentage_light_intensity'" [reading]="thisWeatherStationLatestData.weatherData?.percentage_light_intensity"></ngx-sensor-reading>
+            <ngx-sensor-reading [sensor]="'tvoc'" [reading]="thisWeatherStationLatestData.weatherData?.tvoc"></ngx-sensor-reading>
+            <ngx-data-value-card type="last update" [value]="updatedOnFormatted" icon="today"></ngx-data-value-card>
+          </div>
+          <div class="sensor-reading-list on-mobile">
+            <table>
+              <tr>
+                <td><ngx-sensor-reading [sensor]="'temperature'" [reading]="thisWeatherStationLatestData.weatherData?.temperature"></ngx-sensor-reading>
+            </td>
+                <td><ngx-sensor-reading [sensor]="'humidity'" [reading]="thisWeatherStationLatestData.weatherData?.humidity"></ngx-sensor-reading>
+            </td>
+              </tr>
+              <tr>
+                <td><ngx-sensor-reading [sensor]="'pressure'" [reading]="thisWeatherStationLatestData.weatherData?.pressure"></ngx-sensor-reading>
+            </td>
+                <td><ngx-sensor-reading [sensor]="'precipitation'" [reading]="thisWeatherStationLatestData.weatherData?.precipitation"></ngx-sensor-reading>
+           </td>
+              </tr>
+              <tr>
+                <td><ngx-sensor-reading [sensor]="'percentage_light_intensity'" [reading]="thisWeatherStationLatestData.weatherData?.percentage_light_intensity"></ngx-sensor-reading>
+            </td>
+                <td><ngx-sensor-reading [sensor]="'tvoc'" [reading]="thisWeatherStationLatestData.weatherData?.tvoc"></ngx-sensor-reading>
+            </td>
+              </tr>
+              <tr>
+                <td><ngx-data-value-card type="last update" [value]="updatedOnFormatted" icon="today"></ngx-data-value-card>
+          </td>
+              </tr>
+            </table>
+             <!-- <ngx-sensor-reading [sensor]="'solar_irradiance'" [reading]="thisWeatherStationLatestData.weatherData?.solar_irradiance"></ngx-sensor-reading> -->
+            </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- <div class="row">
+      <mat-card class="col-12">
+        <mat-card-content class="row" style="display: flex;">
+          <div class="col-12 col-md-6">
+            <p>Select date range to view more data. </p>
+            <p><span class="text-si">දත්ත වෙනස් වු හැටි බලන්න දින පරාසයක් තෝරන්න. </span></p>
+            <p><span class="text-si">மேலும் தரவுகளை பார்வையிட திகதிகளை தெரிவு செய்க.</span></p>
+          </div>
+          <form class="col-12 col-md-6" [formGroup]="dataFilteringForm" style="display: flex;">
+            <mat-form-field>
+              <mat-label>Select date range</mat-label>
+              <mat-select (selectionChange)="loadDataForPresetDateRange($event)" formControlName="datePreset">
+                <mat-option *ngFor="let preset of presetDateRanges" [value]="preset">
+                  {{preset.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date" formControlName="dateRangeStart">
+                <input matEndDate placeholder="End date" formControlName="dateRangeEnd">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker (closed)="onDateRangePickerClosed()"></mat-date-range-picker>
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div> -->
+    <div class="row">
+      <mat-card class="col-12">
+        <mat-card-title class="uppercase-small-title title-with-icon"><span class="material-symbols-outlined">thermometer</span>temperature | උෂ්ණත්වය | வெப்பநிலை</mat-card-title>
+        <mat-card-content class="row">
+          <div class="col-12 chart-container">
+            <canvas baseChart width="400" height="400"
+                    [data]="sensorReadings.temperature"
+                    [options]="chartOpts.temperature"
+                    type="line"></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="col-12">
+        <mat-card-title class="uppercase-small-title title-with-icon"><span class="material-symbols-outlined">humidity_mid</span>relative humidity |
+          සාපේක්ෂ ආර්ද්‍රතාවය | சார்பு ஈரப்பதம்</mat-card-title>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas baseChart width="400" height="400"
+                    [data]="sensorReadings.humidity"
+                    [options]="chartOpts.humidity"
+                    type="line"></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="col-12">
+        <mat-card-title class="uppercase-small-title title-with-icon">
+          <span class="material-symbols-outlined">speed</span>
+          {{thisWeatherStationLatestData.weatherData?.pressure > 90000 ? "station pressure | ස්ථාන පීඩනය | நிலையத்தின் அமுக்கம்" : "msl pressure | මධ්‍ය මුහුදු මට්ටමේ පීඩනය | வளிமண்டல அழுத்தம்"}}</mat-card-title>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas baseChart width="400" height="400"
+            [data]="sensorReadings.pressure"
+            [options]="chartOpts.pressure"
+            type="line"></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <!-- <mat-card class="col-12">
+        <mat-card-title class="uppercase-small-title title-with-icon">
+          <span class="material-symbols-outlined">water_drop</span>
+          precipitation | වර්ෂාපතනය | மழைப்பொழிவு</mat-card-title>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas baseChart width="400" height="400"
+            [data]="sensorReadings.precipitation"
+            [options]="chartOpts.precipitation"
+            type="line"></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card> -->
+      <mat-card class="col-12">
+        <mat-card-title class="uppercase-small-title title-with-icon">
+          <span class="material-symbols-outlined">solar_power</span>
+          light intensity | ආලෝකයේ තීව්‍රතා ප්‍රතිශතය |
+          ஒளிச் செறிவு</mat-card-title>
+          <mat-card-content class="row">
+            <div class="col-12 chart-container">
+              <canvas baseChart width="400" height="400"
+                      [data]="sensorReadings.percentage_light_intensity"
+                      [options]="chartOpts.percentage_light_intensity"
+                      type="line"></canvas>
+            </div>
+          </mat-card-content>
+      </mat-card>
+      <mat-card class="col-12">
+        <mat-card-title class="uppercase-small-title title-with-icon">
+          <span class="material-symbols-outlined">speed</span>
+          {{"total volatile organic compounds | වාෂ්පශීලී කාබනික සංයෝග"}}</mat-card-title>
+        <mat-card-content>
+          <div class="chart-container">
+            <canvas baseChart width="400" height="400"
+            [data]="sensorReadings.tvoc"
+            [options]="chartOpts.tvoc"
+            type="line"></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

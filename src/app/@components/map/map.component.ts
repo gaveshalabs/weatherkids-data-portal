@@ -2,6 +2,7 @@ import {
     AfterViewInit,
     Component,
     EventEmitter,
+    Input,
     OnInit,
     Output,
 } from '@angular/core';
@@ -24,6 +25,9 @@ import {
     styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit, AfterViewInit {
+    @Input() zoom: number = 8;
+    @Input() center: LatLngTuple = [7.8731, 80.7718];
+    @Input() mapId: string = 'map';
     @Output() mapSelect: EventEmitter<{ lat: number; lng: number }> =
         new EventEmitter();
     @Output() markerSelect: EventEmitter<{ lat: number; lng: number }> =
@@ -38,8 +42,6 @@ export class MapComponent implements OnInit, AfterViewInit {
     };
     private markers: Marker[] = [];
     private originalIconsOfMarkers: Icon[] = [];
-    private readonly defaultViewCenter: LatLngTuple = [7.8731, 80.7718];
-    private readonly defaultZoom = 8;
 
     constructor() {
         // const CustomIcon: {new(options: any): any} & typeof Class = DivIcon.extend({
@@ -147,7 +149,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     }
 
     setView(
-        location: [number, number] | { lat: number; lng: number } | Marker
+        location: [number, number] | { lat: number; lng: number } | Marker,
+        zoom?: number,
     ) {
         let latlng: { lat: number; lng: number };
         if (location instanceof LatLng) {
@@ -163,24 +166,21 @@ export class MapComponent implements OnInit, AfterViewInit {
         }
 
         this.selectMarker(location instanceof Marker ? location : latlng);
-        const currentZoom =
-            this.mapRendered.getZoom() < 14 ? 14 : this.mapRendered.getZoom();
-        if (document.body.clientWidth <= 360) {
-            latlng.lat += 0.05;
-        } else if (document.body.clientWidth <= 720) {
-            latlng.lat += 0.03;
+        const currentZoom = zoom || (this.mapRendered.getZoom() < 14 ? 14 : this.mapRendered.getZoom());
+        if (document.body.clientWidth <= 720) {
+            latlng.lat += 0.015;
         }
         this.mapRendered.flyTo(latlng, currentZoom, { animate: true });
     }
 
     resetView() {
-        this.mapRendered.setView(this.defaultViewCenter, this.defaultZoom);
+        this.mapRendered.setView(this.center, this.zoom);
     }
 
     private initMap(): void {
-        this.mapRendered = map('map', {
-            center: this.defaultViewCenter,
-            zoom: this.defaultZoom,
+        this.mapRendered = map(this.mapId, {
+            center: this.center,
+            zoom: this.zoom,
             zoomControl: false,
         });
         new Control.Zoom({ position: 'bottomright' }).addTo(this.mapRendered);

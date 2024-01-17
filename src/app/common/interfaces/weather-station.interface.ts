@@ -6,7 +6,7 @@ export interface WeatherStation {
     name: string;
     coordinates: ICoordinates;
     user_ids: string[];
-    nearest_city: string;
+    nearest_city?: string;
 }
 
 export interface WeatherDataSummary {
@@ -19,6 +19,22 @@ export interface WeatherDataSummary {
     humidity: number;
     percentage_light_intensity: number;
     tvoc: number;
+    precipitation: number;
+}
+
+export interface WeatherDatum {
+    author_user_id: string;
+    coordinates: number[];
+    createdAt: string;
+    humidity: number;
+    percentage_light_intensity: number;
+    precipitation: number;
+    pressure: number;
+    temperature: number;
+    timestamp: number;
+    tvoc: number;
+    updatedAt: string;
+    weather_station_id: string;
 }
 
 export interface WeatherStationSummary {

@@ -4,6 +4,7 @@ import { MapComponent } from '../../@components/map/map.component';
 import { WeatherStation, WeatherStationSummary } from '../../common/interfaces/weather-station.interface';
 import { LoaderService } from '../../@theme/components/loader/loader.service';
 import { AlertMessageService } from '../../@components/alert-message/alert-message.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'ngx-home',
@@ -23,7 +24,10 @@ export class HomeComponent implements OnInit {
         private weatherStationsApiService: WeatherStationsApiService,
         private loader: LoaderService,
         private alert: AlertMessageService,
-    ) {}
+        titleService: Title,
+    ) {
+        titleService.setTitle('Gavesha Data Collective | Home');
+    }
 
     ngOnInit(): void {
         this.loader.show();

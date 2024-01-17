@@ -7,6 +7,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { HomeModule } from './home/home.module';
+import { WeatherStationHistoryModule } from './weather-station-history/weather-station-history.module';
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import { HomeModule } from './home/home.module';
         NbMenuModule,
         DashboardModule,
         HomeModule,
+        WeatherStationHistoryModule,
         MiscellaneousModule,
     ],
     declarations: [PagesComponent],

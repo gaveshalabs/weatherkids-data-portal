@@ -8,16 +8,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
     {
         title: 'Weather Stations',
         icon: 'home-outline',
-        link: '/pages',
+        home: true,
+        link: '/',
     },
     {
         title: 'Terms & Conditions',
         icon: 'bookmark-outline',
-        link: '/pages',
+        link: '/',
     },
     {
         title: 'Privacy Policy',
         icon: 'bookmark-outline',
-        link: '/pages',
+        link: '/',
     },
 ];
