@@ -12,11 +12,6 @@ import { OAuth2CallbackComponent } from './modules/oauth2/oauth2-callback.compon
 
 export const routes: Routes = [
     {
-        path: 'pages',
-        loadChildren: () =>
-            import('./pages/pages.module').then(m => m.PagesModule),
-    },
-    {
         path: 'auth',
         component: NbAuthComponent,
         children: [
@@ -50,8 +45,12 @@ export const routes: Routes = [
             },
         ],
     },
-    { path: '', redirectTo: 'pages', pathMatch: 'full' },
-    { path: '**', redirectTo: 'pages' },
+    {
+        path: '',
+        loadChildren: () =>
+            import('./pages/pages.module').then(m => m.PagesModule),
+    },
+    { path: '**', redirectTo: '' },
 ];
 
 const config: ExtraOptions = {
