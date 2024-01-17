@@ -19,6 +19,11 @@ const routes: Routes = [
                 component: HomeComponent,
             },
             {
+                path: 'ws',
+                loadChildren: () => import('./weather-station-history/weather-station-history.module')
+                    .then(m => m.WeatherStationHistoryModule),
+            },
+            {
                 path: 'dashboard',
                 component: DashboardComponent,
             },

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MapComponent } from '../../@components/map/map.component';
 // import {
 //     NbActionsModule,
 //     NbButtonModule,
@@ -16,6 +15,7 @@ import { MapComponent } from '../../@components/map/map.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { WeatherStationModule } from '../../modules/weather-station/weather-station.module';
 import { HomeComponent } from './home.component';
+import { SharedModule } from '../../modules/shared/shared.module';
 
 @NgModule({
     imports: [
@@ -31,10 +31,10 @@ import { HomeComponent } from './home.component';
         // NbIconModule,
         // NbButtonModule,
         WeatherStationModule,
+        SharedModule,
     ],
     declarations: [
         HomeComponent,
-        MapComponent,
     ],
 })
 export class HomeModule {}

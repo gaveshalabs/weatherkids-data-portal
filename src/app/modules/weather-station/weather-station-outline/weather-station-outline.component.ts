@@ -10,7 +10,7 @@ import { WeatherStation, WeatherStationSummary } from '../../../common/interface
 })
 export class WeatherStationOutlineComponent implements OnInit, OnChanges {
     @Output() close: EventEmitter<void> = new EventEmitter();
-    @Input() ws_summary: WeatherStationSummary = {
+    @Input() wsLatest: WeatherStationSummary = {
     // user: {id: '', name: '', nearest_city: 'Colombo', location: [0, 0]},
         weatherData: {
             temperature: 0,
@@ -40,8 +40,8 @@ export class WeatherStationOutlineComponent implements OnInit, OnChanges {
     constructor(private _router: Router) { }
 
     ngOnInit(): void {
-        if (this.ws_summary.weatherData) {
-            this.updatedOnFormatted = moment(this.ws_summary.weatherData.timestamp).format('YYYY-MM-DD HH:mm');
+        if (this.wsLatest.weatherData) {
+            this.updatedOnFormatted = moment(this.wsLatest.weatherData.timestamp).format('YYYY-MM-DD HH:mm');
             this.btnHistoryDisabled = false;
         } else {
             this.updatedOnFormatted = '-';
@@ -52,7 +52,7 @@ export class WeatherStationOutlineComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes.ws) {
+        if (changes.ws_summary) {
             this.ngOnInit();
         }
     }
@@ -65,8 +65,9 @@ export class WeatherStationOutlineComponent implements OnInit, OnChanges {
         const state = {
             state: {
                 weatherStation: this.ws,
+                latest: this.wsLatest,
             },
         };
-        // this._router.navigate(['weather-stations', this.ws.user.id], state);
+        this._router.navigate(['ws', this.ws._id], state);
     }
 }
