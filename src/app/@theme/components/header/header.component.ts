@@ -19,7 +19,6 @@ import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
 import { UserProfile } from '../../../common/interfaces/user.interface';
 import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
 import { OAuth2CallbackComponent } from '../../../modules/oauth2/oauth2-callback.component';
-import packageJson from '../../../../../package.json';
 
 @Component({
     selector: 'ngx-header',
@@ -49,7 +48,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private matIconRegistry: MatIconRegistry,
         domSanitizer: DomSanitizer
     ) {
-        console.info(`v${packageJson.version}`);
         this.oAuthService.getUser().subscribe(user => {
             // console.log('the subscribed user', user);
             if (user) {
