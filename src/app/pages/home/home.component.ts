@@ -27,24 +27,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.loader.show();
-        this.weatherStationsApiService.getWeatherStations().subscribe(
-            (data: WeatherStation[]) => {
-                this.weatherStations = data || [];
-                this.weatherStations.forEach(ws => {
-                    const loc = {
-                        lat: ws.coordinates.lat,
-                        lng: ws.coordinates.long,
-                    };
-                    this.map.renderMarker(loc, false);
-                });
-                this.loader.hide();
-            },
-            error => {
-                console.error(error);
-                this.loader.hide();
-                this.alert.alertError('Error loading weather stations');
-            }
-        );
+        this.loadWeatherStations(3);
     }
 
     async onWeatherStationSelected(selectedMarker: WeatherStation | {lat: number; lng: number}) {
@@ -100,5 +83,31 @@ export class HomeComponent implements OnInit {
     deselectAllWS() {
         this.onWeatherStationDeselected();
         this.map.resetView();
+    }
+
+    private loadWeatherStations(retryCount: number) {
+        console.info('Load data: remaining attempts', retryCount);
+        if (!retryCount) {
+            this.loader.hide();
+            this.alert.alertError('Error loading weather stations');
+            return;
+        }
+        this.weatherStationsApiService.getWeatherStations().subscribe(
+            (data: WeatherStation[]) => {
+                this.weatherStations = data || [];
+                this.weatherStations.forEach(ws => {
+                    const loc = {
+                        lat: ws.coordinates.lat,
+                        lng: ws.coordinates.long,
+                    };
+                    this.map.renderMarker(loc, false);
+                });
+                this.loader.hide();
+            },
+            error => {
+                console.error(error);
+                return this.loadWeatherStations(--retryCount);
+            }
+        );
     }
 }
