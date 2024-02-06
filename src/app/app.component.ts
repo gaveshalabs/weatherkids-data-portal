@@ -6,6 +6,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AnalyticsService } from './@core/utils/analytics.service';
 import { SeoService } from './@core/utils/seo.service';
+import packageJson from '../../package.json';
 
 @Component({
     selector: 'ngx-app',
@@ -23,5 +24,6 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.analytics.trackPageViews();
         this.seoService.trackCanonicalChanges();
+        console.info(`v${packageJson.version}`);
     }
 }

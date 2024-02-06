@@ -33,6 +33,7 @@ import { AlertMessageComponent } from './@components/alert-message/alert-message
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,7 @@ import { MatButtonModule } from '@angular/material/button';
         OAuth2Module,
         MatButtonModule,
         MatIconModule,
+        MatMomentDateModule,
         MatSnackBarModule,
     ],
     bootstrap: [AppComponent],

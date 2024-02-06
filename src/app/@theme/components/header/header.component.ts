@@ -19,7 +19,6 @@ import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
 import { UserProfile } from '../../../common/interfaces/user.interface';
 import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
 import { OAuth2CallbackComponent } from '../../../modules/oauth2/oauth2-callback.component';
-import packageJson from '../../../../../package.json';
 
 @Component({
     selector: 'ngx-header',
@@ -27,7 +26,6 @@ import packageJson from '../../../../../package.json';
     templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-    public version: string = packageJson.version;
 
     private destroy$: Subject<void> = new Subject<void>();
     loggedIn: boolean = false;

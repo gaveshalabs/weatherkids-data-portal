@@ -47,4 +47,9 @@
   @include mat.button-theme($custom-light-theme);
   @include mat.icon-theme($custom-light-theme);
   @include mat.tooltip-theme($custom-light-theme);
+  @include mat.card-theme($custom-light-theme);
+  @include mat.select-theme($custom-light-theme);
+  @include mat.datepicker-theme($custom-light-theme);
+  @include mat.form-field-theme($custom-light-theme);
+  @include mat.progress-spinner-theme($custom-light-theme);
 }

@@ -1,0 +1,123 @@
+@import 'bootstrap/scss/mixins/breakpoints';
+@import '@nebular/theme/styles/global/breakpoints';
+@import '../../@theme/styles/themes';
+@import '../../@theme/styles/overlay';
+
+.sensor-reading-list {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  .data-value-card {
+    margin-bottom: 10px;
+  }
+
+  &.on-pc {
+    @include media-breakpoint-up(sm) {
+      display: flex;
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  &.on-mobile {
+    @include media-breakpoint-up(sm) {
+      display: none;
+
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: flex;
+    }
+  }
+}
+
+.ws-milestone-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.mat-mdc-card {
+  margin-bottom: 5px;
+}
+
+.mat-mdc-card-title.uppercase-small-title {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.title-with-icon {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: 5px;
+  }
+}
+
+.chart-container {
+  height: 80vw;
+}
+
+@include media-breakpoint-up(sm) {
+  .chart-container {
+    height: 40vh;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .chart-container {
+    height: 25vw;
+  }
+}
+
+@include nb-install-component {
+  ::ng-deep.mat-mini-fab .mat-button-wrapper>* {
+    vertical-align: baseline;
+  }
+
+  ::ng-deep.search-bar.overlay {
+      width: 100%;
+      box-shadow: none;
+      position: relative;
+      top: 0;
+
+      @include media-breakpoint-down(is) {
+        top: 16px;
+      }
+  }
+
+  ::ng-deep nb-user .user-picture {
+    border: 1px solid nb-theme(border-basic-color-4);
+  }
+
+  ::ng-deep.map-container {
+    position: relative !important;
+    width: 100%;
+    height: 250px;
+  }
+
+  .history-search {
+    width: 100%;
+    margin-bottom: 5px;
+
+    @include media-breakpoint-down(xs) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .ws-map {
+    @include media-breakpoint-up(sm) {
+      display: block;
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+}
