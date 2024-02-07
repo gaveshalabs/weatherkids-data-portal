@@ -364,24 +364,7 @@ export class WeatherStationHistoryComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this._api.getWeatherStations().subscribe(
-            (data: WeatherStation[]) => {
-                this.weatherStations = data || [];
-                this.weatherStations.forEach(ws => {
-                    const loc = {
-                        lat: ws.coordinates.lat,
-                        lng: ws.coordinates.long,
-                    };
-                    this.map.renderMarker(loc, false);
-                });
-                this._loader.hide();
-                this.map.setView(
-                    [this.thisWeatherStation.coordinates.lat, this.thisWeatherStation.coordinates.long],
-                    10
-                );
-            },
-            err => this._requestFailed(err)
-        );
+        this.loadWeatherStations(3);
     }
 
     showSearch() {
@@ -421,6 +404,35 @@ export class WeatherStationHistoryComponent implements OnInit {
 
     deselectAllWS() {
 
+    }
+
+    private loadWeatherStations(retryCount: number) {
+        console.info('Load data: remaining attempts', retryCount);
+        if (!retryCount) {
+            this._requestFailed();
+            return;
+        }
+        this._api.getWeatherStations().subscribe(
+            (data: WeatherStation[]) => {
+                this.weatherStations = data || [];
+                this.weatherStations.forEach(ws => {
+                    const loc = {
+                        lat: ws.coordinates.lat,
+                        lng: ws.coordinates.long,
+                    };
+                    this.map.renderMarker(loc, false);
+                });
+                this._loader.hide();
+                this.map.setView(
+                    [this.thisWeatherStation.coordinates.lat, this.thisWeatherStation.coordinates.long],
+                    10
+                );
+            },
+            err => {
+                console.error(err);
+                return this.loadWeatherStations(--retryCount);
+            }
+        );
     }
 
     private async _renderWeatherStation(wsid: string) {
