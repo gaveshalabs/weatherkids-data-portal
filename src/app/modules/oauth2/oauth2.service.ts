@@ -179,7 +179,7 @@ export class OAuth2Service {
             result => {
                 localStorage.removeItem('user');
                 this.userSubject.next(null);
-                this.router.navigate(['sign-in']);
+                this.router.navigate(['/']);
             },
             error => {
                 console.error('OAuth2Service.logout() error:', error);
