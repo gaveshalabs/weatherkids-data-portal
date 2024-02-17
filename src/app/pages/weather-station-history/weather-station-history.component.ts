@@ -108,14 +108,9 @@ export class WeatherStationHistoryComponent implements OnInit {
                     data: [],
                     label: 'Precipitation',
                     backgroundColor: '#1BE7FF',
-                    borderColor: '#1BE7FF',
-                    pointBackgroundColor: '#1BE7FF',
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#1BE7FF',
                 },
             ],
-        } as ChartData<'line'>,
+        } as ChartData<'bar'>,
         percentage_light_intensity: {
             datasets: [
                 {
@@ -150,7 +145,7 @@ export class WeatherStationHistoryComponent implements OnInit {
         temperature: ChartOptions<'line'>;
         humidity: ChartOptions<'line'>;
         pressure: ChartOptions<'line'>;
-        precipitation: ChartOptions<'line'>;
+        precipitation: ChartOptions<'bar'>;
         percentage_light_intensity: ChartOptions<'line'>;
         tvoc: ChartOptions<'line'>;
     } = {} as any;
@@ -198,6 +193,40 @@ export class WeatherStationHistoryComponent implements OnInit {
         showLine: true,
         maintainAspectRatio: false,
     } as ChartOptions<'line'>;
+    private _defaultBarChartOptions = {
+        scales: {
+            x: {
+                type: 'time',
+                time: {
+                    unit: 'day',
+                    displayFormats: {
+                        day: 'Y-M-D',
+                        hour: 'Y-M-D HH',
+                        minute: 'HH:mm',
+                    },
+                },
+                ticks: {
+                    autoSkip: false,
+                },
+                offset: true,
+                offsetAfterAutoskip: true,
+            },
+            y: {
+                beginAtZero: true,
+            },
+        },
+        plugins: {
+            legend: {display: true},
+            zoom: {
+                pan: {enabled: true, mode: 'xy', modifierKey: 'ctrl'},
+                zoom: {
+                    drag: {enabled: true },
+                    mode: 'xy',
+                },
+            },
+        },
+        maintainAspectRatio: false,
+    } as ChartOptions<'bar'>;
     private _currentWeatherStationId: string = '';
     private _lastRequestedDateRange = {start: moment(), end: moment()};
 
@@ -280,9 +309,9 @@ export class WeatherStationHistoryComponent implements OnInit {
             },
         };
         this.chartOpts.precipitation = {
-            elements: {...this._defaultLineChartOptions.elements},
+            elements: {...this._defaultBarChartOptions.elements},
             scales: {
-                ...this._defaultLineChartOptions.scales,
+                ...this._defaultBarChartOptions.scales,
                 y: {
                     beginAtZero: true,
                     title: {
@@ -291,11 +320,10 @@ export class WeatherStationHistoryComponent implements OnInit {
                     },
                 },
             },
-            plugins: {...this._defaultLineChartOptions.plugins},
-            spanGaps: this._defaultLineChartOptions.spanGaps,
-            maintainAspectRatio: this._defaultLineChartOptions.maintainAspectRatio,
+            plugins: {...this._defaultBarChartOptions.plugins},
+            maintainAspectRatio: this._defaultBarChartOptions.maintainAspectRatio,
             parsing: {
-                xAxisKey: 'timestamp',
+                xAxisKey: 'datetime',
                 yAxisKey: 'precipitation',
             },
         };
@@ -344,7 +372,7 @@ export class WeatherStationHistoryComponent implements OnInit {
         // eslint-disable-next-line max-len
         const routeStateDataSummary = _router.getCurrentNavigation()?.extras.state?.latest as WeatherStationSummary;
         route.params.subscribe(params => {
-            console.log('from url', this.thisWeatherStation, params.ws_id);
+            // console.debug('from url', this.thisWeatherStation, params.ws_id);
             if (!routeStateDataSummary || routeStateDataSummary.weatherData?.weather_station_id !== params.ws_id) {
                 this._currentWeatherStationId = params.ws_id;
                 this._renderWeatherStation(params.ws_id);
@@ -354,7 +382,7 @@ export class WeatherStationHistoryComponent implements OnInit {
         if (routeStateDataSummary) {
             this.thisWeatherStation = routeStateWeatherStation;
             this.thisWeatherStationLatestData = routeStateDataSummary;
-            console.log('from home', routeStateDataSummary);
+            // console.log('from home', routeStateDataSummary);
             this._currentWeatherStationId = routeStateDataSummary.weatherData?.weather_station_id;
             this._renderCharts(routeStateDataSummary.weatherData?.weather_station_id);
         }
@@ -364,7 +392,7 @@ export class WeatherStationHistoryComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this.loadWeatherStations(3);
+        this.loadWeatherStations(10);
     }
 
     showSearch() {
@@ -430,7 +458,7 @@ export class WeatherStationHistoryComponent implements OnInit {
             },
             err => {
                 console.error(err);
-                return this.loadWeatherStations(--retryCount);
+                setTimeout(() => this.loadWeatherStations(--retryCount), 500);
             }
         );
     }
@@ -466,12 +494,21 @@ export class WeatherStationHistoryComponent implements OnInit {
         this._api.getWeatherStationData(userId, from.toISOString(), to.toISOString())
             .subscribe(
                 resp => {
+                    const precipitationMap: {[key: number]: Boolean} = {};
                     let minTimestamp = new Date().getTime();
                     for (let i = 0; i < resp.length; i++) {
                         const elem = resp[i];
-                        elem.timestamp = moment(elem.timestamp).toDate().getTime() as any;
+                        // elem.timestamp = moment(elem.timestamp).toDate().getTime() as any;
                         if (minTimestamp > elem.timestamp) {
                             minTimestamp = elem.timestamp;
+                        }
+
+                        // bar chart doesn't render if multiple values exists for same date
+                        // therefore taking only the first known value for a date
+                        const timestampDate = moment(elem.timestamp).startOf('D').toDate().getTime();
+                        if (elem.precipitation >= 0 && !precipitationMap[timestampDate]) {
+                            precipitationMap[timestampDate] = true;
+                            elem['datetime'] = new Date(elem.timestamp);
                         }
                     }
                     this.sensorReadings.temperature.datasets[0].data = resp as any;

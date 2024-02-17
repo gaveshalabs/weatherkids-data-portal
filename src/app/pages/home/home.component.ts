@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.loader.show();
-        this.loadWeatherStations(3);
+        this.loadWeatherStations(10);
     }
 
     async onWeatherStationSelected(selectedMarker: WeatherStation | {lat: number; lng: number}) {
@@ -110,7 +110,7 @@ export class HomeComponent implements OnInit {
             },
             error => {
                 console.error(error);
-                return this.loadWeatherStations(--retryCount);
+                setTimeout(() => this.loadWeatherStations(--retryCount), 500);
             }
         );
     }

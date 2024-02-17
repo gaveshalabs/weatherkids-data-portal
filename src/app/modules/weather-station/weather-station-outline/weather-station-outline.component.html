@@ -25,6 +25,9 @@
         </tr>
         <tr>
           <td><ngx-sensor-reading [sensor]="'tvoc'" [reading]="wsLatest.weatherData?.tvoc"></ngx-sensor-reading></td>
+          <td><ngx-sensor-reading [sensor]="'precipitation'" [reading]="wsLatest.weatherData?.precipitation"></ngx-sensor-reading></td>
+        </tr>
+        <tr>
           <td><ngx-data-value-card type="last update" [value]="updatedOnFormatted" icon="today"></ngx-data-value-card></td>
         </tr>
       </table>
