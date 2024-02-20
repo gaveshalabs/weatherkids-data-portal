@@ -16,7 +16,7 @@ export class WeatherStationOutlineComponent implements OnInit, OnChanges {
             temperature: 0,
             humidity: 0,
             pressure: 0,
-            // precipitation: 0,
+            precipitation: 0,
             // solar_irradiance: 0,
             percentage_light_intensity: 0,
             timestamp: new Date().getTime(),
