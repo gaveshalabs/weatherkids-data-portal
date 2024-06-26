@@ -1,7 +1,7 @@
 import { environment as devEnv } from './environment.dev';
 
 export const environment = {
-    apiBaseUrl: 'http://localhost:3000/api',
+    apiBaseUrl: 'https://data-api.gavesha.space/api',
     production: false,
     firebaseConfig: devEnv.firebaseConfig, // Use same dev firebase config.
 };

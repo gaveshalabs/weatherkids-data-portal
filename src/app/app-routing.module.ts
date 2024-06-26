@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import {
-    NbAuthComponent,
-    NbLoginComponent,
-    NbLogoutComponent,
-    NbRegisterComponent,
-    NbRequestPasswordComponent,
-    NbResetPasswordComponent,
+  NbAuthComponent,
+  NbLoginComponent,
+  NbLogoutComponent,
+  NbRegisterComponent,
+  NbRequestPasswordComponent,
+  NbResetPasswordComponent,
 } from '@nebular/auth';
 import { OAuth2CallbackComponent } from './modules/oauth2/oauth2-callback.component';
 

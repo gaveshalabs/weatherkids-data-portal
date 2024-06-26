@@ -34,6 +34,13 @@
       </button>
     </nb-action>
 
+<!--For testing only-->
+<nb-action>
+  <button mat-raised-button color="primary" (click)="openDialog()">
+    Sign
+  </button>
+</nb-action>
+
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" [hidden]="!loggedIn">
       <nb-user [nbContextMenu]="userMenu" [onlyPicture]="userPictureOnly" [name]="user?.name"
         [picture]="user?.photoUrl">

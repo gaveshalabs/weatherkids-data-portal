@@ -8,13 +8,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-    // NbChatModule,
-    // NbDatepickerModule,
-    // NbDialogModule,
-    NbMenuModule,
-    NbSidebarModule,
-    NbToastrModule,
-    NbWindowModule,
+  // NbChatModule,
+  // NbDatepickerModule,
+  // NbDialogModule,
+  NbMenuModule,
+  NbSidebarModule,
+  NbToastrModule,
+  NbWindowModule,
 } from '@nebular/theme';
 // import { MapComponent } from './@components/map/map.component';
 import { PrivacyPolicyComponent } from './@components/privacy-policy/privacy-policy.component';
@@ -25,15 +25,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OAuth2Module } from './modules/oauth2/oauth2.module';
 // import { HomeComponent } from './pages/home/home.component';
-import { ApiModule } from './api/api.module';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { AlertMessageComponent } from './@components/alert-message/alert-message.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { environment } from '../environments/environment';
+import { AlertMessageComponent } from './@components/alert-message/alert-message.component';
+import { ApiModule } from './api/api.module';
+import { KiteCompetitionMapComponent } from './pages/kite-competition/kite-map/kite-map.component';
+import { KiteComponent } from './pages/kite-competition/kite/kite.component';
+import { RegisterNowComponent } from './pages/kite-competition/register-now-dialog/register-dialog.component';
+
 
 @NgModule({
     declarations: [
@@ -43,6 +48,10 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
         AlertMessageComponent,
         PrivacyPolicyComponent,
         TermsAndConditionsComponent,
+        RegisterNowComponent,
+        KiteComponent,
+        KiteCompetitionMapComponent,
+
     ],
     imports: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
@@ -70,7 +79,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
         MatIconModule,
         MatMomentDateModule,
         MatSnackBarModule,
+        MatDialogModule,
     ],
     bootstrap: [AppComponent],
+
 })
 export class AppModule {}
