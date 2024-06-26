@@ -8,13 +8,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  // NbChatModule,
-  // NbDatepickerModule,
-  // NbDialogModule,
-  NbMenuModule,
-  NbSidebarModule,
-  NbToastrModule,
-  NbWindowModule,
+    // NbChatModule,
+    // NbDatepickerModule,
+    // NbDialogModule,
+    NbMenuModule,
+    NbSidebarModule,
+    NbToastrModule,
+    NbWindowModule,
 } from '@nebular/theme';
 // import { MapComponent } from './@components/map/map.component';
 import { PrivacyPolicyComponent } from './@components/privacy-policy/privacy-policy.component';

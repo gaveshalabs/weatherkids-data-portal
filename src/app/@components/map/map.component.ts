@@ -1,21 +1,21 @@
 import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
+    AfterViewInit,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
 } from '@angular/core';
 import {
-  Class,
-  Control,
-  Icon,
-  LatLng,
-  LatLngTuple,
-  Map,
-  Marker,
-  map,
-  tileLayer,
+    Class,
+    Control,
+    Icon,
+    LatLng,
+    LatLngTuple,
+    Map,
+    Marker,
+    map,
+    tileLayer,
 } from 'leaflet';
 
 @Component({

@@ -29,9 +29,9 @@ const routes: Routes = [
                 component: DashboardComponent,
             },
             {
-              path: 'kite',
-              component: KiteCompetitionMapComponent,
-          },
+                path: 'kite',
+                component: KiteCompetitionMapComponent,
+            },
             {
                 path: 'privacy-policy',
                 component: PrivacyPolicyComponent,
@@ -41,10 +41,10 @@ const routes: Routes = [
                 component: TermsAndConditionsComponent,
             },
             {
-                  path: '',
-                  redirectTo: 'weather',
-                  pathMatch: 'full',
-             },
+                path: '',
+                redirectTo: 'weather',
+                pathMatch: 'full',
+            },
             {
                 path: '**',
                 component: NotFoundComponent,
