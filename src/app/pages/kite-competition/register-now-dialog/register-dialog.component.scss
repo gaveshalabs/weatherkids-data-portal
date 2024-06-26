@@ -7,7 +7,7 @@
   flex-direction: column;
   padding: 20px;
 
-  // box-sizing: border-box;
+  //box-sizing: border-box;
   margin: auto;
 }
 
@@ -15,26 +15,7 @@
   text-align: center;
 }
 
-@media (max-width: 1200px) {
-  .dialog-container {
-    width: 60%;
-  }
-}
-
-@media (max-width: 992px) {
-  .dialog-container {
-    width: 60%;
-  }
-}
-
-@media (max-width: 768px) {
-  .dialog-container {
-    width: 60%;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 576px) {
+@media (width <= 1200px) {
   .dialog-container {
     width: 60%;
     padding: 10px;
