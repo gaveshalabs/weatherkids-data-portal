@@ -30,7 +30,7 @@ const routes: Routes = [
             {
                 path: 'kite',
                 loadChildren: () => import('./kite-competition/kite-competition.module')
-                    .then(m=> m.KiteCompetitionModule),
+                    .then(m => m.KiteCompetitionModule),
             },
             {
                 path: 'privacy-policy',

@@ -1,16 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  NbMediaBreakpointsService,
-  NbMenuService,
-  NbThemeService,
+    NbMediaBreakpointsService,
+    NbMenuService,
+    NbThemeService,
 } from '@nebular/theme';
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
-  NbAuthOAuth2Token,
-  NbAuthService,
+    NbAuthOAuth2Token,
+    NbAuthService,
 } from '@nebular/auth';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';

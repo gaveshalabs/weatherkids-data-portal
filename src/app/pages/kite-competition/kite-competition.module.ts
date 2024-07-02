@@ -11,25 +11,25 @@ import { RegisterNowComponent } from './register-now-dialog/register-dialog.comp
 
 
 @NgModule({
-  declarations: [
-    RegisterNowComponent,
-    KiteComponent,
-    KiteCompetitionMapComponent,
-  ],
-  imports: [
-    RouterModule.forChild([
-      {
-          path: '',
-          component: KiteComponent,
-      },
-  ]),
-    MatDialogModule,
-    MatListModule,
-    LeaderboardModule,
-    SharedModule,
-  ],
-  exports: [
-  ],
+    declarations: [
+        RegisterNowComponent,
+        KiteComponent,
+        KiteCompetitionMapComponent,
+    ],
+    imports: [
+        RouterModule.forChild([
+            {
+                path: '',
+                component: KiteComponent,
+            },
+        ]),
+        MatDialogModule,
+        MatListModule,
+        LeaderboardModule,
+        SharedModule,
+    ],
+    exports: [
+    ],
 })
 export class KiteCompetitionModule {
 

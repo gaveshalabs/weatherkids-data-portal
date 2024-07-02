@@ -8,18 +8,18 @@ import { TopPlayersComponent } from './top-players/top-players.component';
 
 
 @NgModule({
-  declarations: [
-    BestPlayerComponent,
-    KiteLeaderboardComponent,
-    TopPlayersComponent,
+    declarations: [
+        BestPlayerComponent,
+        KiteLeaderboardComponent,
+        TopPlayersComponent,
 
-  ],
-  imports: [
-    CommonModule,
-    PlayersComponent,
-  ],
-  exports: [
-    KiteLeaderboardComponent,
-  ],
+    ],
+    imports: [
+        CommonModule,
+        PlayersComponent,
+    ],
+    exports: [
+        KiteLeaderboardComponent,
+    ],
 })
 export class LeaderboardModule { }
