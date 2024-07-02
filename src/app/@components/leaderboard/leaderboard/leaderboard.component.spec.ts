@@ -8,7 +8,7 @@ describe('KiteLeaderboardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [KiteLeaderboardComponent]
+      declarations: [KiteLeaderboardComponent],
     });
     fixture = TestBed.createComponent(KiteLeaderboardComponent);
     component = fixture.componentInstance;

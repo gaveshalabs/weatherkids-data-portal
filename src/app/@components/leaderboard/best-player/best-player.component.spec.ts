@@ -8,7 +8,7 @@ describe('BestPlayerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BestPlayerComponent]
+      declarations: [BestPlayerComponent],
     });
     fixture = TestBed.createComponent(BestPlayerComponent);
     component = fixture.componentInstance;

@@ -20,16 +20,16 @@ import { RegisterNowComponent } from './register-now-dialog/register-dialog.comp
     RouterModule.forChild([
       {
           path: '',
-          component: KiteComponent
+          component: KiteComponent,
       },
   ]),
     MatDialogModule,
     MatListModule,
     LeaderboardModule,
-    SharedModule
+    SharedModule,
   ],
-  exports:[
-  ]
+  exports: [
+  ],
 })
 export class KiteCompetitionModule {
 

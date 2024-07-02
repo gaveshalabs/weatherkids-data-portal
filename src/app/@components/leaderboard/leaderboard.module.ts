@@ -18,8 +18,8 @@ import { TopPlayersComponent } from './top-players/top-players.component';
     CommonModule,
     PlayersComponent,
   ],
-  exports:[
+  exports: [
     KiteLeaderboardComponent,
-  ]
+  ],
 })
 export class LeaderboardModule { }

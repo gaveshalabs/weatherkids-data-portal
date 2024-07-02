@@ -10,7 +10,7 @@ export class KiteComponent implements OnInit{
 
   public getCoordinatesValue: any;
   actualLocations: Array<[number, number]> = [];
-   constructor(private http:HttpClient){
+   constructor(private http : HttpClient){
 
    }
 
@@ -19,9 +19,9 @@ export class KiteComponent implements OnInit{
    }
 
    public getMethod(){
-    this.http.get('https://data-api.gavesha.space/api').subscribe((data) =>{
+    this.http.get('https://data-api.gavesha.space/api').subscribe((data) => {
       this.getCoordinatesValue = data;
-    })
+    });
    }
 
   mockLocations: Array<[number, number] | { lat: number; lng: number }> = [
