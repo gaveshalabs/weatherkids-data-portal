@@ -1,0 +1,39 @@
+.top-player-container{
+  width: 150px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px ;
+}
+
+.top-place-div h6{
+  color: white;
+}
+
+.top-img-circle {
+  width: 100px;
+  height: 100px;
+  border: 5px solid rgb(188, 196, 27);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+}
+
+.top-img-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.top-player-details-div{
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: bolder;
+  color: black;
+  text-align: center;
+  margin-top: 15px;
+  line-height: 0.4;
+}

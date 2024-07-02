@@ -6,8 +6,6 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-
-  // box-sizing: border-box;
   margin: auto;
 }
 
@@ -28,11 +26,6 @@
   justify-content: center;
   margin: 10px;
   gap: 10px;
-}
-
-.custom-dialog-actions button {
-  // margin-left: 8px;
-  // padding: 10px 20px;
 }
 
 .dialog-content img {

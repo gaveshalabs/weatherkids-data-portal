@@ -14,8 +14,6 @@ export class RegisterNowComponent implements OnInit {
     }
 
     registerNow(): void {
-    // Handle registration logic here
-    // For example, you can close the dialog after registration
         this.dialogRef.close();
     }
 }

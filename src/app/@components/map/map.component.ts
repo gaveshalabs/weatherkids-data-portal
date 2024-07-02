@@ -1,21 +1,23 @@
 import {
-    AfterViewInit,
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
 } from '@angular/core';
 import {
-    Class,
-    Control,
-    Icon,
-    LatLng,
-    LatLngTuple,
-    Map,
-    Marker,
-    map,
-    tileLayer,
+  Class,
+  Control,
+  Icon,
+  LatLng,
+  LatLngTuple,
+  Map,
+  Marker,
+  icon,
+  map,
+  marker,
+  tileLayer,
 } from 'leaflet';
 
 @Component({
@@ -41,6 +43,10 @@ export class MapComponent implements OnInit, AfterViewInit {
     };
     private markers: Marker[] = [];
     private originalIconsOfMarkers: Icon[] = [];
+
+    @Input() locations: Array<[number, number] | { lat: number; lng: number }> = [];
+    kiteIcon: L.Icon;
+    private kiteMarkers: L.Marker[] = [];
 
     constructor() {
         // const CustomIcon: {new(options: any): any} & typeof Class = DivIcon.extend({
@@ -91,10 +97,16 @@ export class MapComponent implements OnInit, AfterViewInit {
         };
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+
+    }
 
     ngAfterViewInit(): void {
         this.initMap();
+
+      if (this.locations.length > 0) {
+        this.renderKiteMarkers();
+      }
     }
 
     renderMarker(
@@ -115,6 +127,9 @@ export class MapComponent implements OnInit, AfterViewInit {
         this.originalIconsOfMarkers.push(icon);
         return marker;
     }
+
+     /* start render kite markers*/
+
 
     selectMarker(location: { lat: number; lng: number } | Marker) {
         for (let i = 0; i < this.markers.length; i++) {
@@ -191,17 +206,37 @@ export class MapComponent implements OnInit, AfterViewInit {
         // );
 
         const tiles = tileLayer(
-            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}',
             {
                 maxZoom: 15,
                 minZoom: 5,
                 attribution:
-                    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            }
+                    '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                ext: 'png'
+                  }
         );
 
         tiles.addTo(this.mapRendered);
+
+        this.kiteIcon = icon({
+          iconUrl: '../../../../assets/images/kite-competition/kite-marker-1.png',
+          iconSize: [52, 52],
+          iconAnchor: [20, 40],
+        });
     }
+
+  renderKiteMarker(location: [number, number] | { lat: number; lng: number }) {
+    const latLng = Array.isArray(location) ? location as LatLngTuple : [location.lat, location.lng] as LatLngTuple;
+    const kiteMarker = marker(latLng, { icon: this.kiteIcon }).addTo(this.mapRendered);
+    this.kiteMarkers.push(kiteMarker);
+    return marker;
+  }
+
+  renderKiteMarkers() {
+    this.locations.forEach(location => {
+      this.renderKiteMarker(location);
+    });
+  }
 
     private _showMarkerWithActiveStatus(
         m: Marker,

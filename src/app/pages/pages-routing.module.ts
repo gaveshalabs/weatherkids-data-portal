@@ -5,7 +5,6 @@ import { PrivacyPolicyComponent } from '../@components/privacy-policy/privacy-po
 import { TermsAndConditionsComponent } from '../@components/terms-and-conditions/terms-and-conditions.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { KiteCompetitionMapComponent } from './kite-competition/kite-map/kite-map.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { PagesComponent } from './pages.component';
 
@@ -30,7 +29,8 @@ const routes: Routes = [
             },
             {
                 path: 'kite',
-                component: KiteCompetitionMapComponent,
+                loadChildren: () => import('./kite-competition/kite-competition.module')
+                    .then(m=> m.KiteCompetitionModule),
             },
             {
                 path: 'privacy-policy',

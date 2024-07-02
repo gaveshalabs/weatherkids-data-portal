@@ -1,3 +1,29 @@
-.header{
-  color: red;
+@import '../../../@theme/styles/themes';
+
+.leader-board-container{
+ background-color: #bbdefb;
+ position:absolute;
+ right: 0;
+ top: 0;
+ height: 800px;
+}
+
+@media only screen and (max-width:576px){
+  .kite-container{
+    flex-direction: column;
+  }
+}
+
+@include nb-install-component {
+  ::ng-deep.map-container {
+    width: 100%;
+    height: 100vh;
+
+  }
+
+  .kite-map-container {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+  }
 }

@@ -1,23 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-    NbMediaBreakpointsService,
-    NbMenuService,
-    NbThemeService,
+  NbMediaBreakpointsService,
+  NbMenuService,
+  NbThemeService,
 } from '@nebular/theme';
 
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
-    NbAuthOAuth2Token,
-    NbAuthService,
+  NbAuthOAuth2Token,
+  NbAuthService,
 } from '@nebular/auth';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
 import { UserProfile } from '../../../common/interfaces/user.interface';
 import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
-import { RegisterNowComponent } from '../../../pages/kite-competition/register-now-dialog/register-dialog.component';
 
 @Component({
     selector: 'ngx-header',
@@ -184,9 +183,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   return false;
     // }
 
-    openDialog(): void {
-        const config: MatDialogConfig = {
-        };
-        this.dialog.open(RegisterNowComponent, config);
-    };
+    // openDialog(): void {
+    //     const config: MatDialogConfig = {
+    //     };
+    //     this.dialog.open(RegisterNowComponent, config);
+    // };
 }

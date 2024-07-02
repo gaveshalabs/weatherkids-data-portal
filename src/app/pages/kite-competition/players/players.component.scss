@@ -1,0 +1,49 @@
+.players-container {
+  padding-left: 0px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.rank-txt-div {
+  margin-left: -30px;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+mat-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  font-size: 20px;
+}
+
+mat-list-item img[matListItemAvatar] {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.name-txt-div {
+  margin-left: 10px;
+}
+
+.kite-height-txt-div{
+  margin-left: 40px;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width:1100px){
+
+  .kite-height-txt-div{
+    margin-left: 60px;
+    margin-right: 10px;
+  }
+
+  .name-txt-div {
+    margin-left: 30px;
+  }
+}

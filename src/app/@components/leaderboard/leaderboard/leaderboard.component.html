@@ -1,0 +1,23 @@
+<div class="kite-leaderboard-container">
+  <div class="leaderboard-upper-part">
+      <div class="leaderboard-header">
+        <h2>Leaderboard</h2>
+      </div>
+
+      <div class="leaderboard-top-3">
+        <div class="second-div">
+            <ngx-top-players [topPlayer]="topPlayers[1]"></ngx-top-players>
+        </div>
+        <div class="first-div">
+          <ngx-best-player [bestPlayer]="topPlayers[0]"></ngx-best-player>
+        </div>
+        <div class="third-div">
+           <ngx-top-players [topPlayer]="topPlayers[2]"></ngx-top-players>
+        </div>
+      </div>
+  </div>
+
+  <div class="leaderboard-below-part">
+    <ngx-players></ngx-players>
+  </div>
+</div>
