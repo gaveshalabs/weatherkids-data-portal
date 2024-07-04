@@ -128,9 +128,6 @@ export class MapComponent implements OnInit, AfterViewInit {
         return marker;
     }
 
-    /* start render kite markers*/
-
-
     selectMarker(location: { lat: number; lng: number } | Marker) {
         for (let i = 0; i < this.markers.length; i++) {
             const m = this.markers[i];

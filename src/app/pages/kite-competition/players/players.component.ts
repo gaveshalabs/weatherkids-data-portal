@@ -36,8 +36,8 @@ export class PlayersComponent {
         {
             id: '4006',
             name: 'Ruwan',
-            img_url: `https://i0.wp.com/littlely.eduworks.com.au/wp-content/uploads/Little.ly-Brock-Deneson-Profile-ID-183539.jpg?
-                      resize=500%2C500&ssl=1`,
+            img_url: `https://i0.wp.com/littlely.eduworks.com.au/wp-content/uploads/Little.ly-
+                            Brock-Deneson-Profile-ID-183539.jpg?resize=500%2C500&ssl=1`,
             kite_height: '1000M',
             rank: '6',
         },
