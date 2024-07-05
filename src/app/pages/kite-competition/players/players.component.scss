@@ -1,5 +1,4 @@
 .players-container {
-  padding-left: 0px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -36,8 +35,7 @@ mat-list-item img[matListItemAvatar] {
   margin-right: 10px;
 }
 
-@media only screen and (max-width:1100px){
-
+@media only screen and (max-width <= 1100px){
   .kite-height-txt-div{
     margin-left: 60px;
     margin-right: 10px;

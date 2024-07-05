@@ -1,23 +1,23 @@
 import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
+    AfterViewInit,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
 } from '@angular/core';
 import {
-  Class,
-  Control,
-  Icon,
-  LatLng,
-  LatLngTuple,
-  Map,
-  Marker,
-  icon,
-  map,
-  marker,
-  tileLayer,
+    Class,
+    Control,
+    Icon,
+    LatLng,
+    LatLngTuple,
+    Map,
+    Marker,
+    icon as leafletIcon,
+    marker as leafletMarker,
+    map,
+    tileLayer,
 } from 'leaflet';
 
 @Component({
@@ -217,7 +217,7 @@ export class MapComponent implements OnInit, AfterViewInit {
 
         tiles.addTo(this.mapRendered);
 
-        this.kiteIcon = icon({
+        this.kiteIcon = leafletIcon({
             iconUrl: '../../../../assets/images/kite-competition/kite-marker-1.png',
             iconSize: [52, 52],
             iconAnchor: [20, 40],
@@ -226,9 +226,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     renderKiteMarker(location: [number, number] | { lat: number; lng: number }) {
         const latLng = Array.isArray(location) ? location as LatLngTuple : [location.lat, location.lng] as LatLngTuple;
-        const kiteMarker = marker(latLng, { icon: this.kiteIcon }).addTo(this.mapRendered);
-        this.kiteMarkers.push(kiteMarker);
-        return marker;
+        const newkiteMarker = leafletMarker(latLng, { icon: this.kiteIcon }).addTo(this.mapRendered);
+        this.kiteMarkers.push(newkiteMarker);
+        return newkiteMarker;
     }
 
     renderKiteMarkers() {

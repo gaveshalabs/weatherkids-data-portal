@@ -8,8 +8,8 @@
  height: 800px;
 }
 
-@media only screen and (max-width:576px){
-  .kite-container{
+@media (max-width <= 576px) {
+  .kite-container {
     flex-direction: column;
   }
 }
