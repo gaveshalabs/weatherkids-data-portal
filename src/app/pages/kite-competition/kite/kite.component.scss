@@ -1,11 +1,11 @@
 @import '../../../@theme/styles/themes';
 
 .leader-board-container{
- background-color: #bbdefb;
+background-color:white;
  position:absolute;
  right: 0;
  top: 0;
- height: 800px;
+ height: 100%;
 }
 
 @media only screen and (max-width <= 576px) {
@@ -25,5 +25,15 @@
     position: absolute !important;
     top: 0;
     left: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .kite-map-container {
+      display: none;
+  }
+
+  .leader-board-container {
+      width: 100%;
   }
 }

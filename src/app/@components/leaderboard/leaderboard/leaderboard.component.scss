@@ -9,7 +9,7 @@
 .leaderboard-upper-part{
   width: 100%;
   height: 50%;
-  background-color: #6f6fdc;
+  background-color: #180439;
   border-bottom-left-radius: 60px;
   border-bottom-right-radius: 60px;
   display: flex;
@@ -21,7 +21,7 @@
   width: 100%;
   height: 15%;
   text-align: center;
-  padding-top: 15px;
+  padding-top: 35px;
 }
 
 .leaderboard-header h2{
@@ -53,6 +53,8 @@
 }
 
 .leaderboard-below-part{
-  background-color: #bbdefb;
+  background-color: white;
   margin-top: 15px;
+  margin-right: 2px;
+  margin-left: 2px;
 }

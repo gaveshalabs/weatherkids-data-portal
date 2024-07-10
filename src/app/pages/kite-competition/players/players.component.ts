@@ -8,6 +8,7 @@ export interface Section {
     img_url: string;
     kite_height: string;
     rank: string;
+    nickname:string;
 }
 
 @Component({
@@ -25,21 +26,24 @@ export class PlayersComponent {
             img_url: 'https://live.staticflickr.com/7610/17097791912_5aedd91f22.jpg',
             kite_height: '800M',
             rank: '4',
+            nickname:'@weligama',
+            
         },
         {
-            id: '4004',
+            id: '4005',
             name: 'Nipuna',
             img_url: 'https://thumbs.dreamstime.com/b/portrait-handsome-man-15494209.jpg',
             kite_height: '600M',
             rank: '5',
+            nickname:'@Matara',
         },
         {
             id: '4006',
-            name: 'Ruwan',
-            img_url: `https://i0.wp.com/littlely.eduworks.com.au/wp-content/uploads/Little.ly-
-                            Brock-Deneson-Profile-ID-183539.jpg?resize=500%2C500&ssl=1`,
+            name: 'Ruwan ',
+            img_url: `https://i0.wp.com/littlely.eduworks.com.au/wp-content/uploads/Little.ly-Brock-Deneson-Profile-ID-183539.jpg?resize=500%2C500&ssl=1`,
             kite_height: '1000M',
             rank: '6',
+            nickname:'@Galle',
         },
         {
             id: '4007',
@@ -47,6 +51,7 @@ export class PlayersComponent {
             img_url: 'https://th.bing.com/th/id/OIP.hd0I2qmDD3ZwQ18CnAQJaQHaHa?w=900&h=900&rs=1&pid=ImgDetMain',
             kite_height: '1200M',
             rank: '7',
+            nickname:'@Matara',
         },
     ];
 }
