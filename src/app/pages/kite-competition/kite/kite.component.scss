@@ -34,10 +34,11 @@ overflow: hidden;
 }
 
 @include nb-install-component {
-  ::ng-deep .leader-board-container {
-    width: 100%;
-    height: 100vh;
-  }
+  // ::ng-deep .leader-board-container {
+  //   .leader-board-container {
+  //   width: 100%;
+  //   height: 100vh;
+  // }
 
   .leader-board-container {
     position: absolute !important;
@@ -45,6 +46,7 @@ overflow: hidden;
     left: 0;
     background-color: white;
     height: 100%;
+    
   }
 }
 

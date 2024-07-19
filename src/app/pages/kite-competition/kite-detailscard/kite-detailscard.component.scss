@@ -95,7 +95,7 @@
 
 @import '../../../@theme/styles/themes';
 
-@include nb-install-component() {
+@include nb-install-component {
   nb-card{
     margin-top: -15px;
   }

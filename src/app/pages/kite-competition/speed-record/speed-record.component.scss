@@ -1,14 +1,13 @@
 @import '../../../@theme/styles/themes';
 
-@include nb-install-component() {
-nb-card{
-  
-margin-top: -15px;
-}
+@include nb-install-component{
+  nb-card {
+    margin-top: -15px;
+  }
+
   nb-card-body {
     display: flex;
     flex-direction: column;
-  
   }
 
   .today {

@@ -74,7 +74,7 @@ mat-list-item img[matListItemAvatar] {
   color: black;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width <= 600px) {
   .kite-height-txt-div {
     margin-left: 150px;
   }
@@ -84,7 +84,7 @@ mat-list-item img[matListItemAvatar] {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width <= 768px) {
   mat-list {
     display: flex;
     flex-direction: column;

@@ -42,7 +42,6 @@
 // }
 
 
-
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -50,7 +49,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
     selector: 'ngx-kite',
     templateUrl: './kite-dashboard.component.html',
-    styleUrls: ['./kite-dashboard.component.scss'],
+    // styleUrls: ['./kite-dashboard.component.scss'],
 })
 export class KiteDashboardComponent implements OnInit {
 
