@@ -1,0 +1,52 @@
+<!-- <nb-card>
+  <nb-card-body>
+    <h4>Accumulated Height</h4>
+    <div class="hvalue"><span>{{accumulatedHeight}}</span></div>
+    <div>
+      <div class="compare-container">
+        <div class="compare-text">Compared to Everest</div>
+        <span class="everest-height">8848m</span>
+      </div>
+    </div>
+    <div class="bottom-content">
+      <div class="left-half">
+        <img src="assets/images/kite-competition/Everest.png" alt="Mount Everest Image" class="everest-image">
+      </div>
+      <div class="right-half">
+        <div class="progress-container">
+          <div class="progress-bar" title="Mount Everest height is {{ everestHeight }} m">
+            <div class="progress" [style.height.%]="calculateHeightPercentage()" title="Total accumulated height is {{ kiteHeight }} m"></div>
+          </div>
+          <img src="assets/images/kite-competition/kite-marker-2.png" alt="Kite Image" class="kite-image"
+               [style.bottom.%]="calculateHeightPercentage()">
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card> -->
+
+<nb-card>
+  <nb-card-body>
+    <h4>Accumulated Height</h4>
+    <div class="hvalue"><span>{{accumulatedHeight}}</span></div>
+    <div>
+      <div class="compare-container">
+        <div class="compare-text">Compared to Everest</div>
+        <span class="everest-height">{{ everestHeight }}m</span>
+      </div>
+    </div>
+    <div class="bottom-content">
+      <div class="left-half">
+        <img src="assets/images/kite-competition/Everest.png" alt="Mount Everest Image" class="everest-image">
+      </div>
+      <div class="right-half">
+        <div class="progress-container">
+          <div class="progress-bar" title="Mount Everest height is {{ everestHeight }} m">
+            <div class="progress" title="Total accumulated height is {{ kiteHeight }} m"></div>
+          </div>
+          <img src="assets/images/kite-competition/kite-marker-2.png" alt="Kite Image" class="kite-image">
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

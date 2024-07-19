@@ -378,6 +378,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                 this._renderCharts(params.ws_id);
             }
         });
+        
         if (routeStateDataSummary) {
             this.thisWeatherStation = routeStateWeatherStation;
             this.thisWeatherStationLatestData = routeStateDataSummary;

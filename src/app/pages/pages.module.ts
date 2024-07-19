@@ -7,6 +7,8 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { WeatherStationHistoryModule } from './weather-station-history/weather-station-history.module';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
     imports: [
@@ -17,6 +19,8 @@ import { WeatherStationHistoryModule } from './weather-station-history/weather-s
         HomeModule,
         WeatherStationHistoryModule,
         MiscellaneousModule,
+        MatIconModule,
+        
     ],
     declarations: [PagesComponent],
 })

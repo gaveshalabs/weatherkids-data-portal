@@ -2,15 +2,17 @@
   <div class="top-place-div">
     <h6>{{topPlayer.rank}}</h6>
   </div>
-  <div class="top-img-circle">
-    <img src={{topPlayer.img_url}}>
+  <div  (click)="goToPlayerIntroduction(topPlayer)" style="cursor: pointer;">
+    <div class="top-img-circle">
+    <img [src]="getTopImageUrl(topPlayer.img_url)" >
   </div>
   <div class="top-player-details-div">
-
     <span class="top-player-name-span">{{topPlayer.name}}</span><br/>
-     <br/>
-     <span class="top-player-nickname-span">{{topPlayer.nickname}}</span><br/>
-     <br/>
+    <br/>
+    <span class="top-player-nickname-span">{{topPlayer.city}}</span><br/>
+    <br/>
     <span class="top-player-kite-height-span">{{topPlayer.kite_height}}</span>
   </div>
 </div>
+</div>
+

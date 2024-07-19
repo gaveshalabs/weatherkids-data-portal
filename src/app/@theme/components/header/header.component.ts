@@ -17,6 +17,7 @@ import { map, takeUntil } from 'rxjs/operators';
 import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
 import { UserProfile } from '../../../common/interfaces/user.interface';
 import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ngx-header',
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     userMenu = [{}];
 
     token: NbAuthOAuth2Token;
+    returnUrl: string; 
 
     constructor(
         private oAuthService: OAuth2Service,
@@ -46,7 +48,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private authService: NbAuthService,
         private matIconRegistry: MatIconRegistry,
         domSanitizer: DomSanitizer,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        private router: Router
     ) {
         this.oAuthService.getUser().subscribe(user => {
             // console.log('the subscribed user', user);
@@ -125,8 +128,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     async onSignIn() {
-        return this.oAuthService.login();
+        this.returnUrl = this.router.url; // Capture the current URL
+        await this.oAuthService.login(this.returnUrl);
     }
+    // async onSignIn() {
+    //     return this.oAuthService.login();
+    // }
 
     async onLogout() {
         return this.oAuthService.logout();

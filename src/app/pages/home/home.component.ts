@@ -5,6 +5,8 @@ import { WeatherStation, WeatherStationSummary } from '../../common/interfaces/w
 import { LoaderService } from '../../@theme/components/loader/loader.service';
 import { AlertMessageService } from '../../@components/alert-message/alert-message.service';
 import { Title } from '@angular/platform-browser';
+import { RegisterNowComponent } from '../kite-competition/register-now-dialog/register-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'ngx-home',
@@ -12,6 +14,8 @@ import { Title } from '@angular/platform-browser';
     styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+
+
     weatherStations: WeatherStation[] = [];
     renderWSOutline = false;
     selectedStation: WeatherStation | null = null;
@@ -25,6 +29,7 @@ export class HomeComponent implements OnInit {
         private loader: LoaderService,
         private alert: AlertMessageService,
         titleService: Title,
+        private dialog: MatDialog
     ) {
         titleService.setTitle('Gavesha Data Collective | Home');
     }
@@ -32,7 +37,17 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         this.loader.show();
         this.loadWeatherStations(10);
+        this.openRegisterNowDialog();
     }
+
+    
+  openRegisterNowDialog(): void {
+    this.dialog.open(RegisterNowComponent, {
+      width: '85vh',
+      height: '68vh',
+      panelClass: 'full-screen-dialog'
+    });
+  }
 
     async onWeatherStationSelected(selectedMarker: WeatherStation | {lat: number; lng: number}) {
         function isLatLng(obj: any): obj is {lat: number; lng: number} {

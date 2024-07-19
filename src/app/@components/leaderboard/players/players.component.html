@@ -1,0 +1,20 @@
+<mat-list>
+  <div class="players-container" *ngFor="let player of players" 
+       (mouseenter)="hoverPlayer = player"
+       (mouseleave)="hoverPlayer = null" 
+       (click)="goToPlayerIntroduction(player)">
+    <div class="rank-txt-div">
+      <span>{{ player.rank }}</span>
+    </div>
+    <mat-list-item style="cursor: pointer;">
+      <img matListItemAvatar [src]="getPlayerImageUrl(player.img_url)" alt="Player Avatar">
+      <div class="name-txt-div">
+        <span class="player-name-span">{{ player.name }}</span>
+        <span class="player-nickname-span">{{ player.city }}</span>
+      </div>
+      <div class="kite-height-txt-div">
+        <span>{{ player.kite_height }}</span>
+      </div>
+    </mat-list-item>
+  </div>
+</mat-list>

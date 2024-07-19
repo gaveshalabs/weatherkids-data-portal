@@ -85,8 +85,8 @@ export class OAuth2Service {
 
         return this.http
             .get<UserProfile>('https://www.googleapis.com/oauth2/v3/userinfo', {
-            headers,
-        })
+                headers,
+            })
             .pipe(
                 map(response => response),
                 catchError(error => {
@@ -99,7 +99,7 @@ export class OAuth2Service {
     }
 
     // Call the methods using NbAuthService
-    async login() {
+    async login(returnUrl: string) {
         // console.log('OAuth2Service.login()');
 
         return signInWithPopup(this.afAuth, new GoogleAuthProvider()).then(
@@ -140,7 +140,7 @@ export class OAuth2Service {
                                 JSON.stringify(this.userData)
                             );
                             this.userSubject.next(this.userData);
-                            this.router.navigate(['dashboard']);
+                            this.router.navigateByUrl(returnUrl);;
                         },
                         error => {
                             console.error(

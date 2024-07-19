@@ -8,12 +8,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class RegisterNowComponent implements OnInit {
 
+
     constructor(private dialogRef: MatDialogRef<RegisterNowComponent>) { }
 
+    closeDialog() {
+        this.dialogRef.close();
+      }
     ngOnInit(): void {
     }
 
-    registerNow(): void {
-        this.dialogRef.close();
-    }
 }

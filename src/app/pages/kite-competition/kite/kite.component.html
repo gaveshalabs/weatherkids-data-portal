@@ -1,11 +1,41 @@
-<div class="kite-container row">
-    <div class="kite-map-container col-lg-9 col-md-6 d-none d-md-block">
-        <div style="width: 100%">
-            <ngx-map mapId="kitemap" style="width: 100%" [locations]="mockLocations"></ngx-map>
-        </div>
+<div class="kite-container ">
+  <div class="leader-board-container kite-map-container col-lg-3 col-md-6 col-12">
+    <ngx-kite-leaderboard></ngx-kite-leaderboard>
+  </div>
+  <div class="kite-map-container column col-lg-9 col-md-6 d-none d-md-block">
+    <div class="upper-half">
+      <div class="headerbar"> <ngx-header></ngx-header></div>
+      <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image">
     </div>
-    <div class="leader-board-container col-lg-3 col-md-6 col-12">
-        <ngx-kite-leaderboard></ngx-kite-leaderboard>
-    </div>
+    <router-outlet></router-outlet>
+  </div>
 </div>
+
+
+<!-- 
+<div class="kite-container">
+  <div class="mobile-header d-block d-md-none">
+    <ngx-header></ngx-header>
+  </div>
+  <div class="mobile-banner d-block d-md-none">
+    <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image">
+  </div>
+  <div class="leader-board-container kite-map-container col-lg-3 col-md-6 col-12">
+    <ngx-kite-leaderboard></ngx-kite-leaderboard>
+  </div>
+  <div class="kite-map-container column col-lg-9 col-md-6 d-none d-md-block">
+    <div class="upper-half">
+      <div class="headerbar">
+        <ngx-header></ngx-header>
+      </div>
+      <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image">
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div> -->
+
+
+
+
+
 
