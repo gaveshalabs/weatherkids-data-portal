@@ -13,19 +13,19 @@ import { KiteApiService } from '../../pages/kite-competition/kite/kite-api.servi
         KiteLeaderboardComponent,
         TopPlayersComponent,
         PlayersComponent,
-      
+
     ],
     imports: [
         CommonModule,
         MatListModule,
-       
+
     ],
     exports: [
         KiteLeaderboardComponent,
     ],
 
-    providers:[
+    providers: [
         KiteApiService,
-    ]
+    ],
 })
 export class LeaderboardModule {}

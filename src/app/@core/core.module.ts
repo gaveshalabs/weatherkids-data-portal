@@ -48,7 +48,7 @@ const socialLinks = [
 
 const DATA_SERVICES = [
     { provide: TemperatureHumidityData, useClass: TemperatureHumidityService },
-    
+
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {

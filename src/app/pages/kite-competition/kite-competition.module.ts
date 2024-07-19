@@ -22,7 +22,7 @@ import { KiteDashboardComponent } from './kite-dashboard/kite-dashboard.componen
 import { KiteRoutingModule } from './kite-routing.module';
 import { TotalAttempsComponent } from './total-attemps/total-attemps.component';
 import { NbActionsModule, NbUserModule } from '@nebular/theme';
-import { ThemeModule } from "../../@theme/theme.module";
+import { ThemeModule } from '../../@theme/theme.module';
 import { MatIconModule } from '@angular/material/icon';
 import { KiteApiService } from './kite/kite-api.service';
 
@@ -62,7 +62,7 @@ import { KiteApiService } from './kite/kite-api.service';
         ThemeModule,
         MatIconModule,
     ],
-    exports: [AirtimeRecordComponent, TotalAttempsComponent,HeightComparisonComponent,
+    exports: [AirtimeRecordComponent, TotalAttempsComponent, HeightComparisonComponent,
     ],
 
     providers: [KiteApiService],

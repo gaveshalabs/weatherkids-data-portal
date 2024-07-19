@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     userMenu = [{}];
 
     token: NbAuthOAuth2Token;
-    returnUrl: string; 
+    returnUrl: string;
 
     constructor(
         private oAuthService: OAuth2Service,

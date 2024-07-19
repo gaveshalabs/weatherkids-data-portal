@@ -40,14 +40,14 @@ export class HomeComponent implements OnInit {
         this.openRegisterNowDialog();
     }
 
-    
-  openRegisterNowDialog(): void {
-    this.dialog.open(RegisterNowComponent, {
-      width: '85vh',
-      height: '68vh',
-      panelClass: 'full-screen-dialog'
-    });
-  }
+
+    openRegisterNowDialog(): void {
+        this.dialog.open(RegisterNowComponent, {
+            width: '85vh',
+            height: '68vh',
+            panelClass: 'full-screen-dialog',
+        });
+    }
 
     async onWeatherStationSelected(selectedMarker: WeatherStation | {lat: number; lng: number}) {
         function isLatLng(obj: any): obj is {lat: number; lng: number} {

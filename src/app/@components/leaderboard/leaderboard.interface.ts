@@ -8,9 +8,9 @@ export interface Player {
 }
 
 export interface TotalKiteData{
-    total_height:number;
-    total_attempts:number;
-    total_flying_mins:number;
+    total_height: number;
+    total_attempts: number;
+    total_flying_mins: number;
 }
 
 export interface PlayerDataSummary {

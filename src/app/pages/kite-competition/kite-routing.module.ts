@@ -9,24 +9,24 @@ import { HeightComparisonComponent } from './height-comparison/height-comparison
 import { KiteDashboardComponent } from './kite-dashboard/kite-dashboard.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: KiteComponent,
-    children: [
-      { path: '', component: KiteDashboardComponent },
-
-      {
-        path: 'player',
+    {
+        path: '',
+        component: KiteComponent,
         children: [
-          { path: ':id', component: KiteDashboardComponent},
+            { path: '', component: KiteDashboardComponent },
+
+            {
+                path: 'player',
+                children: [
+                    { path: ':id', component: KiteDashboardComponent},
+                ],
+            },
         ],
-      },
-    ],
-  },
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class KiteRoutingModule { }
