@@ -2,10 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { WeatherDatum, WeatherStation, WeatherStationSummary } from '../common/interfaces/weather-station.interface';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class WeatherStationsApiService {
-    constructor(private httpClient: HttpClient) {}
+
+
+
+    constructor(private httpClient: HttpClient) { }
 
     // Get all weather stations
     getWeatherStations() {
@@ -33,4 +38,6 @@ export class WeatherStationsApiService {
             `${environment.apiBaseUrl}/weather-data?weather_station_id=${weather_station_id}&from_date=${from}&to_date=${to}`
         );
     }
+
+
 }

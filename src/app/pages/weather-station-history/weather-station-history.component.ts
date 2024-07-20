@@ -47,10 +47,10 @@ export class WeatherStationHistoryComponent implements OnInit {
     @ViewChildren(BaseChartDirective) charts!: QueryList<BaseChartDirective>;
     @ViewChild(MatDateRangePicker) dateRangePicker!: MatDateRangePicker<moment.Moment>;
     @ViewChild(MapComponent) map: MapComponent;
-    thisWeatherStationLatestData: WeatherStationSummary = {weatherData: null, pointsOfUser: null};
+    thisWeatherStationLatestData: WeatherStationSummary = { weatherData: null, pointsOfUser: null };
     thisWeatherStation: WeatherStation = {
         _id: 'none',
-        coordinates: {lat: 0, long: 0},
+        coordinates: { lat: 0, long: 0 },
         name: 'Unknown',
         user_ids: [],
     };
@@ -102,6 +102,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                 },
             ],
         } as ChartData<'line'>,
+
         precipitation: {
             datasets: [
                 {
@@ -111,6 +112,8 @@ export class WeatherStationHistoryComponent implements OnInit {
                 },
             ],
         } as ChartData<'bar'>,
+
+
         percentage_light_intensity: {
             datasets: [
                 {
@@ -140,24 +143,28 @@ export class WeatherStationHistoryComponent implements OnInit {
             ],
         } as ChartData<'line'>,
     };
+
     chartOpts: {
         temperature: ChartOptions<'line'>;
         humidity: ChartOptions<'line'>;
         pressure: ChartOptions<'line'>;
+
         precipitation: ChartOptions<'bar'>;
+
         percentage_light_intensity: ChartOptions<'line'>;
         tvoc: ChartOptions<'line'>;
     } = {} as any;
+
     dataFilteringForm: FormGroup;
     presetDateRanges: DatePreset[] = [
-        {name: 'Last 7 days', from: moment().subtract(7, 'days'), to: moment()},
-        {name: 'Last 30 days', from: moment().subtract(30, 'days'), to: moment()},
-        {name: 'This month', from: moment().startOf('month'), to: moment()},
+        { name: 'Last 7 days', from: moment().subtract(7, 'days'), to: moment() },
+        { name: 'Last 30 days', from: moment().subtract(30, 'days'), to: moment() },
+        { name: 'This month', from: moment().startOf('month'), to: moment() },
         // eslint-disable-next-line max-len
-        {name: 'Last month', from: moment().subtract(1, 'month').startOf('month'), to: moment().subtract(1, 'month').endOf('month')},
-        {name: 'Last 3 months', from: moment().subtract(90, 'days'), to: moment()},
-        {name: 'This year', from: moment().startOf('year'), to: moment()},
-        {name: 'Custom'},
+        { name: 'Last month', from: moment().subtract(1, 'month').startOf('month'), to: moment().subtract(1, 'month').endOf('month') },
+        { name: 'Last 3 months', from: moment().subtract(90, 'days'), to: moment() },
+        { name: 'This year', from: moment().startOf('year'), to: moment() },
+        { name: 'Custom' },
     ];
     private _defaultLineChartOptions = {
         elements: {
@@ -179,11 +186,11 @@ export class WeatherStationHistoryComponent implements OnInit {
             },
         },
         plugins: {
-            legend: {display: true},
+            legend: { display: true },
             zoom: {
-                pan: {enabled: true, mode: 'xy', modifierKey: 'ctrl'},
+                pan: { enabled: true, mode: 'xy', modifierKey: 'ctrl' },
                 zoom: {
-                    drag: {enabled: true },
+                    drag: { enabled: true },
                     mode: 'xy',
                 },
             },
@@ -192,20 +199,22 @@ export class WeatherStationHistoryComponent implements OnInit {
         showLine: true,
         maintainAspectRatio: false,
     } as ChartOptions<'line'>;
+
     private _defaultBarChartOptions = {
         scales: {
             x: {
                 type: 'time',
                 time: {
-                    unit: 'day',
+                    unit: 'hour', 
+                    stepSize: 1, 
                     displayFormats: {
-                        day: 'Y-M-D',
-                        hour: 'Y-M-D HH',
-                        minute: 'HH:mm',
+                        hour: 'YYYY-MM-DD HH:mm', 
                     },
                 },
                 ticks: {
                     autoSkip: false,
+                    maxRotation: 45, 
+                    minRotation: 45,
                 },
                 offset: true,
                 offsetAfterAutoskip: true,
@@ -215,19 +224,22 @@ export class WeatherStationHistoryComponent implements OnInit {
             },
         },
         plugins: {
-            legend: {display: true},
+            legend: { display: true },
             zoom: {
-                pan: {enabled: true, mode: 'xy', modifierKey: 'ctrl'},
+                pan: { enabled: true, mode: 'xy', modifierKey: 'ctrl' },
                 zoom: {
-                    drag: {enabled: true },
+                    drag: { enabled: true },
                     mode: 'xy',
                 },
             },
         },
         maintainAspectRatio: false,
     } as ChartOptions<'bar'>;
+    
+
+
     private _currentWeatherStationId: string = '';
-    private _lastRequestedDateRange = {start: moment(), end: moment()};
+    private _lastRequestedDateRange = { start: moment(), end: moment() };
 
     constructor(
         route: ActivatedRoute,
@@ -250,7 +262,7 @@ export class WeatherStationHistoryComponent implements OnInit {
 
         // copy options separately to for mutually exclusive references between charts
         this.chartOpts.temperature = {
-            elements: {...this._defaultLineChartOptions.elements},
+            elements: { ...this._defaultLineChartOptions.elements },
             scales: {
                 ...this._defaultLineChartOptions.scales,
                 y: {
@@ -260,7 +272,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                     },
                 },
             },
-            plugins: {...this._defaultLineChartOptions.plugins},
+            plugins: { ...this._defaultLineChartOptions.plugins },
             spanGaps: this._defaultLineChartOptions.spanGaps,
             maintainAspectRatio: this._defaultLineChartOptions.maintainAspectRatio,
             parsing: {
@@ -269,7 +281,7 @@ export class WeatherStationHistoryComponent implements OnInit {
             },
         };
         this.chartOpts.humidity = {
-            elements: {...this._defaultLineChartOptions.elements},
+            elements: { ...this._defaultLineChartOptions.elements },
             scales: {
                 ...this._defaultLineChartOptions.scales,
                 y: {
@@ -280,7 +292,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                     },
                 },
             },
-            plugins: {...this._defaultLineChartOptions.plugins},
+            plugins: { ...this._defaultLineChartOptions.plugins },
             spanGaps: this._defaultLineChartOptions.spanGaps,
             maintainAspectRatio: this._defaultLineChartOptions.maintainAspectRatio,
             parsing: {
@@ -289,7 +301,7 @@ export class WeatherStationHistoryComponent implements OnInit {
             },
         };
         this.chartOpts.pressure = {
-            elements: {...this._defaultLineChartOptions.elements},
+            elements: { ...this._defaultLineChartOptions.elements },
             scales: {
                 ...this._defaultLineChartOptions.scales,
                 y: {
@@ -299,7 +311,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                     },
                 },
             },
-            plugins: {...this._defaultLineChartOptions.plugins},
+            plugins: { ...this._defaultLineChartOptions.plugins },
             spanGaps: this._defaultLineChartOptions.spanGaps,
             maintainAspectRatio: this._defaultLineChartOptions.maintainAspectRatio,
             parsing: {
@@ -307,8 +319,10 @@ export class WeatherStationHistoryComponent implements OnInit {
                 yAxisKey: 'pressure',
             },
         };
+
+
         this.chartOpts.precipitation = {
-            elements: {...this._defaultBarChartOptions.elements},
+            elements: { ...this._defaultBarChartOptions.elements },
             scales: {
                 ...this._defaultBarChartOptions.scales,
                 y: {
@@ -319,15 +333,17 @@ export class WeatherStationHistoryComponent implements OnInit {
                     },
                 },
             },
-            plugins: {...this._defaultBarChartOptions.plugins},
+            plugins: { ...this._defaultBarChartOptions.plugins },
             maintainAspectRatio: this._defaultBarChartOptions.maintainAspectRatio,
             parsing: {
                 xAxisKey: 'datetime',
                 yAxisKey: 'precipitation',
             },
         };
+
+
         this.chartOpts.percentage_light_intensity = {
-            elements: {...this._defaultLineChartOptions.elements},
+            elements: { ...this._defaultLineChartOptions.elements },
             scales: {
                 ...this._defaultLineChartOptions.scales,
                 y: {
@@ -338,7 +354,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                     },
                 },
             },
-            plugins: {...this._defaultLineChartOptions.plugins},
+            plugins: { ...this._defaultLineChartOptions.plugins },
             spanGaps: this._defaultLineChartOptions.spanGaps,
             maintainAspectRatio: this._defaultLineChartOptions.maintainAspectRatio,
             parsing: {
@@ -347,7 +363,7 @@ export class WeatherStationHistoryComponent implements OnInit {
             },
         };
         this.chartOpts.tvoc = {
-            elements: {...this._defaultLineChartOptions.elements},
+            elements: { ...this._defaultLineChartOptions.elements },
             scales: {
                 ...this._defaultLineChartOptions.scales,
                 y: {
@@ -358,7 +374,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                     },
                 },
             },
-            plugins: {...this._defaultLineChartOptions.plugins},
+            plugins: { ...this._defaultLineChartOptions.plugins },
             spanGaps: this._defaultLineChartOptions.spanGaps,
             maintainAspectRatio: this._defaultLineChartOptions.maintainAspectRatio,
             parsing: {
@@ -421,7 +437,7 @@ export class WeatherStationHistoryComponent implements OnInit {
     onDateRangePickerClosed() {
         const filterConfig = this.dataFilteringForm.value;
         if (!this._lastRequestedDateRange.start.isSame(filterConfig.dateRangeStart) ||
-      !this._lastRequestedDateRange.end.isSame(filterConfig.dateRangeEnd)) {
+            !this._lastRequestedDateRange.end.isSame(filterConfig.dateRangeEnd)) {
             let end: moment.Moment = filterConfig.dateRangeEnd;
             end = end.endOf('d');
             this._renderCharts(this._currentWeatherStationId, filterConfig.dateRangeStart, filterConfig.dateRangeEnd);
@@ -470,9 +486,9 @@ export class WeatherStationHistoryComponent implements OnInit {
                 this.thisWeatherStation = respws;
                 this._api.getLatestDataOfWeatherStation(wsid).subscribe(
                     respdata => {
-                    // if (!resp.success) {
-                    //   return this._requestFailed();
-                    // }
+                        // if (!resp.success) {
+                        //   return this._requestFailed();
+                        // }
                         this.thisWeatherStationLatestData = respdata;
                         this.updatedOnFormatted = respdata.weatherData ?
                             moment(respdata.weatherData.timestamp).format('YYYY-MM-DD HH:mm') :
@@ -487,34 +503,65 @@ export class WeatherStationHistoryComponent implements OnInit {
     private _renderCharts(userId: string, from?: moment.Moment, to?: moment.Moment) {
         this._loader.show();
         const filterConfig = this.dataFilteringForm.value;
-        this._lastRequestedDateRange = {start: filterConfig.dateRangeStart, end: filterConfig.dateRangeEnd};
+        this._lastRequestedDateRange = { start: filterConfig.dateRangeStart, end: filterConfig.dateRangeEnd };
         from = from || filterConfig.dateRangeStart;
         to = to || filterConfig.dateRangeEnd;
         this._api.getWeatherStationData(userId, from.toISOString(), to.toISOString())
             .subscribe(
+                // resp => {
+                // const precipitationMap: {[key: number]: Boolean} = {};
+                // let minTimestamp = new Date().getTime();
+                // for (let i = 0; i < resp.length; i++) {
+                //     const elem = resp[i];
+                //     // elem.timestamp = moment(elem.timestamp).toDate().getTime() as any;
+                //     if (minTimestamp > elem.timestamp) {
+                //         minTimestamp = elem.timestamp;
+                //     }
+
+                //     // bar chart doesn't render if multiple values exists for same date
+                //     // therefore taking only the first known value for a date
+                //     const timestampDate = moment(elem.timestamp).startOf('D').toDate().getTime();
+                //     if (elem.precipitation >= 0 && !precipitationMap[timestampDate]) {
+                //         precipitationMap[timestampDate] = true;
+                //         elem['datetime'] = new Date(elem.timestamp);
+                //     }
+                // }
+
                 resp => {
-                    const precipitationMap: {[key: number]: Boolean} = {};
+                    const precipitationHourlyMap: { [key: number]: number } = {};
                     let minTimestamp = new Date().getTime();
+
                     for (let i = 0; i < resp.length; i++) {
                         const elem = resp[i];
-                        // elem.timestamp = moment(elem.timestamp).toDate().getTime() as any;
                         if (minTimestamp > elem.timestamp) {
                             minTimestamp = elem.timestamp;
                         }
 
-                        // bar chart doesn't render if multiple values exists for same date
-                        // therefore taking only the first known value for a date
-                        const timestampDate = moment(elem.timestamp).startOf('D').toDate().getTime();
-                        if (elem.precipitation >= 0 && !precipitationMap[timestampDate]) {
-                            precipitationMap[timestampDate] = true;
+                        // Aggregate hourly precipitation
+                        const timestampHour = moment(elem.timestamp).startOf('hour').toDate().getTime();
+                        if (elem.precipitation >= 0) {
+                            if (!precipitationHourlyMap[timestampHour]) {
+                                precipitationHourlyMap[timestampHour] = 0;
+                            }
+                            precipitationHourlyMap[timestampHour] += elem.precipitation;
                             elem['datetime'] = new Date(elem.timestamp);
                         }
                     }
+
+                    // Processed hourly precipitation data
+                    const processedPrecipitationHourlyData = Object.keys(precipitationHourlyMap).map(key => ({
+                        datetime: new Date(parseInt(key, 10)),
+                        precipitation: precipitationHourlyMap[key],
+                    }));
+
+
                     this.sensorReadings.temperature.datasets[0].data = resp as any;
                     this.sensorReadings.humidity.datasets[0].data = resp as any;
                     this.sensorReadings.pressure.datasets[0].data = resp as any;
-                    this.sensorReadings.precipitation.datasets[0].data = resp as any;
-                    this.sensorReadings.percentage_light_intensity.datasets[0].data = resp as any;
+                    this.sensorReadings.precipitation.datasets[0].data = processedPrecipitationHourlyData as any;
+                    this.sensorReadings.percentage_light_intensity.datasets[0].data = resp.map(d => ({ timestamp: d.timestamp, percentage_light_intensity: d.percentage_light_intensity })) as any;
+                    // this.sensorReadings.precipitation.datasets[0].data = resp as any;
+                    // this.sensorReadings.percentage_light_intensity.datasets[0].data = resp as any;
                     this.sensorReadings.tvoc.datasets[0].data = resp as any;
                     this.chartOpts.percentage_light_intensity.scales['x'].min = minTimestamp;
                     this.charts.forEach(child => {

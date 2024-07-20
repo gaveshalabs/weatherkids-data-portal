@@ -1,6 +1,6 @@
 export const environment = {
     apiBaseUrl:
-        'https://us-central1-weatherkids-dev-67016.cloudfunctions.net/api',
+        'https://data-api.gavesha.space/api',
     production: true,
     firebaseConfig: {
         apiKey: 'AIzaSyCZOsxKeOvK45oD3KqgScVTyxrLsVPzbwc',
