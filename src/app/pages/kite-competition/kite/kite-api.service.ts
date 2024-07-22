@@ -39,9 +39,13 @@ export class KiteApiService {
         return this.httpClient.get<any>(`${kiteenvironment.apiBaseUrl}/kite-data/latest`);
     }
 
-    // get total data to cards
-    getLatestDataForAllPlayers(): Observable<TotalKiteData> {
-        return this.httpClient.get<TotalKiteData>(`${kiteenvironment.apiBaseUrl}/kite-data/latest`);
-    }
+    // // get total data to cards
+    // getLatestDataForAllPlayers(): Observable<TotalKiteData> {
+    //     return this.httpClient.get<TotalKiteData>(`${kiteenvironment.apiBaseUrl}/kite-data/latest?include=current_week`);
+    // }
 
+    getLatestDataForAllPlayers(): Observable<TotalKiteData> {
+        const url = `${kiteenvironment.apiBaseUrl}/kite-data/latest?include=current_week`;
+        return this.httpClient.get<TotalKiteData>(url);
+      }
 }

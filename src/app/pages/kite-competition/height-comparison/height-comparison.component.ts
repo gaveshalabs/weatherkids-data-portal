@@ -100,8 +100,8 @@ export class HeightComparisonComponent implements OnInit {
     ngOnInit() {
         this.kiteApiService.getLatestDataForAllPlayers().subscribe(
             (data: TotalKiteData) => {
-                if (data && data.total_height) {
-                    this.startAnimations(data.total_height);
+                if (data && data.all_time.total_height) {
+                    this.startAnimations(data.all_time.total_height);
                 } else {
                     this.accumulatedHeight = '-';
                 }

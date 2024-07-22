@@ -16,8 +16,8 @@ export class AirtimeRecordComponent implements OnInit {
     ngOnInit() {
         this.kiteApiService.getLatestDataForAllPlayers().subscribe(
             (data: TotalKiteData) => {
-                if (data && data.total_flying_mins) {
-                    this.actualFlyingTime = data.total_flying_mins;
+                if (data && data.all_time.total_flying_mins) {
+                    this.actualFlyingTime = data.all_time.total_flying_mins;
                     this.animateFlyingTime();
                 } else {
                     this.totalFlyingTime = '-';

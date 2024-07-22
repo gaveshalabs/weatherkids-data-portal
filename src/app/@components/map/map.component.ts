@@ -203,17 +203,29 @@ export class MapComponent implements OnInit, AfterViewInit {
         // );
 
         const tiles = tileLayer(
-            'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}',
+            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
             {
                 maxZoom: 15,
                 minZoom: 5,
                 attribution:
-                    `&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy;
-                     <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy;
-                     <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`,
-                ext: 'png',
+                    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             }
         );
+
+        
+    
+        // const tiles = tileLayer(
+        //     'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}',
+        //     {
+        //         maxZoom: 15,
+        //         minZoom: 5,
+        //         attribution:
+        //             `&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy;
+        //              <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy;
+        //              <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`,
+        //         ext: 'png',
+        //     }
+        // );
 
         tiles.addTo(this.mapRendered);
 

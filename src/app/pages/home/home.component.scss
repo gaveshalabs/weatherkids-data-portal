@@ -11,12 +11,24 @@
 
 .kitelogo{
   margin-left: 1095px;
+  @include media-breakpoint-down(sm) {
+    margin-left : 0px; 
+    margin-top: 10px; 
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .competion-logo{
   margin-top: 15px;
   height: 120px;
   width: 300px;
+
+  @include media-breakpoint-down(sm) {
+    margin-top: 0;
+    width: 370px;
+  }
 }
 
 

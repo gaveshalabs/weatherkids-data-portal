@@ -16,8 +16,8 @@ export class TotalAttempsComponent implements OnInit {
     ngOnInit() {
         this.kiteApiService.getLatestDataForAllPlayers().subscribe(
             (data: TotalKiteData) => {
-                if (data && data.total_attempts != null) {
-                    this.animateAttempts(data.total_attempts);
+                if (data && data.all_time.total_attempts != null) {
+                    this.animateAttempts(data.all_time.total_attempts);
                 } else {
                     this.totalAttempts = '-';
                 }

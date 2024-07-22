@@ -7,11 +7,20 @@ export interface Player {
     city: string;
 }
 
-export interface TotalKiteData{
-    total_height: number;
-    total_attempts: number;
-    total_flying_mins: number;
-}
+export interface TotalKiteData {
+    all_time: {
+      total_height: number;
+      total_attempts: number;
+      total_flying_mins: number;
+    };
+    current_week?: {
+      total_height: number;
+      total_attempts: number;
+      total_flying_mins: number;
+      max_height: number;
+      min_height: number;
+    };
+  }
 
 export interface PlayerDataSummary {
     author_user_id: string;
