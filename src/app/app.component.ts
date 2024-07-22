@@ -4,9 +4,9 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 import { Component, OnInit } from '@angular/core';
+import packageJson from '../../package.json';
 import { AnalyticsService } from './@core/utils/analytics.service';
 import { SeoService } from './@core/utils/seo.service';
-import packageJson from '../../package.json';
 
 @Component({
     selector: 'ngx-app',
@@ -18,7 +18,7 @@ import packageJson from '../../package.json';
 export class AppComponent implements OnInit {
     constructor(
         private analytics: AnalyticsService,
-        private seoService: SeoService
+        private seoService: SeoService,
     ) {}
 
     ngOnInit(): void {
@@ -26,4 +26,5 @@ export class AppComponent implements OnInit {
         this.seoService.trackCanonicalChanges();
         console.info(`v${packageJson.version}`);
     }
+
 }

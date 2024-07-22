@@ -1,0 +1,18 @@
+<div class="best-player-container">
+  <div class="best-place-div">
+    <h2><i class="fas fa-crown" style="color: gold;"></i></h2>
+  </div>
+  <div (click)="goToBestPlayerIntroduction()" style="cursor: pointer;">
+    <div class="best-img-circle">
+      <img [src]="getImageUrl(bestPlayer.img_url)">
+      <!-- <img [src]="bestPlayer.img_url" alt="Best Player Avatar"> -->
+    </div>
+    <div class="best-player-details-div">
+      <span class="best-player-name-span">{{bestPlayer.name}}</span><br />
+      <br />
+      <span class="best-player-nickname-span">{{bestPlayer.city}}</span><br />
+      <br />
+      <span class="best-player-kite-height-span">{{bestPlayer.kite_height}}</span>
+    </div>
+  </div>
+</div>

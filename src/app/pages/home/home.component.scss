@@ -2,9 +2,21 @@
 
 ::ng-deep .search-bar {
   position: relative;
-  top: -42px;
+  top: -175px;
 
   @include media-breakpoint-down(is) {
     top: 16px;
   }
 }
+
+.kitelogo{
+  margin-left: 1095px;
+}
+
+.competion-logo{
+  margin-top: 15px;
+  height: 120px;
+  width: 300px;
+}
+
+

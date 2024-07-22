@@ -12,10 +12,11 @@ import {
     Icon,
     LatLng,
     LatLngTuple,
-    LeafletMouseEvent,
     Map,
-    map,
     Marker,
+    icon as leafletIcon,
+    marker as leafletMarker,
+    map,
     tileLayer,
 } from 'leaflet';
 
@@ -42,6 +43,10 @@ export class MapComponent implements OnInit, AfterViewInit {
     };
     private markers: Marker[] = [];
     private originalIconsOfMarkers: Icon[] = [];
+
+    @Input() locations: Array<[number, number] | { lat: number; lng: number }> = [];
+    kiteIcon: L.Icon;
+    private kiteMarkers: L.Marker[] = [];
 
     constructor() {
         // const CustomIcon: {new(options: any): any} & typeof Class = DivIcon.extend({
@@ -92,10 +97,16 @@ export class MapComponent implements OnInit, AfterViewInit {
         };
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+
+    }
 
     ngAfterViewInit(): void {
         this.initMap();
+
+        if (this.locations.length > 0) {
+            this.renderKiteMarkers();
+        }
     }
 
     renderMarker(
@@ -107,11 +118,11 @@ export class MapComponent implements OnInit, AfterViewInit {
             : this.markerIcons.darkBlue;
         const marker = new Marker(location)
             .setIcon(icon)
-            .addTo(this.mapRendered)
-            .addEventListener('click', (event: LeafletMouseEvent) => {
-                this.markerSelect.emit(event.latlng);
-                this.setView(event.latlng);
-            });
+            .addTo(this.mapRendered);
+            // .addEventListener('click', (event: LeafletMouseEvent) => {
+            //     this.markerSelect.emit(event.latlng);
+            //     this.setView(event.latlng);
+            // });
         this.markers.push(marker);
         this.originalIconsOfMarkers.push(icon);
         return marker;
@@ -184,24 +195,46 @@ export class MapComponent implements OnInit, AfterViewInit {
             zoomControl: false,
         });
         new Control.Zoom({ position: 'bottomright' }).addTo(this.mapRendered);
-        this.mapRendered.addEventListener(
-            'click',
-            (event: LeafletMouseEvent) => {
-                this.mapSelect.emit(event.latlng);
-            }
-        );
+        // this.mapRendered.addEventListener(
+        //     'click',
+        //     (event: LeafletMouseEvent) => {
+        //         this.mapSelect.emit(event.latlng);
+        //     }
+        // );
 
         const tiles = tileLayer(
-            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}',
             {
                 maxZoom: 15,
                 minZoom: 5,
                 attribution:
-                    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+                    `&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy;
+                     <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy;
+                     <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors`,
+                ext: 'png',
             }
         );
 
         tiles.addTo(this.mapRendered);
+
+        this.kiteIcon = leafletIcon({
+            iconUrl: '../../../../assets/images/kite-competition/kite-marker-1.png',
+            iconSize: [52, 52],
+            iconAnchor: [20, 40],
+        });
+    }
+
+    renderKiteMarker(location: [number, number] | { lat: number; lng: number }) {
+        const latLng = Array.isArray(location) ? location as LatLngTuple : [location.lat, location.lng] as LatLngTuple;
+        const newkiteMarker = leafletMarker(latLng, { icon: this.kiteIcon }).addTo(this.mapRendered);
+        this.kiteMarkers.push(newkiteMarker);
+        return newkiteMarker;
+    }
+
+    renderKiteMarkers() {
+        this.locations.forEach(location => {
+            this.renderKiteMarker(location);
+        });
     }
 
     private _showMarkerWithActiveStatus(

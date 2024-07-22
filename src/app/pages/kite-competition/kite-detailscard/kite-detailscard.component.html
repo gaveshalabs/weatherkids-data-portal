@@ -1,0 +1,51 @@
+<!-- <nb-card>
+  <nb-card-body>
+    <div style="margin-bottom: -10px;">  <h4>This Week Records</h4></div>
+
+    <div class="today">
+      <span class="today-temperature h1">1800M</span>
+      <nb-icon icon="star" pack="eva" class="today-icon"></nb-icon>
+    </div>
+
+    <div class="today-details">
+      <div class="parameter">
+        <span class="caption parameter-name">min Height</span>
+        <span class="parameter-value">300m</span>
+      </div>
+      <div class="parameter">
+        <span class="caption parameter-name">flying time</span>
+        <span class="parameter-value">2000s</span>
+      </div>
+      <div class="parameter">
+        <span class="caption parameter-name">Attemps</span>
+        <span class="parameter-value">100+</span>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card> -->
+
+<nb-card>
+  <nb-card-body>
+    <div style="margin-bottom: -10px;">  
+      <h4>This Week Records</h4>
+    </div>
+    <div class="today">
+      <span class="today-temperature h1">{{ maxHeight }}M</span>
+      <nb-icon icon="star" pack="eva" class="today-icon"></nb-icon>
+    </div>
+    <div class="today-details">
+      <div class="parameter">
+        <span class="caption parameter-name">Min Height</span>
+        <span class="parameter-value">{{ minHeight }}m</span>
+      </div>
+      <div class="parameter">
+        <span class="caption parameter-name">Flying Time</span>
+        <span class="parameter-value">{{ totalFlyingMins }}s</span>
+      </div>
+      <div class="parameter">
+        <span class="caption parameter-name">Attempts</span>
+        <span class="parameter-value">{{ totalAttempts }}+</span>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
