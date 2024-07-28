@@ -1,99 +1,5 @@
-// @import '../../../@theme/styles/themes';
-
-// @include nb-install-component() {
-// nb-card{
-  
-// margin-top: 10px;
-
-// }
-//   nb-card-body {
-//     display: flex;
-//     flex-direction: column;
-  
-//   }
-
-//   .location,
-//   .date {
-//     display: block;
-//   }
-
-//   .location {
-//     margin-bottom: 0.1rem;
-//   }
-
-//   .today {
-//     display: flex;
-//     justify-content: space-around;
-//   }
-
-//   .today-temperature {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     margin: 5px;
-//     color: rgba(221, 221, 56, 0.951);
-//   }
-
-//   .today-icon {
-//     color: nb-theme(color-primary-default);
-//     font-size: 10rem;
-//     line-height: 1;
-//     margin-top: -4rem;
-//     margin-left: auto;
-//     margin-right: 0.4rem;
-//   }
-
-//   .today-details {
-//     display: flex;
-//     justify-content: space-around;
-//     margin-top: 1rem;
-//   }
-
-//   .parameter {
-//     flex: 1 1 auto;
-//     text-align: center;
-//   }
-
-//   .parameter-name,
-//   .parameter-value {
-//     display: block;
-//   }
-
-//   .caption {
-//     text-transform: uppercase;
-//   }
-
-//   .weekly-forecast {
-//     display: flex;
-//     justify-content: space-around;
-//     margin: auto 0;
-//   }
-
-//   .day {
-//     display: flex;
-//     flex-direction: column;
-//     text-align: center;
-//   }
-
-//   .weather-icon {
-//     font-size: 2.5rem;
-//     line-height: 2.5rem;
-//   }
-//   .details{
-//     margin-top: 30px;
-//     font-size: 22px;
-//   }
-//   .values{
-//     color: rgb(16, 11, 98);
-//     font-weight: 800;
-//     position: relative;
-//     flex-direction: column;
-//     justify-content: center;
-//   }
-// }
-
-
 @import '../../../@theme/styles/themes';
+@import '../../../@theme/styles/overlay';
 
 @include nb-install-component {
   nb-card{
@@ -117,7 +23,15 @@
   .today {
     display: flex;
     justify-content: space-around;
-    margin-top: -10px;
+    margin-top: -12px;
+
+    @include media-breakpoint-down(md) {
+      margin-top: -30px;
+      font-size: 5px;
+      margin-bottom: -30px;
+      display: flex;
+      justify-content: center;
+    }
   }
 
   .today-temperature {
@@ -126,6 +40,12 @@
     flex-direction: column;
     justify-content: center;
     margin: 2rem 1.5rem;
+
+    @include media-breakpoint-down(md) {
+      font-size: 30px;
+      display: flex;
+      justify-content: center;
+    }
   }
 
   .today-icon {
@@ -135,6 +55,17 @@
     margin-top: 1rem;
     margin-left: auto;
     margin-right: 0.4rem;
+
+    
+    @include media-breakpoint-down(md) {
+      color: goldenrod;
+      font-size: 3rem;
+      line-height: 1;
+      margin-top: 2rem;
+      margin-left: auto;
+      margin-right: 3rem;
+
+    }
   }
 
   .today-details {

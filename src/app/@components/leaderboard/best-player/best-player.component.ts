@@ -12,14 +12,20 @@ export class BestPlayerComponent {
 
     constructor(private router: Router) {}
 
-    goToBestPlayerIntroduction() {
-        this.router.navigate(['/kite/player', this.bestPlayer.id]);
+    goToPlayerIntroduction(player: Player) {
+        this.router.navigate(['/kite/player', player.id ,
+            {
+                state: {
+                    player,
+                },
+            },
+        ]);
     }
 
     getImageUrl(imgUrl: string): string {
     // Check if the imgUrl is already in the desired format
         if (imgUrl.startsWith('assets/avatars/Avatar_Icons/')) {
-            return imgUrl; // Return as-is if already in the correct format
+            return imgUrl;
         }
 
         // Extract the filename from the full imgUrl

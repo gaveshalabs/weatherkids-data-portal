@@ -10,14 +10,11 @@ import { RegisterNowComponent } from './register-now-dialog/register-dialog.comp
 import { NbCardModule, NbIconModule, NbSelectModule, NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { CommonModule } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { SolarComponent } from './circle-progress/solar.component';
-import { KittenComponent } from './kitten/kitten.component';
 import { HeightbarchartComponent } from './height-barchart/height-barchart.component';
 import { FlyingchartComponent } from './flying-timechart/flying-chart.component';
 import { kitedetailsComponent } from './kite-detailscard/kite-detailscard.component';
 import { HeightComparisonComponent } from './height-comparison/height-comparison.component';
 import { AirtimeRecordComponent } from './airtime-record/airtime-record.component';
-import { SpeedRecordComponent } from './speed-record/speed-record.component';
 import { KiteDashboardComponent } from './kite-dashboard/kite-dashboard.component';
 import { KiteRoutingModule } from './kite-routing.module';
 import { TotalAttempsComponent } from './total-attemps/total-attemps.component';
@@ -25,6 +22,12 @@ import { NbActionsModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
 import { MatIconModule } from '@angular/material/icon';
 import { KiteApiService } from './kite/kite-api.service';
+import { ToggleCardComponent } from './togal-card/toggle-card.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCardModule} from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -33,14 +36,15 @@ import { KiteApiService } from './kite/kite-api.service';
         RegisterNowComponent,
         KiteComponent,
         KiteCompetitionMapComponent,
-        SolarComponent,
-        KittenComponent,
         kitedetailsComponent,
         HeightComparisonComponent,
         AirtimeRecordComponent,
-        SpeedRecordComponent,
         KiteDashboardComponent,
         TotalAttempsComponent,
+        ToggleCardComponent,
+
+
+
 
     ],
     imports: [
@@ -61,6 +65,15 @@ import { KiteApiService } from './kite/kite-api.service';
         NbUserModule,
         ThemeModule,
         MatIconModule,
+        MatSlideToggleModule,
+        MatButtonModule,
+        MatButtonToggleModule,
+        MatRadioModule,
+        MatCardModule,
+        // ToggleCardComponent,
+
+
+
     ],
     exports: [AirtimeRecordComponent, TotalAttempsComponent, HeightComparisonComponent,
     ],

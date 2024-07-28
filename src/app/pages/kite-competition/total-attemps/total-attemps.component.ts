@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { KiteApiService } from '../kite/kite-api.service';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.interface';
 
 @Component({
@@ -7,32 +6,34 @@ import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.inte
     styleUrls: ['./total-attemps.component.scss'],
     templateUrl: './total-attemps.component.html',
 })
-export class TotalAttempsComponent implements OnInit {
+export class TotalAttempsComponent implements OnInit, OnChanges {
+    @Input() data: TotalKiteData | null = null;
     totalAttempts: string = '0';
     displayedAttempts: number = 0;
 
-    constructor(private kiteApiService: KiteApiService) {}
-
     ngOnInit() {
-        this.kiteApiService.getLatestDataForAllPlayers().subscribe(
-            (data: TotalKiteData) => {
-                if (data && data.total_attempts != null) {
-                    this.animateAttempts(data.total_attempts);
-                } else {
-                    this.totalAttempts = '-';
-                }
-            },
-            (error) => {
-                this.totalAttempts = 'Error loading data';
-            }
-        );
+        this.updateAttempts();
     }
 
-    animateAttempts(targetAttempts: number) {
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['data'] && changes['data'].currentValue) {
+            this.updateAttempts();
+        }
+    }
+
+    private updateAttempts(): void {
+        if (this.data && this.data.all_time.total_attempts != null) {
+            this.animateAttempts(this.data.all_time.total_attempts);
+        } else {
+            this.totalAttempts = '-';
+        }
+    }
+
+    private animateAttempts(targetAttempts: number): void {
         const duration = 3000;
         const interval = 50;
         const steps = duration / interval;
-        const increment = 10;
+        const increment = Math.ceil(targetAttempts / steps);
         let currentAttempts = 0;
 
         const timer = setInterval(() => {
