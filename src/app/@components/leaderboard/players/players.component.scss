@@ -1,8 +1,11 @@
 .players-container {
   margin-bottom: -10px;
+  flex-flow: row;
   display: flex;
   align-items: center;
   cursor: pointer;
+  width: 100%;
+  overflow: hidden;
 }
 
 .rank-txt-div {
@@ -28,14 +31,23 @@ mat-list-item {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   position: relative;
+  box-sizing: border-box;
 }
 
 .players-container:hover {
+  background-color: #b99be5;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.players-container.active {
   background-color: #8468af;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  
 }
 
 mat-list-item img[matListItemAvatar] {
@@ -47,15 +59,14 @@ mat-list-item img[matListItemAvatar] {
 
 .name-txt-div {
   margin-left: 10px;
-
 }
 
 .kite-height-txt-div {
   display: flex;
-  flex-direction: row;
-  margin-left: 150px;
+  flex-flow: row nowrap;
   color: rgb(219, 156, 11);
-  margin-top: -25px;
+  margin-top: -24px;
+  justify-content: flex-end;
 }
 
 .player-nickname-span {
@@ -74,17 +85,17 @@ mat-list-item img[matListItemAvatar] {
   color: black;
 }
 
-@media only screen and (max-width <= 600px) {
+@media only screen and (max-width <=600px) {
   .kite-height-txt-div {
-    margin-left: 150px;
+    margin-left: auto;
   }
-  
+
   .name-txt-div {
     margin-left: 15px;
   }
 }
 
-@media only screen and (max-width <= 768px) {
+@media only screen and (max-width <=768px) {
   mat-list {
     display: flex;
     flex-direction: column;
@@ -93,11 +104,11 @@ mat-list-item img[matListItemAvatar] {
     font-size: 20px;
     width: 100%;
   }
-  
+
   .kite-height-txt-div {
-    margin-left: 150px;
+    margin-left: auto;
   }
-  
+
   .name-txt-div {
     margin-left: 15px;
   }

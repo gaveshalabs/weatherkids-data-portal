@@ -25,6 +25,28 @@ export class KiteLeaderboardComponent implements OnInit {
                 // Sort players by kite height in descending order
                 data.sort((a, b) => parseInt(b.kite_height, 10) - parseInt(a.kite_height, 10));
 
+                // const topTenPlayers = data.slice(0, 10);
+
+                // topTenPlayers.forEach((player, index) => {
+                //     if (index === 1) {
+                //         player.rank = '2nd';
+                //     } else if (index === 2) {
+                //         player.rank = '3rd';
+                //     } else {
+                //         player.rank = `${index + 1}`;
+                //     }
+                // });
+
+                data.forEach((player, index) => {
+                    if (index === 1) {
+                        player.rank = '2nd';
+                    } else if (index === 2) {
+                        player.rank = '3rd';
+                    } else {
+                        player.rank = `${index + 1}`;
+                    }
+                });
+
                 // Assign top 3 players
                 this.topPlayers = data.slice(0, 3);
 
@@ -41,15 +63,6 @@ export class KiteLeaderboardComponent implements OnInit {
         );
     }
 
-    goToPlayerIntroduction(playerId: string) {
-        this.router.navigate(['/kite/player', playerId]);
-    }
-
-    goToBestPlayerIntroduction() {
-        if (this.bestPlayer) {
-            this.router.navigate(['/kite/player', this.bestPlayer.id]);
-        }
-    }
 
 }
 

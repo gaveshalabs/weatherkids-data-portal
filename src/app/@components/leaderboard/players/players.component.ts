@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Player } from '../leaderboard.interface';
 
 @Component({
@@ -7,35 +7,58 @@ import { Player } from '../leaderboard.interface';
     templateUrl: './players.component.html',
     styleUrls: ['./players.component.scss'],
 })
-export class PlayersComponent {
+export class PlayersComponent implements OnInit {
     @Input() players: Player[] = [];
     hoverPlayer: Player | null = null;
+    activePlayerId: string | null = null;
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private route: ActivatedRoute) {}
 
-    goToPlayerIntroduction(player: Player) {
-        this.router.navigate(['/kite/player', player.id]);
+    ngOnInit() {
+        this.route.params.subscribe(params => {
+            this.activePlayerId = params['playerId'] || null;
+            this.setActivePlayerHover();
+        });
     }
 
+    setActivePlayerHover() {
+        if (this.activePlayerId) {
+            this.hoverPlayer = this.players.find(player => player.id === this.activePlayerId) || null;
+        }
+    }
+
+    activePlayer(player: Player) {
+        this.activePlayerId = player.id;
+
+    }
+
+    goToPlayerIntroduction(player: Player) {
+        this.activePlayer(player);
+        this.router.navigate(['/kite/player', player.id], {
+            state: {
+                player,
+            },
+        });
+    }
 
     getPlayerImageUrl(imgtopUrl: string): string {
         if (!imgtopUrl) {
-            // Handle the case where imgtopUrl is undefined or null
-            return 'assets/default-image-url.jpg'; // Replace with your default image URL
+            return 'assets/default-image-url.jpg';
         }
 
-        // Check if the imgUrl is already in the desired format
         if (imgtopUrl.startsWith('assets/avatars/Avatar_Icons/')) {
-            return imgtopUrl; // Return as-is if already in the correct format
+            return imgtopUrl;
         }
 
-        // Extract the filename from the full imgUrl
         const filename = imgtopUrl.substring(imgtopUrl.lastIndexOf('/') + 1);
-
-        // Construct the mock data-like URL
-        const mocktopDataUrl = `assets/avatars/Avatar_Icons/${filename}`;
-
-        return mocktopDataUrl;
+        return `assets/avatars/Avatar_Icons/${filename}`;
     }
 
+    isActivePlayer(player: Player): boolean {
+        return this.activePlayerId === player.id;
+    }
+
+
 }
+
+

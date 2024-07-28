@@ -1,164 +1,75 @@
-@import '../../../@theme/styles/themes';
-
-.kite-map-container {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-  background-color:   #b3b3b3,;
-}
-
-.upper-half {
-  width: 100%;  
-  height: 200px;
-  position: relative; 
-  margin-bottom: 60px;
-}
-
-.headerbar{
-height: 40px;
-margin-top: 5px;
-overflow: hidden;
-}
-
-.upper-half-image {
-  position: absolute;
-  top: 43px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-}
-
-@include nb-install-component {
-  // ::ng-deep .leader-board-container {
-  //   .leader-board-container {
-  //   width: 100%;
-  //   height: 100vh;
-  // }
+.kite-container-home-2 {
+  height: 100vh;
+  margin: -35px -20px -20px ;
 
   .leader-board-container {
-    position: absolute !important;
-    top: 0;
-    left: 0;
     background-color: white;
-    height: 100%;
-    
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
   }
+
+  .kite-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .upper-half {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .headerbar {
+    height: 40px;
+    margin: 5px 0;
+    overflow: hidden;
+  }
+
+  .upper-half-image-kite {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  /* stylelint-disable*/
+  @media (max-width: 768px)  
+   {
+    .mobile-header {
+      display: flex;
+      width: 100%;
+      margin: 30px 0 10px;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .mobile-banner {
+      display: flex;
+      width: 100%;
+      margin-bottom: 10px;
+      height: auto;
+      overflow: hidden;
+      justify-content: center;
+    }
+
+    .mobile-banner .upper-half-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .leader-board-container {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  /* stylelint-enable */
 }
-
-
-
-
-// @import '../../../@theme/styles/themes';
-
-// .kite-map-container {
-//   position: absolute;
-//   right: 0;
-//   top: 0;
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   margin-bottom: 10px;
-//   background-color: #b3b3b3;
-// }
-
-// .upper-half {
-//   width: 100%;
-//   height: 200px;
-//   position: relative;
-//   margin-bottom: 60px;
-// }
-
-// .headerbar {
-//   height: 40px;
-//   margin-top: 5px;
-//   overflow: hidden;
-//   z-index: 1;
-// }
-
-// .upper-half-image {
-//   position: absolute;
-//   top: 43px;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// }
-
-// @include nb-install-component {
-//   ::ng-deep .leader-board-container {
-//     width: 100%;
-//     height: 100vh;
-//   }
-
-//   .leader-board-container {
-//     position: absolute !important;
-//     top: 0;
-//     left: 0;
-//     background-color: white;
-//     height: 100%;
-//   }
-// }
-
-// // Media queries for responsive design
-// @media (max-width: 767.98px) { // Mobile view
-//   .kite-container {
-//     display: flex;
-//     flex-direction: column;
-//     height: 100vh;
-//     background-color: #b3b3b3;
-//   }
-
-//   .kite-map-container {
-//     display: none; // Hide the right side container in mobile view
-//   }
-
-//   .upper-half {
-//     display: none; // Hide upper half in mobile view
-//   }
-
-//   .leader-board-container {
-//     position: static !important;
-//     height: auto;
-//   }
-
-//   .mobile-header, .mobile-banner {
-//     display: block;
-//     width: 100%;
-//     height: auto;
-//   }
-
-//   .mobile-header {
-//     flex: 0 0 auto;
-//     position: fixed;
-  
-
-//   }
-
-//   .mobile-banner {
-//     flex: 0 0 auto;
-//   }
-
-//   .mobile-banner .upper-half-image {
-//     width: 100%;
-//     height: auto; // Adjust as needed for mobile view
-//   }
-
-//   .leader-board-container {
-//     flex: 1 0 auto;
-//     overflow-y: auto;
-//   }
-  
-// }
-
-
-
-
-
-
-
-

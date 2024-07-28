@@ -1,5 +1,12 @@
+@import '../../../@theme/styles/overlay';
+
 nb-card {
   height: auto;
+  overflow: hidden;
+
+  @include media-breakpoint-down(md) {
+    margin-top: -15px;
+  }
 }
 
 .hvalue {
@@ -20,17 +27,30 @@ nb-card {
   flex: 4;
   display: flex;
   height: 100%;
-  margin-right: -10px;
+
+  // width: 100%;
+  margin-right: -30px;
   margin-left: -50px;
+  justify-content: space-between;
+
+  @include media-breakpoint-down(md) {
+    right: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .everest-image {
-  width: 100%;
-  height: 390px;
+  width: 41vw;
+  height: 50vh;
   margin-top: -80px;
   position: relative;
-  margin-right: 50px;
-  margin-bottom: -50px;
+  margin-left: -260px;
+
+@include media-breakpoint-down(md) {
+height: 40vh;
+  }
 }
 
 .right-half {
@@ -40,52 +60,53 @@ nb-card {
 }
 
 .progress-container {
-  width: 40px;
   position: relative;
-  margin-left: 5px;
-  margin-right: -150px;
+  display: flex;
+  align-items: flex-end;
+
 }
 
 .progress-bar {
-  height: 310px; 
-  width: 16px;
+  height: 39vh;
+  width: 12px;
   background-color: rgb(29, 13, 35);
   position: relative;
   border-radius: 8px;
+
+  
+  @include media-breakpoint-down(md) {
+    height: 30vh;
+      }
 }
 
 .progress {
   width: 100%;
   background-color: rgb(192, 43, 225);
+  border-radius: 8px;
   position: absolute;
   bottom: 0;
-  border-radius: 8px;
-  transition: height 2s ease-in-out; 
+  transition: height 2s ease-in-out;
 }
 
 .kite-image {
-  position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   transform: translateX(-50%);
+  position: absolute;
+  margin-bottom: -25px;
   margin-left: -10px;
-  margin-bottom: -38px;
-  bottom: 0;
-  transition: bottom 2s ease-in-out; 
+  transition: bottom 2s ease-in-out;
 }
 
 .compare-container {
   display: flex;
-}
-
-.compare-height {
+  justify-content: space-between;
   font-size: 16px;
-  margin-top: 12px;
-}
+  margin: 12px -10px;
 
-.everest-height {
-  font-size: 16px;
-  margin-bottom: 15px;
-  margin-left: 80px;
+  // margin-left: -10px;
+  // margin-right: -10px;
+  // margin-top: 12px;
+  // margin-bottom: 12px;
 }

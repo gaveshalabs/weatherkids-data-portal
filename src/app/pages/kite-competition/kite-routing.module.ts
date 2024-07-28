@@ -4,7 +4,6 @@ import { KiteComponent } from './kite/kite.component';
 import { FlyingchartComponent } from './flying-timechart/flying-chart.component';
 import { AirtimeRecordComponent } from './airtime-record/airtime-record.component';
 import { kitedetailsComponent } from './kite-detailscard/kite-detailscard.component';
-import { SpeedRecordComponent } from './speed-record/speed-record.component';
 import { HeightComparisonComponent } from './height-comparison/height-comparison.component';
 import { KiteDashboardComponent } from './kite-dashboard/kite-dashboard.component';
 

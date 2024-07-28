@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { KiteApiService } from '../kite/kite-api.service';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.interface';
 
 @Component({
@@ -7,33 +6,35 @@ import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.inte
     styleUrls: ['./airtime-record.component.scss'],
     templateUrl: './airtime-record.component.html',
 })
-export class AirtimeRecordComponent implements OnInit {
+export class AirtimeRecordComponent implements OnInit, OnChanges {
+    @Input() data: TotalKiteData | null = null;
     totalFlyingTime: string = '0 mins';
-    private actualFlyingTime: number = 0; // Actual value fetched from API
-
-    constructor(private kiteApiService: KiteApiService) {}
+    private actualFlyingTime: number = 0;
 
     ngOnInit() {
-        this.kiteApiService.getLatestDataForAllPlayers().subscribe(
-            (data: TotalKiteData) => {
-                if (data && data.all_time.total_flying_mins) {
-                    this.actualFlyingTime = data.all_time.total_flying_mins;
-                    this.animateFlyingTime();
-                } else {
-                    this.totalFlyingTime = '-';
-                }
-            },
-            (error) => {
-                this.totalFlyingTime = 'Error loading data';
-            }
-        );
+        this.updateFlyingTime();
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['data'] && changes['data'].currentValue) {
+            this.updateFlyingTime();
+        }
+    }
+
+    private updateFlyingTime(): void {
+        if (this.data && this.data.all_time.total_flying_mins != null) {
+            this.actualFlyingTime = Math.round(this.data.all_time.total_flying_mins);
+            this.animateFlyingTime();
+        } else {
+            this.totalFlyingTime = '-';
+        }
     }
 
     private animateFlyingTime(): void {
-        const duration = 2000; // Duration of the animation in milliseconds
-        const interval = 50; // Interval for each frame of the animation
+        const duration = 2000;
+        const interval = 50;
         const steps = duration / interval;
-        const increment = 100; // Increment by 100 minutes per step
+        const increment = Math.ceil(this.actualFlyingTime / steps);
         let currentFlyingTime = 0;
 
         const timer = setInterval(() => {

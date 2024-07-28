@@ -1,48 +1,49 @@
-// import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-// import { KiteApiService } from '../kite/kite-api.service';
+// import { Component, Input, OnInit, OnChanges, SimpleChanges, ElementRef, Renderer2 } from '@angular/core';
 // import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.interface';
 
 // @Component({
 //   selector: 'ngx-height-comparison',
 //   templateUrl: './height-comparison.component.html',
-//   styleUrls: ['./height-comparison.component.scss']
+//   styleUrls: ['./height-comparison.component.scss'],
 // })
-// export class HeightComparisonComponent implements OnInit {
+// export class HeightComparisonComponent implements OnInit, OnChanges {
+//   @Input() data: TotalKiteData | null = null;
 //   everestHeight: number = 8848;
 //   kiteHeight: number = 0; // Start from 0 for animation
 //   displayedHeight: number = 0;
 //   accumulatedHeight: string = '0 m';
 
-//   constructor(private kiteApiService: KiteApiService, private el: ElementRef, private renderer: Renderer2) {}
+//   constructor(private el: ElementRef, private renderer: Renderer2) {}
 
 //   ngOnInit() {
-//     this.kiteApiService.getLatestDataForAllPlayers().subscribe(
-//       (data: TotalKiteData) => {
-//         console.log('Fetched latest data:', data);  // Debugging log
-//         if (data && data.total_height) {
-//           this.startAnimations(data.total_height);
-//         } else {
-//           this.accumulatedHeight = '-';
-//         }
-//       },
-//       (error) => {
-//         console.error('Error fetching total height:', error);
-//         this.accumulatedHeight = 'Error loading data';
-//       }
-//     );
+//     this.updateHeight();
 //   }
 
-//   startAnimations(targetHeight: number) {
+//   ngOnChanges(changes: SimpleChanges): void {
+//     if (changes['data'] && changes['data'].currentValue) {
+//       this.updateHeight();
+//     }
+//   }
+
+//   private updateHeight(): void {
+//     if (this.data && this.data.all_time.total_height != null) {
+//       this.startAnimations(this.data.all_time.total_height);
+//     } else {
+//       this.accumulatedHeight = '-';
+//     }
+//   }
+
+//   private startAnimations(targetHeight: number): void {
 //     const duration = 3000; // Duration in milliseconds
 //     const startTime = Date.now();
 //     const startHeight = this.displayedHeight;
 
-//     // Start number rolling animation
+//     // Start the combined animations
 //     this.animateHeight(targetHeight, duration, startTime, startHeight);
 //   }
 
-//   animateHeight(targetHeight: number, duration: number, startTime: number, startHeight: number) {
-//     const increment = 10; // Increment value for rolling animation
+//   private animateHeight(targetHeight: number, duration: number, startTime: number, startHeight: number): void {
+//     const increment = 5; // Increment value for rolling animation
 //     const animate = () => {
 //       const currentTime = Date.now();
 //       const elapsed = currentTime - startTime;
@@ -64,24 +65,24 @@
 //     requestAnimationFrame(animate);
 //   }
 
-//   updateProgressBarAndKite(newHeight: number) {
+//   private updateProgressBarAndKite(newHeight: number): void {
 //     const progressBar = this.el.nativeElement.querySelector('.progress');
 //     const kiteImage = this.el.nativeElement.querySelector('.kite-image');
-//     const percentage = this.calculateHeightPercentage();
+//     const percentage = this.calculateHeightPercentage(newHeight);
 
 //     this.renderer.setStyle(progressBar, 'height', `${percentage}%`);
 //     this.renderer.setStyle(kiteImage, 'bottom', `${percentage}%`);
 //   }
 
-//   calculateHeightPercentage(): number {
-//     const percentage = (this.kiteHeight / this.everestHeight) * 100;
+//   private calculateHeightPercentage(newHeight: number): number {
+//     const percentage = (newHeight / this.everestHeight) * 100;
 //     return Math.min(percentage, 100);
 //   }
 // }
 
 
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import { KiteApiService } from '../kite/kite-api.service';
+
+import { Component, Input, OnInit, OnChanges, SimpleChanges, ElementRef, Renderer2 } from '@angular/core';
 import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.interface';
 
 @Component({
@@ -89,31 +90,35 @@ import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.inte
     templateUrl: './height-comparison.component.html',
     styleUrls: ['./height-comparison.component.scss'],
 })
-export class HeightComparisonComponent implements OnInit {
+export class HeightComparisonComponent implements OnInit, OnChanges {
+    @Input() data: TotalKiteData | null = null;
     everestHeight: number = 8848;
     kiteHeight: number = 0; // Start from 0 for animation
     displayedHeight: number = 0;
     accumulatedHeight: string = '0 m';
 
-    constructor(private kiteApiService: KiteApiService, private el: ElementRef, private renderer: Renderer2) {}
+    constructor(private el: ElementRef, private renderer: Renderer2) {}
 
     ngOnInit() {
-        this.kiteApiService.getLatestDataForAllPlayers().subscribe(
-            (data: TotalKiteData) => {
-                if (data && data.all_time.total_height) {
-                    this.startAnimations(data.all_time.total_height);
-                } else {
-                    this.accumulatedHeight = '-';
-                }
-            },
-            (error) => {
-                this.accumulatedHeight = 'Error loading data';
-            }
-        );
+        this.updateHeight();
     }
 
-    startAnimations(targetHeight: number) {
-        const duration = 3000; // Duration in milliseconds
+    ngOnChanges(changes: SimpleChanges): void {
+        if (changes['data'] && changes['data'].currentValue) {
+            this.updateHeight();
+        }
+    }
+
+    private updateHeight(): void {
+        if (this.data && this.data.all_time.total_height != null) {
+            this.startAnimations(Math.round(this.data.all_time.total_height));
+        } else {
+            this.accumulatedHeight = '-';
+        }
+    }
+
+    private startAnimations(targetHeight: number): void {
+        const duration = 2000; // Duration in milliseconds
         const startTime = Date.now();
         const startHeight = this.displayedHeight;
 
@@ -121,15 +126,14 @@ export class HeightComparisonComponent implements OnInit {
         this.animateHeight(targetHeight, duration, startTime, startHeight);
     }
 
-    animateHeight(targetHeight: number, duration: number, startTime: number, startHeight: number) {
-        const increment = 100; // Increment value for rolling animation
+    private animateHeight(targetHeight: number, duration: number, startTime: number, startHeight: number): void {
         const animate = () => {
             const currentTime = Date.now();
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
             const newHeight = Math.floor(startHeight + progress * (targetHeight - startHeight));
-            this.displayedHeight = Math.ceil(newHeight / increment) * increment; // Round up to nearest increment
-            this.accumulatedHeight = `${this.displayedHeight} m`;
+            this.displayedHeight = newHeight;
+            this.accumulatedHeight = `${newHeight} m`; // Show integer value
 
             // Update the progress bar height and kite image position
             this.updateProgressBarAndKite(newHeight);
@@ -144,7 +148,7 @@ export class HeightComparisonComponent implements OnInit {
         requestAnimationFrame(animate);
     }
 
-    updateProgressBarAndKite(newHeight: number) {
+    private updateProgressBarAndKite(newHeight: number): void {
         const progressBar = this.el.nativeElement.querySelector('.progress');
         const kiteImage = this.el.nativeElement.querySelector('.kite-image');
         const percentage = this.calculateHeightPercentage(newHeight);
@@ -153,7 +157,7 @@ export class HeightComparisonComponent implements OnInit {
         this.renderer.setStyle(kiteImage, 'bottom', `${percentage}%`);
     }
 
-    calculateHeightPercentage(newHeight: number): number {
+    private calculateHeightPercentage(newHeight: number): number {
         const percentage = (newHeight / this.everestHeight) * 100;
         return Math.min(percentage, 100);
     }

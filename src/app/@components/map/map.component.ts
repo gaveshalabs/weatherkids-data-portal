@@ -211,9 +211,6 @@ export class MapComponent implements OnInit, AfterViewInit {
                     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             }
         );
-
-        
-    
         // const tiles = tileLayer(
         //     'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}',
         //     {

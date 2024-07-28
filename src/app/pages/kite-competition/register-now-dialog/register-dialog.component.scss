@@ -19,7 +19,7 @@
 
 @media (max-width <=1200px) {
   .dialog-container {
-    width: 60%;
+    width: 55%;
    padding: 10px;
    justify-content: center;
   }
@@ -31,9 +31,12 @@
   justify-content: center;
 }
 
-.dialog-content img {
+.dialog-content-img {
   max-width: 100%;
   height: 100%;
   width: 100%;
 }
+
+
+
 
