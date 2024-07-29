@@ -231,9 +231,6 @@ export class WeatherStationHistoryComponent implements OnInit {
         },
         maintainAspectRatio: false,
     } as ChartOptions<'bar'>;
-    
-
-
     private _currentWeatherStationId: string = '';
     private _lastRequestedDateRange = { start: moment(), end: moment() };
 

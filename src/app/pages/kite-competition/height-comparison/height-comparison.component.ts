@@ -92,7 +92,7 @@ import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.inte
 })
 export class HeightComparisonComponent implements OnInit, OnChanges {
     @Input() data: TotalKiteData | null = null;
-    everestHeight: number = 8848;
+    everestHeight: number =  351.5 ;
     kiteHeight: number = 0; // Start from 0 for animation
     displayedHeight: number = 0;
     accumulatedHeight: string = '0 m';

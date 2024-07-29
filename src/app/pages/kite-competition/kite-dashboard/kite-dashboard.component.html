@@ -1,12 +1,13 @@
 <div class="row" *ngIf="latestData">
   <div class="col-xxxl-3 col-xxl-4 col-lg-4 col-md-6">
-    <ngx-airtimerecord [data]="latestData"></ngx-airtimerecord>
+    
     <ngx-toggle-card></ngx-toggle-card>
+    <ngx-wanttoknow></ngx-wanttoknow>
     <!-- <ngx-flyingchart></ngx-flyingchart> -->
   </div>
   <div class="col-xxxl-4 col-xxl-4 col-lg-4 col-md-6">
     <ngx-totalattemps [data]="latestData"></ngx-totalattemps>
-    <!-- <ngx-speedrecord></ngx-speedrecord> -->
+    <ngx-airtimerecord [data]="latestData"></ngx-airtimerecord>
     <ngx-detailscard [data]="latestData"></ngx-detailscard>
   </div>
   <div class="col-xxxl-5 col-xxl-4 col-lg-4 col-md-12">

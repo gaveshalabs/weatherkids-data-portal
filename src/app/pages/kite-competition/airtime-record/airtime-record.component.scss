@@ -1,9 +1,14 @@
 @import '../../../@theme/styles/themes';
 
 @include nb-install-component {
+  nb-card{
+    margin-top: -15px;
+  }
+  
   nb-card-body {
     display: flex;
     flex-direction: column;
+ 
   }
 
   .today {
@@ -12,6 +17,7 @@
   }
 
   .today-temperature {
+    font-size: 35px;
     display: flex;
     flex-direction: column;
     justify-content: center;
