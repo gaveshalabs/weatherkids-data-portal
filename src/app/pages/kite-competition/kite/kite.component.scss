@@ -1,0 +1,100 @@
+
+@import '../../../@theme/styles/overlay';
+
+.kite-container-home-2 {
+  height: 100vh;
+  margin: -35px -20px -20px ;
+  overflow: hidden;
+
+  @include media-breakpoint-down(md) {
+    overflow-y: scroll;
+ 
+    // Hides scrollbar for WebKit-based browsers
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  
+    // Hides scrollbar for IE, Edge
+    -ms-overflow-style: none;
+  
+    // Hides scrollbar for Firefox
+    scrollbar-width: none;
+  }
+
+
+  .leader-board-container {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    @include media-breakpoint-down(md) {
+      height: 137vh;
+    }
+
+  }
+
+  .kite-dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .upper-half {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .headerbar {
+    height: 40px;
+    margin: 5px 0;
+    overflow: hidden;
+  }
+
+  .upper-half-image-kite {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  /* stylelint-disable*/
+  @media (max-width: 768px)  
+   {
+    .mobile-header {
+      display: flex;
+      width: 100%;
+      margin: 30px 0 10px;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .mobile-banner {
+      display: flex;
+      width: 100%;
+      margin-bottom: 10px;
+      height: auto;
+      overflow: hidden;
+      justify-content: center;
+    }
+
+    .mobile-banner .upper-half-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .leader-board-container {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  /* stylelint-enable */
+}

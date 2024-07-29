@@ -1,0 +1,124 @@
+@import '../../../@theme/styles/overlay';
+
+nb-card {
+  height: auto;
+  overflow: hidden;
+
+  @include media-breakpoint-down(md) {
+    margin-top: -15px;
+  }
+}
+
+.hvalue {
+  font-size: 35px;
+  color: rgba(203, 36, 31, 0.951);
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 35px;
+  
+  // margin-bottom: 40px;
+  text-align: center;
+}
+
+.bottom-content {
+  display: flex;
+  height: 100%;
+}
+
+.left-half {
+  flex: 4;
+  display: flex;
+  height: 100%;
+  margin-right: -30px;
+  margin-left: -50px;
+  justify-content: space-between;
+
+  @include media-breakpoint-down(md) {
+    right: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+// .everest-image {
+//   width: 41vw;
+//   height: 50vh;
+//   margin-top: -80px;
+//   position: relative;
+//   margin-left: -260px;
+
+// @include media-breakpoint-down(md) {
+// height: 40vh;
+//   }
+// }
+
+.everest-image {
+  width: 24vw;
+  height: 40vh;
+  position: relative;
+
+  @include media-breakpoint-down(md) {
+    height: 30vh;
+    width: 50vw;
+
+  }
+}
+
+.right-half {
+  flex: 0.5;
+  display: flex;
+  position: relative;
+}
+
+.progress-container {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+
+}
+
+.progress-bar {
+  // height: 39vh;
+  height: 40vh;
+  width: 12px;
+  background-color: rgb(29, 13, 35);
+  position: relative;
+  border-radius: 8px;
+
+  @include media-breakpoint-down(md) {
+    height: 30vh;
+  }
+}
+
+.progress {
+  width: 100%;
+  background-color: rgb(192, 43, 225);
+  border-radius: 8px;
+  position: absolute;
+  bottom: 0;
+  transition: height 2s ease-in-out;
+}
+
+.kite-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  margin-bottom: -25px;
+  margin-left: -10px;
+  transition: bottom 2s ease-in-out;
+}
+
+.compare-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  margin: 12px -10px;
+
+  // margin-left: -10px;
+  // margin-right: -10px;
+  // margin-top: 12px;
+  // margin-bottom: 12px;
+}

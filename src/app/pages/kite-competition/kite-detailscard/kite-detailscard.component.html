@@ -1,0 +1,29 @@
+<nb-card>
+  <nb-card-body>
+    <div style="margin-bottom: -10px;">  
+      <h4>This Week Records</h4>
+    </div>
+    <div class="today">
+      <span class="today-temperature h1">{{ maxHeight }} m</span>
+      <nb-icon icon="star" pack="eva" class="today-icon"></nb-icon>
+    </div>
+    <div class="today-details">
+      <div class="parameter">
+        <span class="caption parameter-name">Min Height</span>
+        <span class="parameter-value">{{ minHeight }}m</span>
+      </div>
+      <div class="parameter">
+        <span class="caption parameter-name">Flying Time</span>
+        <span class="parameter-value">{{ totalFlyingMins }}mins</span>
+      </div>
+      <div class="parameter">
+        <span class="caption parameter-name">Attempts</span>
+        <span class="parameter-value">{{ totalAttempts }}+</span>
+      </div>
+      <!-- <div class="parameter">
+        <span class="caption parameter-name">Accumulated Height</span>
+        <span class="parameter-value">{{ totalHeight }}+</span>
+      </div> -->
+    </div>
+  </nb-card-body>
+</nb-card>

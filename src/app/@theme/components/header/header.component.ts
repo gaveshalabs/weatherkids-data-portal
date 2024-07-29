@@ -5,20 +5,19 @@ import {
     NbThemeService,
 } from '@nebular/theme';
 
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
     NbAuthOAuth2Token,
-    NbAuthResult,
     NbAuthService,
-    NbAuthToken,
 } from '@nebular/auth';
 import { Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
 import { UserProfile } from '../../../common/interfaces/user.interface';
 import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
-import { OAuth2CallbackComponent } from '../../../modules/oauth2/oauth2-callback.component';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ngx-header',
@@ -26,6 +25,7 @@ import { OAuth2CallbackComponent } from '../../../modules/oauth2/oauth2-callback
     templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+
 
     private destroy$: Subject<void> = new Subject<void>();
     loggedIn: boolean = false;
@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     userMenu = [{}];
 
     token: NbAuthOAuth2Token;
+    returnUrl: string;
 
     constructor(
         private oAuthService: OAuth2Service,
@@ -46,7 +47,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private breakpointService: NbMediaBreakpointsService,
         private authService: NbAuthService,
         private matIconRegistry: MatIconRegistry,
-        domSanitizer: DomSanitizer
+        domSanitizer: DomSanitizer,
+        private dialog: MatDialog,
+        private router: Router
     ) {
         this.oAuthService.getUser().subscribe(user => {
             // console.log('the subscribed user', user);
@@ -125,8 +128,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     async onSignIn() {
-        return this.oAuthService.login();
+        this.returnUrl = this.router.url; // Capture the current URL
+        await this.oAuthService.login(this.returnUrl);
     }
+    // async onSignIn() {
+    //     return this.oAuthService.login();
+    // }
 
     async onLogout() {
         return this.oAuthService.logout();
@@ -182,4 +189,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     //   return false;
     // }
+
+    // openDialog(): void {
+    //     const config: MatDialogConfig = {
+    //     };
+    //     this.dialog.open(RegisterNowComponent, config);
+    // };
 }

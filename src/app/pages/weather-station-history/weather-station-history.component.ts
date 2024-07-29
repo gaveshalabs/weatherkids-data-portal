@@ -205,22 +205,18 @@ export class WeatherStationHistoryComponent implements OnInit {
             x: {
                 type: 'time',
                 time: {
-                    unit: 'hour', 
-                    stepSize: 1, 
+                    unit: 'hour',
+                    stepSize: 1,
                     displayFormats: {
-                        hour: 'YYYY-MM-DD HH:mm', 
+                        hour: 'YYYY-MM-DD HH:mm',
                     },
                 },
                 ticks: {
                     autoSkip: false,
-                    maxRotation: 45, 
+                    maxRotation: 45,
                     minRotation: 45,
                 },
-                offset: true,
                 offsetAfterAutoskip: true,
-            },
-            y: {
-                beginAtZero: true,
             },
         },
         plugins: {
@@ -235,9 +231,6 @@ export class WeatherStationHistoryComponent implements OnInit {
         },
         maintainAspectRatio: false,
     } as ChartOptions<'bar'>;
-    
-
-
     private _currentWeatherStationId: string = '';
     private _lastRequestedDateRange = { start: moment(), end: moment() };
 
@@ -394,6 +387,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                 this._renderCharts(params.ws_id);
             }
         });
+
         if (routeStateDataSummary) {
             this.thisWeatherStation = routeStateWeatherStation;
             this.thisWeatherStationLatestData = routeStateDataSummary;
@@ -554,16 +548,13 @@ export class WeatherStationHistoryComponent implements OnInit {
                         precipitation: precipitationHourlyMap[key],
                     }));
 
-
                     this.sensorReadings.temperature.datasets[0].data = resp as any;
                     this.sensorReadings.humidity.datasets[0].data = resp as any;
                     this.sensorReadings.pressure.datasets[0].data = resp as any;
                     this.sensorReadings.precipitation.datasets[0].data = processedPrecipitationHourlyData as any;
-                    this.sensorReadings.percentage_light_intensity.datasets[0].data = resp.map(d => ({ timestamp: d.timestamp, percentage_light_intensity: d.percentage_light_intensity })) as any;
+                    this.sensorReadings.percentage_light_intensity.datasets[0].data = resp.map(d =>
+                        ({ timestamp: d.timestamp, percentage_light_intensity: d.percentage_light_intensity })) as any;
                     // this.sensorReadings.precipitation.datasets[0].data = resp as any;
-                    // this.sensorReadings.percentage_light_intensity.datasets[0].data = resp as any;
-                    this.sensorReadings.tvoc.datasets[0].data = resp as any;
-                    this.chartOpts.percentage_light_intensity.scales['x'].min = minTimestamp;
                     this.charts.forEach(child => {
                         child.update();
                     });

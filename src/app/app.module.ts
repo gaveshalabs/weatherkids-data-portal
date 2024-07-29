@@ -25,15 +25,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OAuth2Module } from './modules/oauth2/oauth2.module';
 // import { HomeComponent } from './pages/home/home.component';
-import { ApiModule } from './api/api.module';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAuth, getAuth } from '@angular/fire/auth';
-import { AlertMessageComponent } from './@components/alert-message/alert-message.component';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { getAuth, provideAuth } from '@angular/fire/auth';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { environment } from '../environments/environment';
+import { AlertMessageComponent } from './@components/alert-message/alert-message.component';
+import { ApiModule } from './api/api.module';
+
+
 
 @NgModule({
     declarations: [
@@ -43,6 +45,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
         AlertMessageComponent,
         PrivacyPolicyComponent,
         TermsAndConditionsComponent,
+
+
+
     ],
     imports: [
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
@@ -72,5 +77,6 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
         MatSnackBarModule,
     ],
     bootstrap: [AppComponent],
+
 })
 export class AppModule {}

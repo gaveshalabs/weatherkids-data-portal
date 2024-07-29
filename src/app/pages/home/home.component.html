@@ -1,8 +1,44 @@
 <div class="overlay header">
   <ngx-header></ngx-header>
+  <div class="kitelogo">
+    <a class="logokite" href="#/kite">
+      <img class="competition-logo" src="assets/images/kite-competition/Logo.png" alt="Kite Competition Logo">
+    </a>
+  </div>
+  <ngx-weather-station-search 
+    [wsList]="weatherStations" 
+    (selected)="onWeatherStationSelected($event)" 
+    *ngIf="!renderWSOutline" 
+    class="home-search"
+  ></ngx-weather-station-search>
+</div>
+<ngx-map (markerSelect)="onWeatherStationSelected($event)" (mapSelect)="deselectAllWS()"></ngx-map>
+<div #wsOutline *ngIf="renderWSOutline">
+  <ngx-weather-station-outline 
+    [wsLatest]="selectedStationData" 
+    [ws]="selectedStation" 
+    (close)="onWeatherStationDeselected()"
+  ></ngx-weather-station-outline>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class="overlay header">
+  <ngx-header></ngx-header>
+  <div class="kitelogo">
+    <a class="logokite" href="#/kite">
+      <img class="competition-logo" src="assets/images/kite-competition/Logo.png">
+    </a>
+  </div>
 </div>
 <ngx-map (markerSelect)="onWeatherStationSelected($event)" (mapSelect)="deselectAllWS()"></ngx-map>
 <ngx-weather-station-search [wsList]="weatherStations" (selected)="onWeatherStationSelected($event)" *ngIf="!renderWSOutline" class="home-search"></ngx-weather-station-search>
 <div #wsOutline *ngIf="renderWSOutline">
   <ngx-weather-station-outline [wsLatest]="selectedStationData" [ws]="selectedStation" (close)="onWeatherStationDeselected()"></ngx-weather-station-outline>
-</div>
+</div> -->

@@ -1,12 +1,12 @@
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
-import { HomeComponent } from './home/home.component';
 import { PrivacyPolicyComponent } from '../@components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from '../@components/terms-and-conditions/terms-and-conditions.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { PagesComponent } from './pages.component';
 
 const routes: Routes = [
     {
@@ -14,7 +14,7 @@ const routes: Routes = [
         component: PagesComponent,
         children: [
             {
-                path: '',
+                path: 'weather',
                 // loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
                 component: HomeComponent,
             },
@@ -27,11 +27,11 @@ const routes: Routes = [
                 path: 'dashboard',
                 component: DashboardComponent,
             },
-            // {
-            //   path: "",
-            //   redirectTo: "dashboard",
-            //   pathMatch: "full",
-            // },
+            {
+                path: 'kite',
+                loadChildren: () => import('./kite-competition/kite-competition.module')
+                    .then(m => m.KiteCompetitionModule),
+            },
             {
                 path: 'privacy-policy',
                 component: PrivacyPolicyComponent,
@@ -41,9 +41,15 @@ const routes: Routes = [
                 component: TermsAndConditionsComponent,
             },
             {
+                path: '',
+                redirectTo: 'weather',
+                pathMatch: 'full',
+            },
+            {
                 path: '**',
                 component: NotFoundComponent,
             },
+
         ],
     },
 ];
