@@ -3,7 +3,6 @@
       <div class="leaderboard-header">
         <h2>Leaderboard</h2>
       </div>
-
       <div class="leaderboard-top-3">
         <div class="second-div">
             <ngx-top-players *ngIf="topPlayers.length >= 2" [topPlayer]="topPlayers[1]"></ngx-top-players>
@@ -15,9 +14,14 @@
            <ngx-top-players *ngIf="topPlayers.length >= 3" [topPlayer]="topPlayers[2]"></ngx-top-players>
         </div>
       </div>
+      <div *ngIf="topPlayers.length < 3" >
+        <p class="empty-text">Leaderboard එකට එකතු වෙන පලවෙනි කෙනා ඔයා වෙන්න!</p>
+        <p class="empty-text-2">දැන්ම තරඟ කරන්න.</p>
+      </div>
   </div>
 
   <div class="leaderboard-below-part">
-    <ngx-players [players]="remainingPlayers"></ngx-players>
+    <ngx-players *ngIf="remainingPlayers" [players]="remainingPlayers"></ngx-players>
+
   </div>
 </div>

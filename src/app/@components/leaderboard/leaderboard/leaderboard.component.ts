@@ -22,6 +22,7 @@ export class KiteLeaderboardComponent implements OnInit {
     loadLeaderboard() {
         this.kiteApiService.getPlayersLeaderboard().subscribe(
             (data) => {
+                // data=[],
                 // Sort players by kite height in descending order
                 data.sort((a, b) => parseInt(b.kite_height, 10) - parseInt(a.kite_height, 10));
 

@@ -18,7 +18,10 @@
   border-radius: 50%;
   overflow: hidden;
   display: flex;
-  background:radial-gradient(var(rgb(188, 196, 27)),transparent,transparent);
+  background-color:rgb(188, 196, 27) ;
+  
+  // background:radial-gradient(var(rgb(188, 196, 27)),transparent,transparent);
+  // background:radial-gradient(var(rgb(188, 196, 27)),transparent,transparent);
 
 }
 
@@ -63,6 +66,7 @@
   font-size: 16px;
   font-weight: bolder;
   color: rgb(219, 156, 11);
+
 }
 
 .best-place-div{

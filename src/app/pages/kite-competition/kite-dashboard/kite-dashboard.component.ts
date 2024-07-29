@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.interface';
-import { kiteenvironment } from '../kite/kite-environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'ngx-kite',
@@ -30,7 +30,7 @@ export class KiteDashboardComponent implements OnInit {
 
     fetchData(): void {
     // Fetch data based on the presence of playerId
-        if (this.playerId) {
+        if (this.playerId && this.playerId !== 'all') {
             this.fetchDataForPlayer(this.playerId).subscribe(data => this.renderData(data));
         } else {
             this.fetchLatestData().subscribe(data => this.renderData(data));
@@ -38,12 +38,12 @@ export class KiteDashboardComponent implements OnInit {
     }
 
     fetchLatestData(): Observable<TotalKiteData> {
-        const url = `${kiteenvironment.apiBaseUrl}/kite-data/latest?include=current_week`;
+        const url = `${environment.apiBaseUrl}/kite-data/latest?include=current_week`;
         return this.http.get<TotalKiteData>(url);
     }
 
     fetchDataForPlayer(playerId: string): Observable<TotalKiteData> {
-        const url = `${kiteenvironment.apiBaseUrl}/kite-data/latest/${playerId}?include=current_week`;
+        const url = `${environment.apiBaseUrl}/kite-data/latest/${playerId}?include=current_week`;
         return this.http.get<TotalKiteData>(url);
     }
 
