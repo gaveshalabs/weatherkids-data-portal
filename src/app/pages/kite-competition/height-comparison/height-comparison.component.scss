@@ -61,6 +61,7 @@ nb-card {
   @include media-breakpoint-down(md) {
     height: 30vh;
     width: 50vw;
+
   }
 }
 
@@ -84,7 +85,6 @@ nb-card {
   background-color: rgb(29, 13, 35);
   position: relative;
   border-radius: 8px;
-
 
   @include media-breakpoint-down(md) {
     height: 30vh;

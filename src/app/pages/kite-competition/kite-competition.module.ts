@@ -32,6 +32,7 @@ import { WantToKnowComponent } from './want-to-know/want-to-know.component';
 
 
 
+
 @NgModule({
     declarations: [
         RegisterNowComponent,
@@ -44,6 +45,7 @@ import { WantToKnowComponent } from './want-to-know/want-to-know.component';
         TotalAttempsComponent,
         ToggleCardComponent,
         WantToKnowComponent,
+
 
 
 

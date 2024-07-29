@@ -216,11 +216,7 @@ export class WeatherStationHistoryComponent implements OnInit {
                     maxRotation: 45,
                     minRotation: 45,
                 },
-                offset: true,
                 offsetAfterAutoskip: true,
-            },
-            y: {
-                beginAtZero: true,
             },
         },
         plugins: {
@@ -559,9 +555,6 @@ export class WeatherStationHistoryComponent implements OnInit {
                     this.sensorReadings.percentage_light_intensity.datasets[0].data = resp.map(d =>
                         ({ timestamp: d.timestamp, percentage_light_intensity: d.percentage_light_intensity })) as any;
                     // this.sensorReadings.precipitation.datasets[0].data = resp as any;
-                    // this.sensorReadings.percentage_light_intensity.datasets[0].data = resp as any;
-                    this.sensorReadings.tvoc.datasets[0].data = resp as any;
-                    this.chartOpts.percentage_light_intensity.scales['x'].min = minTimestamp;
                     this.charts.forEach(child => {
                         child.update();
                     });
