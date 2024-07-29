@@ -28,6 +28,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { WantToKnowComponent } from './want-to-know/want-to-know.component';
 
 
 
@@ -42,6 +43,7 @@ import { MatButtonModule } from '@angular/material/button';
         KiteDashboardComponent,
         TotalAttempsComponent,
         ToggleCardComponent,
+        WantToKnowComponent,
 
 
 
