@@ -1,14 +1,15 @@
-
 @import '../../../@theme/styles/overlay';
 
 .kite-container-home-2 {
   height: 100vh;
   margin: -35px -20px -20px ;
+  padding-left: -10px;
+  padding-right: -10px;
   overflow: hidden;
 
   @include media-breakpoint-down(md) {
     overflow-y: scroll;
- 
+
     // Hides scrollbar for WebKit-based browsers
     &::-webkit-scrollbar {
       display: none;
@@ -21,18 +22,31 @@
     scrollbar-width: none;
   }
 
-
   .leader-board-container {
     background-color: white;
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 100vh;
     position: relative;
-    overflow: hidden;
-
-    @include media-breakpoint-down(md) {
-      height: 137vh;
+    
+    // overflow-x: hidden;
+    overflow-y: scroll;
+   
+    // Hides scrollbar for WebKit-based browsers
+    &::-webkit-scrollbar {
+      display: none;
     }
+  
+    // Hides scrollbar for IE, Edge
+    -ms-overflow-style: none;
+  
+    // Hides scrollbar for Firefox
+    scrollbar-width: none;
+    
+    // @include media-breakpoint-down(md) {
+    //   height: 137vh;
+    // }
 
   }
 

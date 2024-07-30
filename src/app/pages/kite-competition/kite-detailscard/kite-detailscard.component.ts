@@ -28,11 +28,11 @@ export class kitedetailsComponent implements OnInit, OnChanges {
 
     updateCurrentWeekData(data: any): void {
         if (data && data.current_week) {
-            Math.round(this.maxHeight = data.current_week.max_height);
-            Math.round(this.minHeight = data.current_week.min_height);
-            Math.round(this.totalAttempts = data.current_week.total_attempts);
-            Math.round(this.totalFlyingMins = data.current_week.total_flying_mins);
-            Math.round(this.totalHeight = data.current_week.total_height);
+            this.maxHeight = Math.round(data.current_week.max_height);
+            this.minHeight = Math.round(data.current_week.min_height);
+            this.totalAttempts = Math.round(data.current_week.total_attempts);
+            this.totalFlyingMins = Math.round(data.current_week.total_flying_mins);
+            this.totalHeight = Math.round(data.current_week.total_height);
         } else {
             // Handle invalid data structure or missing data
             this.maxHeight = null;
