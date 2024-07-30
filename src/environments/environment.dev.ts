@@ -1,6 +1,7 @@
 export const environment = {
     apiBaseUrl:
-        'https://data-api.gavesha.space/api',
+    'https://data-api.gavesha.space:8443/api',
+    // 'https://data-api.gavesha.space/api',
     production: true,
     firebaseConfig: {
         apiKey: 'AIzaSyCZOsxKeOvK45oD3KqgScVTyxrLsVPzbwc',

@@ -10,6 +10,11 @@
     flex-direction: column;
   }
 
+  .description-link {
+    text-decoration: none; // Remove underline from the link
+    color: inherit; 
+  }
+  
   .description-icon {
     cursor: pointer;
     font-size: 30px;

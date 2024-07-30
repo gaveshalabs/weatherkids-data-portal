@@ -12,8 +12,11 @@ const routes: Routes = [
         path: '',
         component: KiteComponent,
         children: [
-            { path: '', component: KiteDashboardComponent },
-
+            {
+                path: '',
+                redirectTo: 'player/all',
+                pathMatch: 'full',
+            },
             {
                 path: 'player',
                 children: [
