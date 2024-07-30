@@ -1,14 +1,25 @@
-.kite-leaderboard-container{
-  width: 100%;
+.kite-leaderboard-container {
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 
+  // overflow: hidden scroll;// ( hidden scroll);
+  overflow-x: hidden;
 
+  // overflow-y: scroll;
+  // Hides scrollbar for WebKit-based browsers
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // Hides scrollbar for IE, Edge
+  -ms-overflow-style: none;
+
+  // Hides scrollbar for Firefox
+  scrollbar-width: none;
 }
 
-.leaderboard-upper-part{
+.leaderboard-upper-part {
   width: 100%;
   height: 320px;
   background-color: #180439;
@@ -19,7 +30,7 @@
   align-items: center;
 }
 
-.leaderboard-header{
+.leaderboard-header {
   width: 100%;
   height: 15%;
   text-align: center;
@@ -27,61 +38,57 @@
   padding-bottom: 22px;
 }
 
-.leaderboard-header h2{
+.leaderboard-header h2 {
   color: white;
 }
 
-.leaderboard-top-3{
+.leaderboard-top-3 {
   width: 100%;
   height: 80%;
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.empty-text{
-  color: white;
+.no-players-text {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
-  margin-right: 30px;
-   margin-top: -100px;
-  margin-left: 30px;
+  padding: 30px;
+
+  p {
+    color: white;
+  }
 }
 
-.empty-text-2{
-  color: white;
+.no-successive-players {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
-  margin-right: 30px;
-  margin-top: -5px;
-  margin-left: 30px;
-
+  padding: 30px;
 }
 
-.second-div{
+.second-div {
   padding-top: 50px;
   margin-right: -60px;
 }
 
-.first-div{
+.first-div {
   padding-top: 5px;
   z-index: 1;
 }
 
-.third-div{
+.third-div {
   padding-top: 50px;
   margin-left: -60px;
 }
 
-.leaderboard-below-part{
+.leaderboard-below-part {
   background-color: white;
   margin-top: 5px;
   margin-right: 2px;
   margin-left: 2px;
   height: 100vh;
 }
-

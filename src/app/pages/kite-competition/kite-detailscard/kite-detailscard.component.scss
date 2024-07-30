@@ -34,18 +34,29 @@
     }
   }
 
+  .htitle{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+
+
+  }
+
   .today-temperature {
     color: rgba(203, 36, 31, 0.951);
     font-size: 35px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 2rem 1.5rem;
+  
 
     @include media-breakpoint-down(md) {
       font-size: 30px;
       display: flex;
       justify-content: center;
+      margin: 2rem ;
     }
   }
 
@@ -53,7 +64,8 @@
     color: goldenrod;
     font-size: 5rem;
     line-height: 1;
-    margin-top: 1rem;
+
+    // margin-top: 1rem;
     margin-left: auto;
     margin-right: 0.4rem;
 
@@ -72,7 +84,8 @@
   .today-details {
     display: flex;
     justify-content: space-around;
-    margin-top: 0.6rem;
+
+    // margin-top: 0.6rem;
   }
 
   .parameter {

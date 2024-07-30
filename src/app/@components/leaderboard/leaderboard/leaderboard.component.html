@@ -14,14 +14,17 @@
            <ngx-top-players *ngIf="topPlayers.length >= 3" [topPlayer]="topPlayers[2]"></ngx-top-players>
         </div>
       </div>
-      <div *ngIf="topPlayers.length < 3" >
-        <p class="empty-text">Leaderboard එකට එකතු වෙන පලවෙනි කෙනා ඔයා වෙන්න!</p>
-        <p class="empty-text-2">දැන්ම තරඟ කරන්න.</p>
+      <div *ngIf="topPlayers.length == 0" class="no-players-text">
+        <p>Leaderboard එකට එකතු වෙන පලවෙනි කෙනා ඔයා වෙන්න!</p>
+        <p>දැන්ම තරඟ කරන්න.</p>
       </div>
   </div>
 
   <div class="leaderboard-below-part">
-    <ngx-players *ngIf="remainingPlayers" [players]="remainingPlayers"></ngx-players>
-
+    <ngx-players *ngIf="remainingPlayers?.length" [players]="remainingPlayers"></ngx-players>
+    <div *ngIf="remainingPlayers.length == 0 && topPlayers?.length" class="no-successive-players">
+      <p>සරුංගල් යවලා Leaderboard එකේ උඩටම යන්න ඔයාටත් පුළුවන්!</p>
+      <p>දැන්ම තරඟ කරන්න.</p>
+    </div>
   </div>
 </div>

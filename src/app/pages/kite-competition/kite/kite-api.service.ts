@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
     providedIn: 'root',
 })
 export class KiteApiService {
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) { }
 
     // get all players to leaderboard
     getPlayersLeaderboard(): Observable<any> {
@@ -28,6 +28,11 @@ export class KiteApiService {
         return this.httpClient.get<TotalKiteData>(url);
     }
 
+    // get player Id by userid
+    getKitePlayerByUser(userId: string): Observable<any> {
+        return this.httpClient.get<any>
+        (`${environment.apiBaseUrl}/kite-players/users/${userId}`);
+    }
 
 
 }

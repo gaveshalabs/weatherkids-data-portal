@@ -22,7 +22,7 @@ mat-list {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
+  gap: 30px;
   font-size: 20px;
   width: 100%;
 }
@@ -65,7 +65,7 @@ mat-list-item img[matListItemAvatar] {
   display: flex;
   flex-flow: row nowrap;
   color: rgb(219, 156, 11);
-  margin-top: -24px;
+  margin-top: -22px;
   justify-content: flex-end;
   font-weight: bolder;
 }
@@ -101,7 +101,7 @@ mat-list-item img[matListItemAvatar] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 25px;
     font-size: 20px;
     width: 100%;
   }
