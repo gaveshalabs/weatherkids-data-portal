@@ -69,7 +69,7 @@ export class ToggleCardComponent implements OnInit {
             this.getKitePlayerByUser(userId).subscribe(response => {
                 if (response && response._id) {
                     this.router.navigate(['/kite/player', response._id]).then(() => {
-                        this.footerContent = 'ඹයාගේ තරඟ වාර්තාව';
+                        this.footerContent = 'ඔයාගේ තරඟ වාර්තාව';
                     });
                 } else {
                     this.footerContent = 'සරුංගල් මේනියා සමඟ ලියාපදිංචි වී \
@@ -117,7 +117,7 @@ export class ToggleCardComponent implements OnInit {
                 if (player) {
                     if (userId && userId === playerId) {
                         this.currentView = CurrentViewType.MyData;
-                        this.footerContent = 'ඹයාගේ තරඟ වාර්තාව';
+                        this.footerContent = 'ඔයාගේ තරඟ වාර්තාව';
                     } else {
                         this.currentView = CurrentViewType.PlayerData;
                         this.footerContent = `තරඟ වාර්තාව: ${player.name} @ ${player.city}`;
