@@ -11,7 +11,7 @@
           <ngx-best-player *ngIf="bestPlayer" [bestPlayer]="bestPlayer"></ngx-best-player>
         </div>
         <div class="third-div">
-           <ngx-top-players *ngIf="topPlayers.length >= 3" [topPlayer]="topPlayers[2]"></ngx-top-players>
+           <ngx-top-players *ngIf="topPlayers.length >= 2" [topPlayer]="topPlayers[2]"></ngx-top-players>
         </div>
       </div>
       <div *ngIf="topPlayers.length == 0" class="no-players-text">

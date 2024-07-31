@@ -22,7 +22,7 @@ enum CurrentViewType {
 export class ToggleCardComponent implements OnInit {
 
     user: UserProfile;
-    footerContent: string = 'You are viewing all players view';
+    footerContent: string = 'සියළු තරඟකරුවන්ගේ වාර්තාව';
     currentView: CurrentViewType = CurrentViewType.AllData;
     allViewTypes = CurrentViewType;
     players: Player[] = [];
@@ -69,21 +69,23 @@ export class ToggleCardComponent implements OnInit {
             this.getKitePlayerByUser(userId).subscribe(response => {
                 if (response && response._id) {
                     this.router.navigate(['/kite/player', response._id]).then(() => {
-                        this.footerContent = 'You are viewing your player records';
+                        this.footerContent = 'ඹයාගේ තරඟ වාර්තාව';
                     });
                 } else {
-                    this.footerContent = 'You are signed in, but you are not a player.';
+                    this.footerContent = 'සරුංගල් මේනියා සමඟ ලියාපදිංචි වී \
+                    නෙළුම් කුළුණට වඩා උඩින් සරුංගල් යවන්න ඔයත් එකතු වෙන්න';
                 }
             }, error => {
                 if (error.status === 404) {
-                    this.footerContent = 'You are signed in, but you are not a player.';
+                    this.footerContent = 'සරුංගල් මේනියා සමඟ ලියාපදිංචි වී \
+                    නෙළුම් කුළුණට වඩා උඩින් සරුංගල් යවන්න ඔයත් එකතු වෙන්න';
                 } else {
                     console.error('Error fetching player data:', error);
                     this.footerContent = 'Error fetching player data.';
                 }
             });
         } else {
-            this.footerContent = 'You are not signed in. Please sign in.';
+            this.footerContent = 'ඔයාගේ විස්තර බලන්න මුලින්ම Sign In වෙන්න';
             this.onSignIn();
         }
     }
@@ -107,22 +109,22 @@ export class ToggleCardComponent implements OnInit {
 
         if (currentUrl === '/kite/player/all') {
             this.currentView = CurrentViewType.AllData;
-            this.footerContent = 'You are viewing all players view';
-        } else if (currentUrl.startsWith('/kite/player/') && currentUrl !== '/kite/player/all') {
+            this.footerContent = 'සියළු තරඟකරුවන්ගේ වාර්තාව';
+        } else if (currentUrl.startsWith('/kite/player/')) {
             const playerId = this.route.snapshot.paramMap.get('id');
             if (playerId) {
                 const player = this.players.find(p => p.id === playerId);
                 if (player) {
                     if (userId && userId === playerId) {
                         this.currentView = CurrentViewType.MyData;
-                        this.footerContent = 'You are viewing your player records';
+                        this.footerContent = 'ඹයාගේ තරඟ වාර්තාව';
                     } else {
                         this.currentView = CurrentViewType.PlayerData;
-                        this.footerContent = `You are viewing ${player.name}'s details @${player.city}`;
+                        this.footerContent = `තරඟ වාර්තාව: ${player.name} @ ${player.city}`;
                     }
                 } else {
                     this.currentView = CurrentViewType.PlayerData;
-                    this.footerContent = 'Player data not found';
+                    this.footerContent = 'තරඟකරුවා ගැන විස්තර සොයා ගැනීමට නැත';
                 }
             } else {
                 this.currentView = CurrentViewType.PlayerData;
@@ -130,7 +132,7 @@ export class ToggleCardComponent implements OnInit {
             }
         } else {
             this.currentView = CurrentViewType.AllData;
-            this.footerContent = 'You are viewing all players view';
+            this.footerContent = 'සියළු තරඟකරුවන්ගේ වාර්තාව';
         }
     }
 

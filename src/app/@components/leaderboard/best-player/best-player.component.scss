@@ -19,7 +19,7 @@
   overflow: hidden;
   display: flex;
   background-color:rgb(188, 196, 27) ;
-  
+
   // background:radial-gradient(var(rgb(188, 196, 27)),transparent,transparent);
   // background:radial-gradient(var(rgb(188, 196, 27)),transparent,transparent);
 
@@ -42,6 +42,11 @@
   text-align: center;
   margin-top: 15px;
   line-height: 0.4;
+  width: 115px;
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .best-player-nickname-span{
