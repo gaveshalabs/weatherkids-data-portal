@@ -6,6 +6,11 @@
   // nb-card {
   //   margin-top: -15px;
   // }
+
+  nb-card-body {
+    padding: 0;
+    overflow: hidden;
+  }
 }
 
 .custom-button {
@@ -16,8 +21,8 @@
   border-radius: 0;
 
   &.mat-stroked-button, &.mat-flat-button {
-    min-width: 100px; 
-    width: 100%; 
+    min-width: 100px;
+    width: 100%;
   }
 
 
@@ -42,7 +47,7 @@
   }
 }
 /* stylelint-disable */
-@media (max-width : 768px) 
+@media (max-width : 768px)
 {
   .toggle-buttons button {
     font-size: 14px;

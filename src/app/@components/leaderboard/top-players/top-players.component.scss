@@ -28,7 +28,7 @@
   border-radius: 50%;
 }
 
-.top-player-details-div{
+.top-player-details-div {
   display: flex;
   flex-direction: column;
   font-size: 16px;
@@ -37,6 +37,19 @@
   text-align: center;
   margin-top: 15px;
   line-height: 0.4;
+  width: 95px;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  &.left {
+    margin-right: 10px;
+  }
+
+  &.right {
+    margin-left: 10px;
+  }
 }
 
 .top-player-nickname-span{
