@@ -29,7 +29,8 @@ export class PlayersComponent implements OnInit {
 
     activePlayer(player: Player) {
         this.activePlayerId = player.id;
-
+        // Clear hoverPlayer to ensure no lingering hover effects
+        this.hoverPlayer = null;
     }
 
     goToPlayerIntroduction(player: Player) {
@@ -57,8 +58,5 @@ export class PlayersComponent implements OnInit {
     isActivePlayer(player: Player): boolean {
         return this.activePlayerId === player.id;
     }
-
-
 }
-
 
