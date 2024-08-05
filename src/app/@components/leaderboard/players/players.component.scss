@@ -34,7 +34,7 @@ mat-list-item {
   justify-content: space-between;
   width: 100%;
   position: relative;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 .players-container:hover {
@@ -75,7 +75,6 @@ mat-list-item img[matListItemAvatar] {
   flex-direction: column;
   font-size: 14px;
   font-weight: 100;
-  color: black;
 }
 
 .player-name-span {
@@ -83,7 +82,6 @@ mat-list-item img[matListItemAvatar] {
   flex-direction: column;
   font-size: 16px;
   font-weight: 500;
-  color: black;
 }
 
 @media only screen and (max-width <=600px) {

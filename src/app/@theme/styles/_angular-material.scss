@@ -1,55 +1,87 @@
 @use '@angular/material' as mat;
 @use 'sass:string';
 
-@mixin angular-material {
+@mixin clownfish-theme {
   @include mat.core;
 
   $blue-palette: (
     primary: #1976d2,
     primaryDark: #004ba0,
     primaryLight: #63a4ff,
-    contrast: (
-      primary: white,
+    contrast: (primary: white,
       primaryDark: white,
       primaryLight: rgba(black, 0.87),
     )
   );
-  $orange-palette: (
-    secondary: #d27619,
-    secondaryDark: #9b4900,
-    secondaryLight: #ffa54b,
-    contrast: (
-      secondary: rgba(black, 0.87),
-      secondaryDark: white,
-      secondaryLight: rgba(black, 0.87),
-    )
-  );
-  $my-primary: mat.define-palette($blue-palette, primary, primaryLight, primaryDark);
-  $my-secondary: mat.define-palette($orange-palette, secondary, secondaryLight, secondaryDark);
-  $my-typography: mat.define-typography-config(
-    $font-family: string.unquote('Outfit, Noto Sans Sinhala, sans-serif'),
-  );
-  $custom-light-theme: mat.define-light-theme((
-    color: (
-      primary: $my-primary,
-      accent: $my-secondary
-    ),
-    typography: $my-typography,
-  ));
+$orange-palette: (
+  secondary: #d27619,
+  secondaryDark: #9b4900,
+  secondaryLight: #ffa54b,
+  contrast: (secondary: rgba(black, 0.87),
+    secondaryDark: white,
+    secondaryLight: rgba(black, 0.87),
+  )
+);
+$my-primary: mat.define-palette($blue-palette, primary, primaryLight, primaryDark);
+$my-secondary: mat.define-palette($orange-palette, secondary, secondaryLight, secondaryDark);
+$my-typography: mat.define-typography-config($font-family: string.unquote('Outfit, Noto Sans Sinhala, sans-serif'));
+$custom-light-theme: mat.define-light-theme((color: (primary: $my-primary,
+        accent: $my-secondary,
+      ),
+      typography: $my-typography,
+    ));
 
-  // @include mat.all-component-themes($custom-light-theme);
-  // TODO: can list only themes for used components to reduce file size
-  // ex: @include mat.button-theme($my-theme);
+// Apply the custom light theme
+// @include mat.all-component-themes($custom-light-theme);
+
+// Emit theme-dependent styles for common features used across multiple components.
+@include mat.core-theme($custom-light-theme);
+@include mat.autocomplete-theme($custom-light-theme);
+@include mat.button-theme($custom-light-theme);
+@include mat.icon-theme($custom-light-theme);
+@include mat.tooltip-theme($custom-light-theme);
+@include mat.card-theme($custom-light-theme);
+@include mat.select-theme($custom-light-theme);
+@include mat.datepicker-theme($custom-light-theme);
+@include mat.form-field-theme($custom-light-theme);
+@include mat.progress-spinner-theme($custom-light-theme);
+}
+
+@mixin purple-green-theme {
+  @include mat.core;
+
+  $purple-palette: mat.define-palette(mat.$purple-palette);
+  $green-palette: mat.define-palette(mat.$green-palette);
+  $pg-typography: mat.define-typography-config($font-family: string.unquote('Outfit, Noto Sans Sinhala, sans-serif'));
+  $dark-theme: mat.define-dark-theme((color: (primary: $purple-palette,
+          accent: $green-palette,
+          // warn: mat.$red-palette // Optional: define a warn palette
+        ),
+        typography: $pg-typography,
+        density: 0));
+
+  // $dark-theme: mat.define-dark-theme($purple-palette, $green-palette);
+
+  // @include mat.all-component-themes($dark-theme);
 
   // Emit theme-dependent styles for common features used across multiple components.
-  @include mat.core-theme($custom-light-theme);
-  @include mat.autocomplete-theme($custom-light-theme);
-  @include mat.button-theme($custom-light-theme);
-  @include mat.icon-theme($custom-light-theme);
-  @include mat.tooltip-theme($custom-light-theme);
-  @include mat.card-theme($custom-light-theme);
-  @include mat.select-theme($custom-light-theme);
-  @include mat.datepicker-theme($custom-light-theme);
-  @include mat.form-field-theme($custom-light-theme);
-  @include mat.progress-spinner-theme($custom-light-theme);
+  @include mat.core-theme($dark-theme);
+  @include mat.autocomplete-theme($dark-theme);
+  @include mat.button-theme($dark-theme);
+  @include mat.icon-theme($dark-theme);
+  @include mat.tooltip-theme($dark-theme);
+  @include mat.card-theme($dark-theme);
+  @include mat.select-theme($dark-theme);
+  @include mat.datepicker-theme($dark-theme);
+  @include mat.form-field-theme($dark-theme);
+  @include mat.progress-spinner-theme($dark-theme);
+  @include mat.list-theme($dark-theme);
+}
+
+.clownfish-theme {
+  @include clownfish-theme;
+}
+
+.purple-green-theme {
+  @include purple-green-theme;
 }

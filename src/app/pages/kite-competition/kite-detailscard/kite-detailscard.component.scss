@@ -45,7 +45,7 @@
   }
 
   .today-temperature {
-    color: rgba(203, 36, 31, 0.951);
+    color: #66bb6a;
     font-size: 35px;
     display: flex;
     flex-direction: column;
@@ -93,9 +93,13 @@
     text-align: center;
   }
 
-  .parameter-name,
+  .parameter-name{
+color: white;
+  }
+
   .parameter-value {
     display: block;
+    color: #66bb6a;
   }
 
   .caption {
