@@ -12,6 +12,7 @@ import {
     Icon,
     LatLng,
     LatLngTuple,
+    LeafletMouseEvent,
     Map,
     Marker,
     icon as leafletIcon,
@@ -118,11 +119,11 @@ export class MapComponent implements OnInit, AfterViewInit {
             : this.markerIcons.darkBlue;
         const marker = new Marker(location)
             .setIcon(icon)
-            .addTo(this.mapRendered);
-            // .addEventListener('click', (event: LeafletMouseEvent) => {
-            //     this.markerSelect.emit(event.latlng);
-            //     this.setView(event.latlng);
-            // });
+            .addTo(this.mapRendered)
+            .addEventListener('click', (event: LeafletMouseEvent) => {
+                this.markerSelect.emit(event.latlng);
+                this.setView(event.latlng);
+            });
         this.markers.push(marker);
         this.originalIconsOfMarkers.push(icon);
         return marker;
@@ -195,12 +196,12 @@ export class MapComponent implements OnInit, AfterViewInit {
             zoomControl: false,
         });
         new Control.Zoom({ position: 'bottomright' }).addTo(this.mapRendered);
-        // this.mapRendered.addEventListener(
-        //     'click',
-        //     (event: LeafletMouseEvent) => {
-        //         this.mapSelect.emit(event.latlng);
-        //     }
-        // );
+        this.mapRendered.addEventListener(
+            'click',
+            (event: LeafletMouseEvent) => {
+                this.mapSelect.emit(event.latlng);
+            }
+        );
 
         const tiles = tileLayer(
             'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
