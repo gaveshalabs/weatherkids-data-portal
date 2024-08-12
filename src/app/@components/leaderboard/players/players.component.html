@@ -1,8 +1,8 @@
- <mat-list>
+<mat-list>
   <div class="players-container" *ngFor="let player of players"
-       [class.active]="isActivePlayer(player)"
+       [class.active]="isActivePlayer(player) || hoverPlayer?.id === player.id"
        (mouseenter)="hoverPlayer = player"
-       (mouseleave)="hoverPlayer = activePlayerId === player.id ? player : null"
+       (mouseleave)="hoverPlayer = isActivePlayer(player) ? player : null"
        (click)="goToPlayerIntroduction(player)">
     <div class="rank-txt-div">
       <span>{{ player.rank }}</span>
@@ -19,4 +19,3 @@
     </mat-list-item>
   </div>
 </mat-list>
-

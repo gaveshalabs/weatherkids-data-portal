@@ -1,22 +1,32 @@
+
 <nb-card>
   <nb-card-body>
-    <h5>මුළු උස එකතුව</h5>
-    <div class="hvalue"><span>{{ accumulatedHeight }}</span></div>
+    <!-- Use Angular's ngIf directive to conditionally render the text -->
+    <h6>
+      <span *ngIf="isAllPlayersUrl; else youText">හැමෝම</span>
+      <ng-template #youText><span>ඔයා</span></ng-template> 
+      යවපු සරුංගල් වල මුළු උස <span class="mountword">පිදුරුතලාගල</span> පහු කරයිද?
+    </h6>
+
+    <span class="container">
+      <div class="hvalue">
+        <span class="danata-text">දැනට</span>{{ accumulatedHeight }}
+      </div>
+    </span>
+
     <div>
       <div class="compare-container">
-        <!-- <div class="compare-text">Compared to Everest</div> -->
-        <div class="compare-text">Compared to Lotus Tower</div>
         <span class="everest-height">{{ everestHeight }} m</span>
       </div>
     </div>
+
     <div class="bottom-content">
       <div class="left-half">
-        <img src="assets/images/kite-competition/nelum.png" alt="Mount Everest Image" class="everest-image">
+        <img src="assets/images/kite-competition/Everest.png" alt="Mount Everest Image" class="everest-image">
       </div>
       <div class="right-half">
         <div class="progress-container">
-          <div class="progress-bar" title="Lotus tower height is {{ everestHeight }} m">
-          <!-- <div class="progress-bar" title="Mount Everest height is {{ everestHeight }} m"> -->
+          <div class="progress-bar" title="Piduruthalagala Mountain height is {{ everestHeight }} m">
             <div class="progress" title="Total accumulated height is {{ kiteHeight }} m"></div>
           </div>
           <img src="assets/images/kite-competition/kite-marker-2.png" alt="Kite Image" class="kite-image">
@@ -25,3 +35,4 @@
     </div>
   </nb-card-body>
 </nb-card>
+
