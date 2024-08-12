@@ -13,16 +13,27 @@ nb-card {
   font-size: 35px;
   color: rgba(203, 36, 31, 0.951);
   font-weight: 900;
-  margin-top: 20px;
-  margin-bottom: 35px;
-  
-  // margin-bottom: 40px;
-  text-align: center;
+margin-top: -10px;
+
+  // margin-bottom: 35px;
+  margin-bottom: 40px;
+
+  // text-align: center;
 }
 
 .bottom-content {
   display: flex;
   height: 100%;
+ 
+
+}
+
+.danata-text {
+  font-size: 16px;
+  color: rgb(64, 64, 64);
+  font-weight: bold;
+  justify-content: flex-start;
+  margin-right: 30px;
 }
 
 .left-half {
@@ -41,29 +52,31 @@ nb-card {
   }
 }
 
-// .everest-image {
-//   width: 41vw;
-//   height: 50vh;
-//   margin-top: -80px;
-//   position: relative;
-//   margin-left: -260px;
+.everest-image {
+  width: 41vw;
+  height: 50vh;
+  margin-top: -80px;
+  position: relative;
+  margin-left: -260px;
 
-// @include media-breakpoint-down(md) {
-// height: 40vh;
+@include media-breakpoint-down(md) {
+height: 40vh;
+width: auto;
+  }
+
+}
+
+// .everest-image {
+//   width: 24vw;
+//   height: 40vh;
+//   position: relative;
+
+//   @include media-breakpoint-down(md) {
+//     height: 30vh;
+//     width: 50vw;
+
 //   }
 // }
-
-.everest-image {
-  width: 24vw;
-  height: 40vh;
-  position: relative;
-
-  @include media-breakpoint-down(md) {
-    height: 30vh;
-    width: 50vw;
-
-  }
-}
 
 .right-half {
   flex: 0.5;
@@ -79,8 +92,9 @@ nb-card {
 }
 
 .progress-bar {
-  // height: 39vh;
-  height: 40vh;
+   height: 39vh;
+
+  // height: 40vh;
   width: 12px;
   background-color: rgb(29, 13, 35);
   position: relative;
@@ -100,6 +114,10 @@ nb-card {
   transition: height 2s ease-in-out;
 }
 
+.mountword{
+  color:orange ;
+}
+
 .kite-image {
   width: 30px;
   height: 30px;
@@ -113,12 +131,12 @@ nb-card {
 
 .compare-container {
   display: flex;
-  justify-content: space-between;
-  font-size: 16px;
-  margin: 12px -10px;
+  justify-content: flex-end;
+  font-size: 14px;
+  margin-top: -40px;
+  margin-bottom: 12px;
 
-  // margin-left: -10px;
-  // margin-right: -10px;
-  // margin-top: 12px;
-  // margin-bottom: 12px;
+  @include media-breakpoint-down(md) {
+    margin-right: 50px;
+  }
 }

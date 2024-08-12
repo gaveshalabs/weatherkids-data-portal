@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Player } from '../leaderboard.interface';
 import { KiteApiService } from '../../../pages/kite-competition/kite/kite-api.service';
+import { PlayersComponent } from '../players/players.component';
 
 @Component({
     selector: 'ngx-kite-leaderboard',
@@ -9,6 +10,8 @@ import { KiteApiService } from '../../../pages/kite-competition/kite/kite-api.se
     styleUrls: ['./leaderboard.component.scss'],
 })
 export class KiteLeaderboardComponent implements OnInit {
+    @ViewChild(PlayersComponent) playersComponent: PlayersComponent; // Access PlayersComponent
+
     topPlayers: Player[] = [];
     bestPlayer: Player;
     remainingPlayers: Player[] = [];
@@ -22,21 +25,7 @@ export class KiteLeaderboardComponent implements OnInit {
     loadLeaderboard() {
         this.kiteApiService.getPlayersLeaderboard().subscribe(
             (data) => {
-                // data=[],
-                // Sort players by kite height in descending order
                 data.sort((a, b) => parseInt(b.kite_height, 10) - parseInt(a.kite_height, 10));
-
-                // const topTenPlayers = data.slice(0, 10);
-
-                // topTenPlayers.forEach((player, index) => {
-                //     if (index === 1) {
-                //         player.rank = '2nd';
-                //     } else if (index === 2) {
-                //         player.rank = '3rd';
-                //     } else {
-                //         player.rank = `${index + 1}`;
-                //     }
-                // });
 
                 data.forEach((player, index) => {
                     if (index === 1) {
@@ -59,12 +48,18 @@ export class KiteLeaderboardComponent implements OnInit {
             },
             (error) => {
                 console.error('Error fetching leaderboard:', error);
-                // Handle error as needed, e.g., show error message
             }
         );
     }
 
-
+    selectTopPlayer(player: Player) {
+        if (this.playersComponent) {
+            this.playersComponent.clearHoverAndActiveState();
+        }
+        this.router.navigate(['/kite/player', player.id], {
+            state: {
+                player,
+            },
+        });
+    }
 }
-
-

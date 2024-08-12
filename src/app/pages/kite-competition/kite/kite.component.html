@@ -1,12 +1,24 @@
-<div class=" kite-container-home-2 p0">
+<div class="kite-container-home-2 p0">
   <div class="row">
+    <!-- Mobile View Header -->
     <div class="col-12 d-block d-md-none mobile-header">
       <ngx-header></ngx-header>
     </div>
+    <!-- Mobile View Banner -->
     <div class="col-12 d-block d-md-none mobile-banner">
       <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image">
     </div>
-    <div class="col-12 col-md-5 col-lg-3 leader-board-container">
+    <!-- Mobile View Leaderboard -->
+    <div class="col-12 d-block d-md-none leader-board-container">
+      <ngx-kite-leaderboard></ngx-kite-leaderboard>
+    </div>
+    <!-- Mobile View Router Outlet -->
+    <div class="col-12 d-block d-md-none mobile-router-outlet">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Desktop View -->
+    <div class="col-12 col-md-5 col-lg-3 leader-board-container d-none d-md-block">
       <ngx-kite-leaderboard></ngx-kite-leaderboard>
     </div>
     <div class="column col-lg-9 col-md-7 d-none d-md-block kite-dashboard-container">
@@ -16,8 +28,9 @@
         </div>
         <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image-kite">
       </div>
-      <div class="lower-half-container"><router-outlet></router-outlet></div>
+      <div class="lower-half-container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>
-

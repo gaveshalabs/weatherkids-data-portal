@@ -40,9 +40,9 @@ export class TotalAttempsComponent implements OnInit, OnChanges {
             currentAttempts += increment;
             if (currentAttempts >= targetAttempts) {
                 clearInterval(timer);
-                this.totalAttempts = `${targetAttempts} +`;
+                this.totalAttempts = `${targetAttempts} `;
             } else {
-                this.totalAttempts = `${currentAttempts} +`;
+                this.totalAttempts = `${currentAttempts} `;
             }
         }, interval);
     }
