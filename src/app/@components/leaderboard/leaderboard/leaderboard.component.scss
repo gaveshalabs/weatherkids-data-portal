@@ -2,6 +2,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  margin-left: 5px;
 
   // overflow: hidden scroll;// ( hidden scroll);
   overflow-x: hidden;
@@ -19,11 +20,18 @@
   scrollbar-width: none;
 }
 
+.myrecords-div{
+margin-top: 10px;
+margin-bottom: -20px;
+}
+
 .leaderboard-upper-part {
   width: 100%;
   background-color: rgb(34, 43, 69);
-  border-bottom-left-radius: 60px;
-  border-bottom-right-radius: 60px;
+
+  // border-bottom-left-radius: 60px;
+  // border-bottom-right-radius: 60px;
+  border-radius: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.interface';
 import { environment } from '../../../../environments/environment';
 
@@ -13,23 +12,36 @@ import { environment } from '../../../../environments/environment';
 export class KiteDashboardComponent implements OnInit {
     latestData: TotalKiteData | null = null;
     playerId: string | null = null;
+    showgraph: boolean = false;
 
     constructor(
         private http: HttpClient,
         private route: ActivatedRoute,
         private router: Router
-    ) { }
-
-    ngOnInit(): void {
-    // Subscribe to route parameters and determine the playerId
-        this.route.params.subscribe(params => {
-            this.playerId = params['id'];
-            this.fetchData();
+    ) {
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.updateViewBasedOnRoute();
+            }
         });
     }
 
+    ngOnInit(): void {
+        // Subscribe to route parameters and determine the playerId
+        this.route.params.subscribe(params => {
+            this.playerId = params['id'];
+            this.fetchData();
+            this.updateViewBasedOnRoute();  // Update view after fetching data
+        });
+    }
+
+    private updateViewBasedOnRoute(): void {
+        const currentUrl = this.router.url;
+        this.showgraph = currentUrl === '/kite/player/all';
+    }
+
     fetchData(): void {
-    // Fetch data based on the presence of playerId
+        // Fetch data based on the presence of playerId
         if (this.playerId && this.playerId !== 'all') {
             this.fetchDataForPlayer(this.playerId).subscribe(data => this.renderData(data));
         } else {
@@ -49,9 +61,10 @@ export class KiteDashboardComponent implements OnInit {
 
     renderData(data: TotalKiteData): void {
         this.latestData = data;
-        // console.log('Fetched data:', data);
+
     }
 }
+
 
 
 

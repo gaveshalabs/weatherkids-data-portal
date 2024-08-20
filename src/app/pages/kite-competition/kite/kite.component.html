@@ -1,23 +1,56 @@
-<div class=" kite-container-home-2 p0">
+<div class="kite-container-home-2 p0">
   <div class="row">
-    <div class="col-12 d-block d-md-none mobile-header">
-      <ngx-header></ngx-header>
+
+    <!-- Mobile Banner and Leaderboard, shown only if on /kite/player/all -->
+    <ng-container *ngIf="!isPlayerView">
+      <div class="col-12 d-block d-md-none mobile-header">
+        <ngx-header></ngx-header>
+      </div>
+      <div class="col-12 col-md-5 col-lg-3 leader-board-container">
+        <ngx-kite-leaderboard></ngx-kite-leaderboard>
+      </div>
+      <div class="col-12 d-block d-md-none mobile-cards">
+        <!-- <router-outlet></router-outlet> -->
+      </div>
+    </ng-container>
+
+
+    <!-- player view mobile -->
+    <div *ngIf="isPlayerView" class="col-12 mobile-player-view">
+      <div class="header-section">
+        <div class="left-section">
+          <mat-icon (click)="goBack()">arrow_back</mat-icon>
+        </div>
+        <div class="right-section">
+          <ngx-kite-search></ngx-kite-search>
+        </div>
+      </div>
+      <div class="playerdata">
+        <ngx-playerdatacard></ngx-playerdatacard>
+      </div>
+      <router-outlet></router-outlet>
     </div>
-    <div class="col-12 d-block d-md-none mobile-banner">
-      <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image">
-    </div>
-    <div class="col-12 col-md-5 col-lg-3 leader-board-container">
-      <ngx-kite-leaderboard></ngx-kite-leaderboard>
-    </div>
+
+
+    <!-- Desktop View -->
     <div class="column col-lg-9 col-md-7 d-none d-md-block kite-dashboard-container">
       <div class="upper-half">
         <div class="headerbar">
           <ngx-header></ngx-header>
         </div>
-        <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image-kite">
+        <!-- Conditionally display the banner for '/kite/players/all' -->
+        <div class="banner" *ngIf="showBanner">
+          <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image-kite">
+        </div>
+
+        <!-- Display ngx-playerdatacard for other routes -->
+        <div class="desktop-playercard" *ngIf="!showBanner"><ngx-desktopplayerdatacard [data]="latestData"></ngx-desktopplayerdatacard>
+        </div>
       </div>
-      <div class="lower-half-container"><router-outlet></router-outlet></div>
+      <div class="lower-half-container">
+        <router-outlet></router-outlet>
+      </div>
     </div>
+
   </div>
 </div>
-

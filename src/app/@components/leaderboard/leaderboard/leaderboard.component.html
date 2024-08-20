@@ -1,23 +1,28 @@
 <div class="kite-leaderboard-container">
+
+  <div class="myrecords-div">
+    <ngx-myrecords></ngx-myrecords>
+  </div>
   <div class="leaderboard-upper-part">
-      <div class="leaderboard-header">
-        <h2>Leaderboard</h2>
+
+    <div class="leaderboard-header">
+      <h2>Leaderboard</h2>
+    </div>
+    <div class="leaderboard-top-3">
+      <div class="second-div">
+        <ngx-top-players *ngIf="topPlayers.length >= 2" [topPlayer]="topPlayers[1]"></ngx-top-players>
       </div>
-      <div class="leaderboard-top-3">
-        <div class="second-div">
-            <ngx-top-players *ngIf="topPlayers.length >= 2" [topPlayer]="topPlayers[1]"></ngx-top-players>
-        </div>
-        <div class="first-div">
-          <ngx-best-player *ngIf="bestPlayer" [bestPlayer]="bestPlayer"></ngx-best-player>
-        </div>
-        <div class="third-div">
-           <ngx-top-players *ngIf="topPlayers.length >= 2" [topPlayer]="topPlayers[2]"></ngx-top-players>
-        </div>
+      <div class="first-div">
+        <ngx-best-player *ngIf="bestPlayer" [bestPlayer]="bestPlayer"></ngx-best-player>
       </div>
-      <div *ngIf="topPlayers.length == 0" class="no-players-text">
-        <p>Leaderboard එකට එකතු වෙන පලවෙනි කෙනා ඔයා වෙන්න!</p>
-        <p>දැන්ම තරඟ කරන්න.</p>
+      <div class="third-div">
+        <ngx-top-players *ngIf="topPlayers.length >= 2" [topPlayer]="topPlayers[2]"></ngx-top-players>
       </div>
+    </div>
+    <div *ngIf="topPlayers.length == 0" class="no-players-text">
+      <p>Leaderboard එකට එකතු වෙන පලවෙනි කෙනා ඔයා වෙන්න!</p>
+      <p>දැන්ම තරඟ කරන්න.</p>
+    </div>
   </div>
 
   <div class="leaderboard-below-part">

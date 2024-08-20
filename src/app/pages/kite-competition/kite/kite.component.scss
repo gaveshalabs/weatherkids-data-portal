@@ -1,8 +1,8 @@
-@import '../../../@theme/styles/overlay';
+ @import '../../../@theme/styles/overlay';
 
 .kite-container-home-2 {
   height: 100vh;
-  margin: -35px -20px -20px ;
+  margin: -35px -20px -20px;
   padding-left: -10px;
   padding-right: -10px;
   overflow: hidden;
@@ -14,10 +14,10 @@
     &::-webkit-scrollbar {
       display: none;
     }
-  
+
     // Hides scrollbar for IE, Edge
     -ms-overflow-style: none;
-  
+
     // Hides scrollbar for Firefox
     scrollbar-width: none;
   }
@@ -29,21 +29,21 @@
     flex-direction: column;
     height: 100vh;
     position: relative;
-    
+
     // overflow-x: hidden;
     overflow-y: scroll;
-   
+
     // Hides scrollbar for WebKit-based browsers
     &::-webkit-scrollbar {
       display: none;
     }
-  
+
     // Hides scrollbar for IE, Edge
     -ms-overflow-style: none;
-  
+
     // Hides scrollbar for Firefox
     scrollbar-width: none;
-    
+
     // @include media-breakpoint-down(md) {
     //   height: 137vh;
     // }
@@ -66,9 +66,13 @@
   }
 
   .headerbar {
-    height: 40px;
+    height: auto;
     margin: 5px 0;
     overflow: hidden;
+
+    @include media-breakpoint-down(md) {
+      margin-top: 20px;
+    }
   }
 
   .upper-half-image-kite {
@@ -79,8 +83,7 @@
   }
 
   /* stylelint-disable*/
-  @media (max-width: 768px)  
-   {
+  @media (max-width: 768px) {
     .mobile-header {
       display: flex;
       width: 100%;
@@ -105,11 +108,50 @@
     }
 
     .leader-board-container {
-      
+
       // background-color: white;
       display: flex;
       flex-direction: column;
     }
   }
+
+  // .mobile-router-outlet{
+  //   margin-top: 30px;
+  // }
+
   /* stylelint-enable */
+
+.info-container{
+  height: 100%;
+  display: flex;
+  padding: 0;
+  margin-top:-10px ;
+}
+
+.header-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+  .left-section {
+    display: flex;
+    align-items: center;
+
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .playerdata{
+    margin-top: 30px;
+  }
+
+  .desktop-playercard{
+    margin-bottom: -30px;
+  }
 }
