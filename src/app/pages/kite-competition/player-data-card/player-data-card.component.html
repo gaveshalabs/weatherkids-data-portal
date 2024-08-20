@@ -1,0 +1,70 @@
+<nb-card>
+  <nb-card-body>
+    <mat-list>
+      <mat-list-item>
+        <div class="best-player-container">
+          <div>
+            <div class="best-img-circle">
+              <img src="https://th.bing.com/th/id/OIP.2KzBS2Bfpc7gVSPqPRCfGQHaJo?w=480&h=624&rs=1&pid=ImgDetMain">
+            </div>
+            <div class="best-player-details-div">
+              <p class="best-player-name-span">Name</p>
+              <p class="best-player-nickname-span">City</p>
+            </div>
+          </div>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <div class="player-data-grid-2">
+      <mat-grid-list cols="2" rowHeight="2:1.2">
+        <mat-grid-tile>
+          <div class="grid-content">
+            <div class="icon2">
+              <i class="fas fa-info-circle" matTooltip="ලබා ගත් ස්ථානය" (click)="showTooltip($event)"></i>
+            </div>
+            <div class="text-content-2">
+              <h6 class="vname">RANK</h6>
+              <h2>20</h2>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="grid-content">
+            <div class="icon2">
+              <i class="fas fa-info-circle" matTooltip="සරුංගලය ගියපු වැඩිම උස" (click)="showTooltip($event)"></i>
+            </div>
+            <div class="text-content-2">
+              <h6>BEST HEIGHT</h6>
+              <h2>100</h2>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="grid-content">
+            <div class="icon2">
+              <i class="fas fa-info-circle" matTooltip="සෙල්ලම් කරපු වේලාව" (click)="showTooltip($event)"></i>
+            </div>
+            <div class="text-content-2">
+              <h6>TOTAL FLYING TIME</h6>
+              <h2>300</h2>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="grid-content">
+            <div class="icon2">
+              <i class="fas fa-info-circle" matTooltip="සරුංගලය යැවූ වාර ගණන" (click)="showTooltip($event)"></i>
+            </div>
+            <div class="text-content-2">
+              <h6>TOTAL ATTEMPTS</h6>
+              <h2>21</h2>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+

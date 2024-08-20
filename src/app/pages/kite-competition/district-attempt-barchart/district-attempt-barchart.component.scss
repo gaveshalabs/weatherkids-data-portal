@@ -1,0 +1,16 @@
+nb-card{
+    margin-top: -20px;
+}  
+
+  .chart-container {
+    position: relative;
+    height: 22vh; /* Adjust the height as needed */
+    width: 100%; /* Make the width responsive */
+  }
+  
+  canvas {
+    display: block;
+    max-height: 100%; /* Ensure the chart does not exceed the container's height */
+    max-width: 100%; /* Ensure the chart does not exceed the container's width */
+  }
+  
