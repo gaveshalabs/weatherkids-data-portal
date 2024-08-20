@@ -1,0 +1,17 @@
+<div class="overlay search-bar" [ngClass]="{'padding-rigt-none': showClose}">
+  <input type="text" matInput placeholder="Search players Records " autofocus="autofocus"
+  autocomplete="off" spellcheck="false" class="search-input"
+  [matAutocomplete]="auto" [(ngModel)]="searchInput" #searchInputCtrl="ngModel" (ngModelChange)="filterWSes()" />
+  <mat-icon class="search-icon" *ngIf="!showClose">search</mat-icon>
+  <button mat-icon-button *ngIf="showClose" (click)="closeThis()">
+    <mat-icon class="search-icon">close</mat-icon>
+  </button>
+  <mat-autocomplete #auto="matAutocomplete"
+    (optionSelected)="loadWeatherStationSummary($event)" [displayWith]="selectedOptionDisplay">
+    <mat-option *ngFor="let ws of wsFiltered" [value]="ws" class="ws-info">
+      <div style="display: inline-block;">
+        {{ws.name}}<br/><sub class="ws-info-line">{{ws.nearest_city}}</sub>
+      </div>
+    </mat-option>
+  </mat-autocomplete>
+</div>
