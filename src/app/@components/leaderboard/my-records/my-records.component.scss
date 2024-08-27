@@ -2,6 +2,10 @@
 @import '../../../@theme/styles/overlay';
 
 @include nb-install-component {
+  nb-card{
+    cursor: pointer;
+  }
+
   nb-card-body {
     display: flex;
     flex-direction: column;
@@ -61,5 +65,9 @@
       margin-top: 10px;
       color: #FFD54F ;
     }
+  }
+  
+  .error-message{
+    letter-spacing: 1px;
   }
 }

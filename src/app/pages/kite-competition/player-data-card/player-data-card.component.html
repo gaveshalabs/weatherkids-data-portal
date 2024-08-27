@@ -5,11 +5,11 @@
         <div class="best-player-container">
           <div>
             <div class="best-img-circle">
-              <img src="https://th.bing.com/th/id/OIP.2KzBS2Bfpc7gVSPqPRCfGQHaJo?w=480&h=624&rs=1&pid=ImgDetMain">
+            <img [src]="getPlayerImageUrl(img_url)">
             </div>
             <div class="best-player-details-div">
-              <p class="best-player-name-span">Name</p>
-              <p class="best-player-nickname-span">City</p>
+              <p class="best-player-name-span">{{name}}</p>
+              <p class="best-player-nickname-span">@{{city}}</p>
             </div>
           </div>
         </div>
@@ -24,8 +24,8 @@
               <i class="fas fa-info-circle" matTooltip="ලබා ගත් ස්ථානය" (click)="showTooltip($event)"></i>
             </div>
             <div class="text-content-2">
-              <h6 class="vname">RANK</h6>
-              <h2>20</h2>
+              <h6 class="vname">Rank</h6>
+              <h2>{{rank}}</h2>
             </div>
           </div>
         </mat-grid-tile>
@@ -36,7 +36,7 @@
             </div>
             <div class="text-content-2">
               <h6>BEST HEIGHT</h6>
-              <h2>100</h2>
+              <h2>{{bestHeight}}</h2>
             </div>
           </div>
         </mat-grid-tile>
@@ -47,7 +47,7 @@
             </div>
             <div class="text-content-2">
               <h6>TOTAL FLYING TIME</h6>
-              <h2>300</h2>
+              <h2>{{totalFlyingtime}}</h2>
             </div>
           </div>
         </mat-grid-tile>
@@ -58,7 +58,7 @@
             </div>
             <div class="text-content-2">
               <h6>TOTAL ATTEMPTS</h6>
-              <h2>21</h2>
+              <h2>{{totalAttempts}}</h2>
             </div>
           </div>
         </mat-grid-tile>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
     NbMediaBreakpointsService,
     NbMenuService,
@@ -17,7 +17,11 @@ import { map, takeUntil } from 'rxjs/operators';
 import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
 import { UserProfile } from '../../../common/interfaces/user.interface';
 import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Player } from '../../../@components/leaderboard/leaderboard.interface';
+import { SharedDataService } from '../../../services/shared-data.service';
+
 
 @Component({
     selector: 'ngx-header',
@@ -39,8 +43,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     token: NbAuthOAuth2Token;
     returnUrl: string;
+    @Input() combinedPlayers: Player[] = [];
+    showSearchBar: boolean = false;
+
+
 
     constructor(
+        // private mrauthService: MRAuthService,
+        private sharedDataService: SharedDataService,
         private oAuthService: OAuth2Service,
         private menuService: NbMenuService,
         private themeService: NbThemeService,
@@ -49,11 +59,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
         private matIconRegistry: MatIconRegistry,
         domSanitizer: DomSanitizer,
         private dialog: MatDialog,
-        private router: Router
+        private router: Router,
+        private breakpointObserver: BreakpointObserver,
     ) {
         this.oAuthService.getUser().subscribe(user => {
+
+
+
+
+
             // console.log('the subscribed user', user);
             if (user) {
+
                 this.loggedIn = true;
 
                 this.userMenu = [
@@ -62,10 +79,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 ];
 
                 this.user = user;
+                // this.mrauthService.setUser(user);
             } else {
                 this.loggedIn = false;
                 this.userMenu = [{ title: EnumUserContextMenu.Profile }];
                 this.user = null;
+                // this.mrauthService.setUser(null);
             }
         });
 
@@ -76,6 +95,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 'assets/images/google-logo.svg'
             )
         );
+
+
+        // this.router.events.subscribe((event) => {
+        //     if (event instanceof NavigationEnd) {
+        //         // Check if the URL starts with '/kite'
+        //         this.showSearchBar = event.urlAfterRedirects.startsWith('/kite');
+        //     }
+        // });
+
+
+        this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+                this.showSearchBar = event.urlAfterRedirects.startsWith('/kite');
+            }
+        });
+
 
         // this.authService
         //     .onTokenChange()
@@ -155,12 +190,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
     }
 
+    // navigateHome() {
+    //     this.menuService.navigateHome();
+    //     return false;
+    // }
+
     navigateHome() {
-        this.menuService.navigateHome();
-        return false;
+        this.router.navigate(['/']); // Navigate to the home route
+        return false; // Prevent default anchor behavior
     }
 
     ngOnInit() {
+
+        this.sharedDataService.players$.subscribe(players => {
+            this.combinedPlayers = players;
+            console.log('Received players in HeaderComponent:', this.combinedPlayers);
+        });
+        // Ensure showSearchBar is correctly initialized based on the current URL
+
+        this.showSearchBar = this.router.url.startsWith('/kite');
+
         const { xl } = this.breakpointService.getBreakpointsMap();
         this.themeService
             .onMediaQueryChange()
@@ -172,7 +221,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 (isLessThanXl: boolean) => (this.userPictureOnly = isLessThanXl)
             );
 
-        // The dropdown by clicking user profile icon.
         this.menuService.onItemClick().subscribe(event => {
             this.onContextItemSelection(event.item.title);
         });
@@ -182,6 +230,36 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.destroy$.next();
         this.destroy$.complete();
     }
+
+
+    // ngOnInit() {
+    //     const { xl } = this.breakpointService.getBreakpointsMap();
+    //     this.themeService
+    //         .onMediaQueryChange()
+    //         .pipe(
+    //             map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+    //             takeUntil(this.destroy$)
+    //         )
+    //         .subscribe(
+    //             (isLessThanXl: boolean) => (this.userPictureOnly = isLessThanXl)
+    //         );
+
+    //     // The dropdown by clicking user profile icon.
+    //     this.menuService.onItemClick().subscribe(event => {
+    //         this.onContextItemSelection(event.item.title);
+    //     });
+    // }
+
+    // ngOnDestroy() {
+    //     this.destroy$.next();
+    //     this.destroy$.complete();
+    // }
+
+
+
+
+
+
 
     // toggleSidebar(): boolean {
     //   this.sidebarService.toggle(true, "menu-sidebar");

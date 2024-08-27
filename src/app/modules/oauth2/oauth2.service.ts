@@ -22,6 +22,7 @@ import { SessionApiService } from '../../api/session-api.service';
     providedIn: 'root',
 })
 export class OAuth2Service {
+
     private destroy$: Subject<void> = new Subject<void>();
 
     // userData: User;
@@ -140,6 +141,7 @@ export class OAuth2Service {
                                 JSON.stringify(this.userData)
                             );
                             this.userSubject.next(this.userData);
+
                             this.router.navigateByUrl(returnUrl); ;
                         },
                         error => {

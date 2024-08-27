@@ -1,43 +1,84 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { Attempt, PlayerData } from '../../../@components/leaderboard/leaderboard.interface';
+import { KiteApiService } from '../kite/kite-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
     selector: 'ngx-playerattemptchart',
     styleUrls: ['./player-attempt-chart.component.scss'],
     templateUrl: './player-attempt-chart.component.html',
 })
-export class PlayerAttemptChartComponent implements AfterViewInit {
+export class PlayerAttemptChartComponent implements OnInit {
+    playerData: PlayerData | null = null;
+    @ViewChildren('lineChart') lineCharts: QueryList<any>;
 
-    panelOpenState: boolean = false;
-
-    // Sample data for the chart
-    private readonly chartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-            label: 'Attempts',
-            data: [65, 59, 80, 81, 56, 55, 40],
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1,
-        }],
-    };
-
-    constructor() {
-    // Register Chart.js components
+    constructor(private kiteApiService: KiteApiService, private route: ActivatedRoute) {
         Chart.register(...registerables);
     }
 
-    ngAfterViewInit() {
-    // Initialize chart after view is initialized
-        this.createChart();
+    ngOnInit(): void {
+        this.route.paramMap.subscribe(params => {
+            const playerId = params.get('id');
+            if (playerId) {
+                this.fetchPlayerData(playerId);
+            }
+        });
     }
 
-    createChart() {
-        const ctx = (document.getElementById('lineChart') as HTMLCanvasElement).getContext('2d');
+    fetchPlayerData(playerId: string): void {
+        this.kiteApiService.getPlayerData(playerId).subscribe(
+            (data: PlayerData) => {
+                if (data && data.attempts) {
+                    data.attempts = data.attempts.map((attempt: Attempt) => ({
+                        ...attempt,
+                        height: Math.round(attempt.height),
+                    }));
+                }
+                this.playerData = data;
+            },
+            (error) => {
+                console.error('Error fetching player data', error);
+            }
+        );
+    }
+
+    fetchAttemptData(playerId: string, attemptTimestamp: string, panelIndex: number): void {
+        this.kiteApiService.getAttemptData(playerId, attemptTimestamp).subscribe(
+            (data: { data: { timestamp: string; height: number }[] }) => {
+                const chartData = {
+                    labels: data.data.map(d => new Date(d.timestamp).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false,
+                    })),
+                    datasets: [{
+                        label: 'Height',
+                        backgroundColor: 'rgb(102, 187, 106)',
+                        data: data.data.map(d => d.height),
+                        fill: false,
+                        borderColor: 'rgb(102, 187, 106)',
+                        tension: 0.1,
+                        pointRadius: 0,
+                    }],
+                };
+
+                this.renderChart(panelIndex, chartData);
+            },
+            (error) => {
+                console.error('Error fetching attempt data', error);
+            }
+        );
+    }
+
+    renderChart(panelIndex: number, chartData: any): void {
+        const canvasElement = this.lineCharts.toArray()[panelIndex].nativeElement;
+        const ctx = canvasElement.getContext('2d');
         if (ctx) {
             new Chart(ctx, {
-                type: 'line', // Explicitly set the type
-                data: this.chartData, // Use the local data
+                type: 'line',
+                data: chartData,
                 options: {
                     responsive: true,
                     scales: {
@@ -52,87 +93,12 @@ export class PlayerAttemptChartComponent implements AfterViewInit {
             });
         }
     }
+    onPanelOpened(panelIndex: number): void {
+        const attempt = this.playerData?.attempts[panelIndex];
+        if (attempt && this.playerData) {
+            const playerId = this.playerData.kitePlayer._id;
+            this.fetchAttemptData(playerId, attempt.attempt_timestamp, panelIndex);
+        }
+    }
+
 }
-
-
-
-// import { Component, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
-// import { Chart, registerables } from 'chart.js';
-// import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.interface';
-
-// @Component({
-//   selector: 'ngx-playerattemptchart',
-//   styleUrls: ['./player-attempt-chart.component.scss'],
-//   templateUrl: './player-attempt-chart.component.html',
-// })
-// export class PlayerAttemptChartComponent implements AfterViewInit, OnChanges {
-//   @Input() chartData: TotalKiteData[]; // Input data for the chart
-//   @Input() panelOpenState: boolean = false;
-
-//   private chart: Chart | undefined;
-
-//   constructor() {
-//     // Register Chart.js components
-//     Chart.register(...registerables);
-//   }
-
-//   ngAfterViewInit() {
-//     // Initialize chart after view is initialized
-//     this.createChart();
-//   }
-
-//   ngOnChanges(changes: SimpleChanges) {
-//     // Update chart if input data changes
-//     if (changes['chartData'] && this.chart) {
-//       this.updateChart();
-//     }
-//   }
-
-//   createChart() {
-//     const ctx = (document.getElementById('lineChart') as HTMLCanvasElement).getContext('2d');
-//     if (ctx) {
-//       this.chart = new Chart(ctx, {
-//         type: 'line',
-//         data: {
-//           labels: this.getLabels(),
-//           datasets: [{
-//             label: 'Attempts',
-//             data: this.getData(),
-//             fill: false,
-//             borderColor: 'rgb(75, 192, 192)',
-//             tension: 0.1
-//           }]
-//         },
-//         options: {
-//           responsive: true,
-//           scales: {
-//             x: {
-//               beginAtZero: true
-//             },
-//             y: {
-//               beginAtZero: true
-//             }
-//           }
-//         }
-//       });
-//     }
-//   }
-
-//   updateChart() {
-//     if (this.chart) {
-//       this.chart.data.labels = this.getLabels();
-//       this.chart.data.datasets[0].data = this.getData();
-//       this.chart.update();
-//     }
-//   }
-
-//   private getLabels(): string[] {
-//     // Extract and return labels from the input data
-//     return this.chartData.map(data => data.label); // Adjust this based on your data structure
-//   }
-
-//   private getData(): number[] {
-//     // Extract and return data values from the input data
-//     return this.chartData.map(data => data.value); // Adjust this based on your data structure
-//   }
-// }

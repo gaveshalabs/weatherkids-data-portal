@@ -1,16 +1,40 @@
-<div class="row dashboard" *ngIf="latestData">
-  <div class="col-xxxl-3 col-xxl-4 col-lg-4 col-md-12">
-    <div class="bargraphs" *ngIf="showgraph">
-      <ngx-ageattemptbarchart [data]="latestData"></ngx-ageattemptbarchart>
-      <ngx-heightbarchart [data]="latestData"></ngx-heightbarchart>
+<div>
+  <div class="banner-image">
+    <!-- Hide banner and components if on mobile view and /kite/player/all route -->
+    <div *ngIf="!hideOnMobile">
+      <div class="banner" *ngIf="showBanner && !isMobileView">
+        <img src="assets/images/kite-competition/banner.png" class="upper-half-image-kite">
+      </div>
+  
+      <!-- Display ngx-playerdatacard for mobile view -->
+      <div *ngIf="isMobileView">
+        <ngx-playerdatacard [data]="latestData"></ngx-playerdatacard>
+      </div>
+  
+      <!-- Display ngx-desktopplayerdatacard for other routes (desktop view) -->
+      <div class="desktop-playercard" *ngIf="!showBanner && !isMobileView">
+        <ngx-desktopplayerdatacard [data]="latestData"></ngx-desktopplayerdatacard>
+      </div>
     </div>
-    <div class="attempt-table" *ngIf="!showgraph"><ngx-playerattemptchart [data]="latestData"></ngx-playerattemptchart></div>
   </div>
-  <div class="col-xxxl-4 col-xxl-4 col-lg-4 col-md-12">
-    <ngx-reportcard [data]="latestData"></ngx-reportcard>
-  </div>
-  <div class="col-xxxl-5 col-xxl-4 col-lg-4 col-md-12">
-    <ngx-height-comparison [data]="latestData"></ngx-height-comparison>
+  
+
+  <div class="row dashboard" *ngIf="latestData">
+
+    <div class="col-xxxl-3 col-xxl-4 col-lg-4 col-md-12">
+      <div class="bargraphs" *ngIf="showgraph">
+        <ngx-ageattemptbarchart [data]="latestData"></ngx-ageattemptbarchart>
+        <ngx-heightbarchart [data]="latestData"></ngx-heightbarchart>
+      </div>
+      <div class="attempt-table" *ngIf="!showgraph"><ngx-playerattemptchart
+          [data]="latestData"></ngx-playerattemptchart>
+      </div>
+    </div>
+    <div class="col-xxxl-4 col-xxl-4 col-lg-4 col-md-12">
+      <ngx-reportcard [data]="latestData"></ngx-reportcard>
+    </div>
+    <div class="col-xxxl-5 col-xxl-4 col-lg-4 col-md-12">
+      <ngx-height-comparison [data]="latestData"></ngx-height-comparison>
+    </div>
   </div>
 </div>
-

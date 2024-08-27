@@ -2,7 +2,7 @@
   <div class="row">
 
     <!-- Mobile Banner and Leaderboard, shown only if on /kite/player/all -->
-    <ng-container *ngIf="!isPlayerView">
+    <ng-container *ngIf="!isPlayerView && isMobile">
       <div class="col-12 d-block d-md-none mobile-header">
         <ngx-header></ngx-header>
       </div>
@@ -10,47 +10,39 @@
         <ngx-kite-leaderboard></ngx-kite-leaderboard>
       </div>
       <div class="col-12 d-block d-md-none mobile-cards">
-        <!-- <router-outlet></router-outlet> -->
+        <router-outlet></router-outlet>
       </div>
     </ng-container>
 
-
-    <!-- player view mobile -->
-    <div *ngIf="isPlayerView" class="col-12 mobile-player-view">
-      <div class="header-section">
-        <div class="left-section">
-          <mat-icon (click)="goBack()">arrow_back</mat-icon>
+    <!-- Player view for mobile -->
+    <ng-container *ngIf="isPlayerView && isMobile">
+      <div class="col-12 mobile-player-view">
+        <div class="header-section">
+          <div class="left-section">
+            <mat-icon (click)="goBack()">arrow_back</mat-icon>
+          </div>
+          <div class="right-section">
+            <ngx-kite-search [playerList]="combinedPlayers"></ngx-kite-search>
+          </div>
         </div>
-        <div class="right-section">
-          <ngx-kite-search></ngx-kite-search>
-        </div>
+        <router-outlet></router-outlet>
       </div>
-      <div class="playerdata">
-        <ngx-playerdatacard></ngx-playerdatacard>
-      </div>
-      <router-outlet></router-outlet>
-    </div>
-
+    </ng-container>
 
     <!-- Desktop View -->
-    <div class="column col-lg-9 col-md-7 d-none d-md-block kite-dashboard-container">
-      <div class="upper-half">
+    <ng-container *ngIf="!isMobile">
+      <div class="col-12 col-md-5 col-lg-3 leader-board-container">
+        <ngx-kite-leaderboard></ngx-kite-leaderboard>
+      </div>
+      <div class="column col-lg-9 col-md-7 d-none d-md-block kite-dashboard-container">
         <div class="headerbar">
           <ngx-header></ngx-header>
         </div>
-        <!-- Conditionally display the banner for '/kite/players/all' -->
-        <div class="banner" *ngIf="showBanner">
-          <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image-kite">
-        </div>
-
-        <!-- Display ngx-playerdatacard for other routes -->
-        <div class="desktop-playercard" *ngIf="!showBanner"><ngx-desktopplayerdatacard [data]="latestData"></ngx-desktopplayerdatacard>
+        <div class="lower-half-container">
+          <router-outlet></router-outlet>
         </div>
       </div>
-      <div class="lower-half-container">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
+    </ng-container>
 
   </div>
 </div>

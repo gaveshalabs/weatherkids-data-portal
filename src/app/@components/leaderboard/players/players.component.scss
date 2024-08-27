@@ -44,11 +44,14 @@ mat-list-item {
 }
 
 .players-container.active {
-  background-color: #c5b6c9; // #c8a5fd;
+  background-color: #c5b6c9;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   
 }
+
+
+
 
 mat-list-item img[matListItemAvatar] {
   width: 50px;

@@ -11,24 +11,18 @@ import { NbCardModule, NbIconModule, NbSelectModule, NbThemeModule, NbLayoutModu
 import { CommonModule } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { DistrictvsAttemptbarchartComponent } from './district-attempt-barchart/district-attempt-barchart.component';
-import { FlyingchartComponent } from './flying-timechart/flying-chart.component';
-import { kitedetailsComponent } from './kite-detailscard/kite-detailscard.component';
 import { HeightComparisonComponent } from './height-comparison/height-comparison.component';
-import { AirtimeRecordComponent } from './airtime-record/airtime-record.component';
 import { KiteDashboardComponent } from './kite-dashboard/kite-dashboard.component';
 import { KiteRoutingModule } from './kite-routing.module';
-import { TotalAttempsComponent } from './total-attemps/total-attemps.component';
 import { NbActionsModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
 import { MatIconModule } from '@angular/material/icon';
 import { KiteApiService } from './kite/kite-api.service';
-import { ToggleCardComponent } from './togal-card/toggle-card.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { WantToKnowComponent } from './want-to-know/want-to-know.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -55,21 +49,12 @@ register();
         RegisterNowComponent,
         KiteComponent,
         KiteCompetitionMapComponent,
-        kitedetailsComponent,
         HeightComparisonComponent,
-        AirtimeRecordComponent,
         KiteDashboardComponent,
-        TotalAttempsComponent,
-        ToggleCardComponent,
-        WantToKnowComponent,
         PlayerDataCardComponent,
         PlayerAttemptChartComponent,
         ReportCardComponent,
         DesktopPlayerDataCardComponent,
-
-
-
-
 
     ],
     imports: [
@@ -84,7 +69,6 @@ register();
         NbSelectModule,
         NgxEchartsModule,
         DistrictvsAttemptbarchartComponent,
-        FlyingchartComponent,
         KiteRoutingModule,
         NbActionsModule,
         NbUserModule,
@@ -112,7 +96,7 @@ register();
 
 
     ],
-    exports: [AirtimeRecordComponent, TotalAttempsComponent, HeightComparisonComponent, AgeAttemptbarchartComponent,
+    exports: [ HeightComparisonComponent, AgeAttemptbarchartComponent,
     ],
 
     providers: [KiteApiService],

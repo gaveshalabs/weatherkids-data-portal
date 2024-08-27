@@ -6,10 +6,10 @@ import { KiteLeaderboardComponent } from './leaderboard/leaderboard.component';
 import { TopPlayersComponent } from './top-players/top-players.component';
 import { MatListModule } from '@angular/material/list';
 import { KiteApiService } from '../../pages/kite-competition/kite/kite-api.service';
-import { MyRecordsComponent } from './my-records/my-records.component';
 import { NbCardModule } from '@nebular/theme';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MyRecordsComponent } from './my-records/my-records.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +34,7 @@ import { MatInputModule } from '@angular/material/input';
         KiteApiService,
     ],
 })
-export class LeaderboardModule {}
+export class LeaderboardModule{ }
 
 
 
