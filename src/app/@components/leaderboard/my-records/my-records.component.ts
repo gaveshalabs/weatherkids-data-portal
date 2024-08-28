@@ -69,7 +69,8 @@ export class MyRecordsComponent implements OnInit, OnDestroy {
             },
             (error) => {
                 console.error('Error fetching user data', error);
-                this.errorMessage = 'Failed to fetch your data. Please try again later.';
+                this.errorMessage = 'සරුංගල් මේනියා සමඟ ලියාපදිංචි වී \
+                    නෙළුම් කුළුණට වඩා උඩින් සරුංගල් යවන්න ඔයත් එකතු වෙන්න';
             }
         );
     }
