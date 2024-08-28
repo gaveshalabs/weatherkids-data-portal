@@ -13,13 +13,7 @@ export class BestPlayerComponent {
     constructor(private router: Router) {}
 
     goToPlayerIntroduction(player: Player) {
-        this.router.navigate(['/kite/player', player.id ,
-            {
-                state: {
-                    player,
-                },
-            },
-        ]);
+        this.router.navigate(['/kite/player', player.id ]);
     }
 
     getImageUrl(imgUrl: string): string {

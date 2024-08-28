@@ -5,7 +5,12 @@
 @include nb-install-component {
   display: flex;
   flex-direction: row-reverse;
-  width: 100%;
+  width: auto;
+
+  .first-part-header {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 
   .logo-container {
     display: flex;
@@ -45,16 +50,17 @@
       }
     }
 
-    .logo {
-      padding: 0 1.25rem;
-      font-size: 1.75rem;
+    // .logo {
+    //   padding-right: 1.25rem;
+    //   // padding: 0 1.25rem;
+    //   font-size: 1.75rem;
 
-      @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
-      @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
+    //   @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
+    //   @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
 
-      white-space: nowrap;
-      text-decoration: none;
-    }
+    //   white-space: nowrap;
+    //   text-decoration: none;
+    // }
   }
 
   @include media-breakpoint-down(sm) {
@@ -73,20 +79,74 @@
       display: none;
     }
   }
-}
+  
+  .google-signin {
+    padding: 0 6px;
+    background-color: white;
+  }
 
-.google-signin {
-  padding: 0 6px;
-  background-color: white;
-}
+  .btn-signin {
+    @include media-breakpoint-down(is) {
+      padding: 0 0 0 8px;
 
-.btn-signin {
-  @include media-breakpoint-down(is) {
-    padding: 0 0 0 8px;
-
-    .mdc-button {
-      padding: 0 8px;
+      .mdc-button {
+        padding: 0 8px;
+      }
     }
   }
+
+  .second-row-search {
+    width: 100vw;
+    padding-left: 10px;
+  }
+
+  // Desktop view adjustment
+  @include media-breakpoint-up(lg) {
+    .header-layout {
+      display: flex;
+      position: relative;
+      flex-direction: row-reverse;
+      align-items: center;
+      width:auto;
+     justify-content: space-between;
+     padding: 0;
+    }
+
+    .first-part-header {
+      display: flex;
+      flex-direction: row-reverse;
+      float: right;
+      margin-left: 15px;
+      padding: 0;
+      
+    }
+
+    .second-row-search {
+      display: flex;
+      padding: 0;
+      width: auto;
+      float: right;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+   /* stylelint-disable*/
+  @media only screen and (max-width: 992px) {
+    .second-row-search{
+      width: 57vw;
+     
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .second-row-search{
+      width: 100vw;
+    }
+  }
+   /* stylelint-enable */
 
 }

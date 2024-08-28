@@ -19,11 +19,13 @@
 @import './angular-material';
 @import './material-overrides';
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap';
-
+@import '@angular/material/prebuilt-themes/purple-green.css';
+@import '@angular/material/theming';
 
 // install the framework and custom global styles
 @include nb-install {
-  @include angular-material;
+  @include purple-green-theme;
+  @include clownfish-theme;
 
   // framework global styles
   @include nb-theme-global;
@@ -57,3 +59,10 @@
 .padding-rigt-none {
   padding-right: 0;
 }
+
+
+
+
+
+
+

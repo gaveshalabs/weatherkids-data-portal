@@ -1,36 +1,48 @@
 <div class="kite-container-home-2 p0">
   <div class="row">
-    <!-- Mobile View Header -->
-    <div class="col-12 d-block d-md-none mobile-header">
-      <ngx-header></ngx-header>
-    </div>
-    <!-- Mobile View Banner -->
-    <div class="col-12 d-block d-md-none mobile-banner">
-      <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image">
-    </div>
-    <!-- Mobile View Leaderboard -->
-    <div class="col-12 d-block d-md-none leader-board-container">
-      <ngx-kite-leaderboard></ngx-kite-leaderboard>
-    </div>
-    <!-- Mobile View Router Outlet -->
-    <div class="col-12 d-block d-md-none mobile-router-outlet">
-      <router-outlet></router-outlet>
-    </div>
+
+    <!-- Mobile Banner and Leaderboard, shown only if on /kite/player/all -->
+    <ng-container *ngIf="!isPlayerView && isMobile">
+      <div class="col-12 d-block d-md-none mobile-header">
+        <ngx-header></ngx-header>
+      </div>
+      <div class="col-12 col-md-5 col-lg-3 leader-board-container">
+        <ngx-kite-leaderboard></ngx-kite-leaderboard>
+      </div>
+      <div class="col-12 d-block d-md-none mobile-cards">
+        <router-outlet></router-outlet>
+      </div>
+    </ng-container>
+
+    <!-- Player view for mobile -->
+    <ng-container *ngIf="isPlayerView && isMobile">
+      <div class="col-12 mobile-player-view">
+        <div class="header-section">
+          <div class="left-section">
+            <mat-icon (click)="goBack()">arrow_back</mat-icon>
+          </div>
+          <div class="right-section">
+            <ngx-kite-search [playerList]="combinedPlayers"></ngx-kite-search>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+    </ng-container>
 
     <!-- Desktop View -->
-    <div class="col-12 col-md-5 col-lg-3 leader-board-container d-none d-md-block">
-      <ngx-kite-leaderboard></ngx-kite-leaderboard>
-    </div>
-    <div class="column col-lg-9 col-md-7 d-none d-md-block kite-dashboard-container">
-      <div class="upper-half">
+    <ng-container *ngIf="!isMobile">
+      <div class="col-12 col-md-5 col-lg-3 leader-board-container">
+        <ngx-kite-leaderboard></ngx-kite-leaderboard>
+      </div>
+      <div class="column col-lg-9 col-md-7 d-none d-md-block kite-dashboard-container">
         <div class="headerbar">
           <ngx-header></ngx-header>
         </div>
-        <img src="assets/images/kite-competition/banner.png" alt="Kite Banner" class="upper-half-image-kite">
+        <div class="lower-half-container">
+          <router-outlet></router-outlet>
+        </div>
       </div>
-      <div class="lower-half-container">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
+    </ng-container>
+
   </div>
 </div>

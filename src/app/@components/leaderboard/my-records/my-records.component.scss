@@ -1,0 +1,73 @@
+@import '../../../@theme/styles/themes';
+@import '../../../@theme/styles/overlay';
+
+@include nb-install-component {
+  nb-card{
+    cursor: pointer;
+  }
+
+  nb-card-body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .today {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .image-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .rank-image {
+    height: auto;
+    width: auto;
+    font-size: 100px;
+    color:white;
+  }
+
+
+  
+  .image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+  }
+
+  .right-text {
+    margin-left: 10px;
+    margin-top: -20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+
+    p {
+      margin: 0;
+    }
+
+    .bheight{
+      font-size: 35px;
+      font-weight: bolder;
+      margin-top: 10px;
+      color: #FFD54F ;
+    }
+  }
+  
+  .error-message{
+    letter-spacing: 1px;
+  }
+}

@@ -1,38 +1,242 @@
-
-<nb-card>
-  <nb-card-body>
-    <!-- Use Angular's ngIf directive to conditionally render the text -->
-    <h6>
-      <span *ngIf="isAllPlayersUrl; else youText">හැමෝම</span>
-      <ng-template #youText><span>ඔයා</span></ng-template> 
-      යවපු සරුංගල් වල මුළු උස <span class="mountword">පිදුරුතලාගල</span> පහු කරයිද?
-    </h6>
-
-    <span class="container">
-      <div class="hvalue">
-        <span class="danata-text">දැනට</span>{{ accumulatedHeight }}
-      </div>
-    </span>
-
-    <div>
-      <div class="compare-container">
-        <span class="everest-height">{{ everestHeight }} m</span>
-      </div>
-    </div>
-
-    <div class="bottom-content">
-      <div class="left-half">
-        <img src="assets/images/kite-competition/Everest.png" alt="Mount Everest Image" class="everest-image">
-      </div>
-      <div class="right-half">
-        <div class="progress-container">
-          <div class="progress-bar" title="Piduruthalagala Mountain height is {{ everestHeight }} m">
-            <div class="progress" title="Total accumulated height is {{ kiteHeight }} m"></div>
-          </div>
-          <img src="assets/images/kite-competition/kite-marker-2.png" alt="Kite Image" class="kite-image">
+<swiper-container  *ngIf=" accumulatedHeightNumber <= piduruthalagalaheight && accumulatedHeightNumber > lotustowerheight " [slidesPerView]="slidesPerView" navigation="true" space-between="10" pagination="true"
+  pagination-clickable="true">
+  <swiper-slide >
+    <nb-card>
+      <nb-card-body>
+        
+        <div class="title">
+          <span *ngIf="isAllPlayersUrl; else youText">හැමෝම</span>
+          <ng-template #youText><span>ඔයා</span></ng-template>
+          යවපු සරුංගල් වල මුළු උස <span class="mountword">පිදුරුතලාගල</span> පහු කරයිද?
         </div>
-      </div>
-    </div>
-  </nb-card-body>
-</nb-card>
+        <span class="container">
+          <div class="hvalue">
+            <span class="danata-text">දැනට</span>{{ accumulatedHeight }}
+          </div>
+        </span>
+        <div>
+          <div class="compare-container">
+            <span class="everest-height">{{ piduruthalagalaheight }} m</span>
+          </div>
+        </div>
+
+        <div class="bottom-content">
+          <div class="left-half">
+            <img src="assets/images/kite-competition/Everest.png" alt="Piduruthalagala Image" class="everest-image">
+          </div>
+          <div class="right-half-2">
+            <div class="progress-container">
+              <div class="progress-bar" title="Piduruthalagala height is {{ piduruthalagalaheight }} m">
+                <div class="progress progress-piduruthalagala"></div>
+              </div>
+              <img src="assets/images/kite-competition/kite.png" alt="Kite Image"
+                class="kite-image kite-piduruthalagala">
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </swiper-slide>
+
+  <swiper-slide >
+    <nb-card>
+      <nb-card-body>
+        <div class="title">
+          <span *ngIf="isAllPlayersUrl; else youText">හැමෝම</span>
+          <ng-template #youText><span>ඔයා</span></ng-template>
+          යවපු සරුංගල් වල මුළු උස <span class="mountword">එවරස්ට්</span> පහු කරයිද?
+        </div>
+
+        <span class="container">
+          <div class="hvalue">
+            <span class="danata-text">දැනට</span>{{ accumulatedHeight }}
+          </div>
+        </span>
+
+        <div>
+          <div class="compare-container">
+            <span class="everest-height">{{ everestHeight }} m</span>
+          </div>
+        </div>
+        <div class="bottom-content">
+          <div class="left-half">
+            <img src="assets/images/kite-competition/Everest.png" alt="Everest Image" class="everest-image">
+          </div>
+          <div class="right-half-2">
+            <div class="progress-container">
+              <div class="progress-bar" title="Everest height is {{ everestHeight }} m">
+                <div class="progress progress-everest"></div>
+              </div>
+              <img src="assets/images/kite-competition/kite.png" alt="Kite Image"
+                class="kite-image kite-everest">
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </swiper-slide>
+</swiper-container>
+
+<swiper-container  *ngIf="accumulatedHeightNumber <= lotustowerheight  && 
+accumulatedHeightNumber <= piduruthalagalaheight  && 
+accumulatedHeightNumber <= everestHeight" [slidesPerView]="slidesPerView" navigation="true" space-between="10" pagination="true"
+  pagination-clickable="true">
+  <swiper-slide >
+    <nb-card>
+      <nb-card-body>
+        <div class="title">
+          <span *ngIf="isAllPlayersUrl; else youText">හැමෝම</span>
+          <ng-template #youText><span>ඔයා</span></ng-template>
+          යවපු සරුංගල් වල මුළු උස <span class="mountword">නෙළුම් කුලුන</span> පහු කරයිද?
+        </div>
+
+        <span class="container">
+          <div class="hvalue">
+            <span class="danata-text">දැනට</span>{{ accumulatedHeight }}
+          </div>
+        </span>
+        <div>
+          <div class="compare-container">
+            <span class="everest-height">{{ lotustowerheight }} m</span>
+          </div>
+        </div>
+        <div class="bottom-content">
+          <div class="left-half">
+            <img src="assets/images/kite-competition/nelum.png" alt="Lotus Tower Image" class="lotust-image">
+          </div>
+          <div class="right-half">
+            <div class="progress-container">
+              <div class="progress-bar" title="Lotus tower height is {{ lotustowerheight }} m">
+                <div class="progress progress-lotus"></div>
+              </div>
+              <img src="assets/images/kite-competition/kite.png" alt="Kite Image"
+                class="kite-image kite-lotus">
+
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </swiper-slide>
+
+  <swiper-slide >
+    <nb-card>
+      <nb-card-body>
+        
+        <div class="title">
+          <span *ngIf="isAllPlayersUrl; else youText">හැමෝම</span>
+          <ng-template #youText><span>ඔයා</span></ng-template>
+          යවපු සරුංගල් වල මුළු උස <span class="mountword">පිදුරුතලාගල</span> පහු කරයිද?
+        </div>
+        <span class="container">
+          <div class="hvalue">
+            <span class="danata-text">දැනට</span>{{ accumulatedHeight }}
+          </div>
+        </span>
+        <div>
+          <div class="compare-container">
+            <span class="everest-height">{{ piduruthalagalaheight }} m</span>
+          </div>
+        </div>
+
+        <div class="bottom-content">
+          <div class="left-half">
+            <img src="assets/images/kite-competition/Everest.png" alt="Piduruthalagala Image" class="everest-image">
+          </div>
+          <div class="right-half-2">
+            <div class="progress-container">
+              <div class="progress-bar" title="Piduruthalagala height is {{ piduruthalagalaheight }} m">
+                <div class="progress progress-piduruthalagala"></div>
+              </div>
+              <img src="assets/images/kite-competition/kite.png" alt="Kite Image"
+                class="kite-image kite-piduruthalagala">
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </swiper-slide>
+
+  <swiper-slide >
+    <nb-card>
+      <nb-card-body>
+        <div class="title">
+          <span *ngIf="isAllPlayersUrl; else youText">හැමෝම</span>
+          <ng-template #youText><span>ඔයා</span></ng-template>
+          යවපු සරුංගල් වල මුළු උස <span class="mountword">එවරස්ට්</span> පහු කරයිද?
+        </div>
+
+        <span class="container">
+          <div class="hvalue">
+            <span class="danata-text">දැනට</span>{{ accumulatedHeight }}
+          </div>
+        </span>
+
+        <div>
+          <div class="compare-container">
+            <span class="everest-height">{{ everestHeight }} m</span>
+          </div>
+        </div>
+        <div class="bottom-content">
+          <div class="left-half">
+            <img src="assets/images/kite-competition/Everest.png" alt="Everest Image" class="everest-image">
+          </div>
+          <div class="right-half-2">
+            <div class="progress-container">
+              <div class="progress-bar" title="Everest height is {{ everestHeight }} m">
+                <div class="progress progress-everest"></div>
+              </div>
+              <img src="assets/images/kite-competition/kite.png" alt="Kite Image"
+                class="kite-image kite-everest">
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </swiper-slide>
+</swiper-container>
+
+
+
+<swiper-container  *ngIf=" accumulatedHeightNumber > piduruthalagalaheight" [slidesPerView]="slidesPerView" navigation="true" space-between="10" pagination="true"
+  pagination-clickable="true">
+  <swiper-slide >
+    <nb-card>
+      <nb-card-body>
+        <div class="title">
+          <span *ngIf="isAllPlayersUrl; else youText">හැමෝම</span>
+          <ng-template #youText><span>ඔයා</span></ng-template>
+          යවපු සරුංගල් වල මුළු උස <span class="mountword">එවරස්ට්</span> පහු කරයිද?
+        </div>
+
+        <span class="container">
+          <div class="hvalue">
+            <span class="danata-text">දැනට</span>{{ accumulatedHeight }}
+          </div>
+        </span>
+
+        <div>
+          <div class="compare-container">
+            <span class="everest-height">{{ everestHeight }} m</span>
+          </div>
+        </div>
+        <div class="bottom-content">
+          <div class="left-half">
+            <img src="assets/images/kite-competition/Everest.png" alt="Everest Image" class="everest-image">
+          </div>
+          <div class="right-half-2">
+            <div class="progress-container">
+              <div class="progress-bar" title="Everest height is {{ everestHeight }} m">
+                <div class="progress progress-everest"></div>
+              </div>
+              <img src="assets/images/kite-competition/kite.png" alt="Kite Image"
+                class="kite-image kite-everest">
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </swiper-slide>
+</swiper-container>
+
 
