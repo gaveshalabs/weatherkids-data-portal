@@ -126,8 +126,9 @@ margin-right: -80px;
 }
 
 .progress-bar {
-  // height: 39vh;
-  height: 40vh;
+   height: 39vh;
+
+  // height: 40vh;
   width: 12px;
   background-color: rgb(29, 13, 35);
   position: relative;
@@ -145,6 +146,10 @@ margin-right: -80px;
   position: absolute;
   bottom: 0;
   transition: height 2s ease-in-out;
+}
+
+.mountword{
+  color:orange ;
 }
 
 .kite-image {
