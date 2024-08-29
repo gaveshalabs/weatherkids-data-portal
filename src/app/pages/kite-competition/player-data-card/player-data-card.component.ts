@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { TotalKiteData } from '../../../@components/leaderboard/leaderboard.interface';
 import { MatTooltip } from '@angular/material/tooltip';
+import { LoaderService } from '../../../@theme/components/loader/loader.service';
 
 @Component({
     selector: 'ngx-playerdatacard',
@@ -18,6 +19,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
     img_url: string = '-';
 
     @ViewChild(MatTooltip) tooltip: MatTooltip;
+    constructor(private loaderService: LoaderService) { }
 
     ngOnInit() {
         this.updateAllValues();
@@ -25,6 +27,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['data'] && changes['data'].currentValue) {
+            this.loaderService.show();
             this.updateAllValues();
         }
     }
@@ -58,6 +61,9 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
 
             if (progress < 1) {
                 requestAnimationFrame(animate);
+            } else {
+
+                this.loaderService.hide();
             }
         };
 
@@ -78,6 +84,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
             });
         } else {
             this.totalAttempts = '-';
+            this.loaderService.hide();
         }
     }
 
@@ -90,6 +97,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
             });
         } else {
             this.totalFlyingtime = '-';
+            this.loaderService.hide();
         }
     }
 
@@ -102,6 +110,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
             });
         } else {
             this.bestHeight = '-';
+            this.loaderService.hide();
         }
     }
 
@@ -114,6 +123,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
             });
         } else {
             this.rank = '-';
+            this.loaderService.hide();
         }
     }
 
@@ -122,6 +132,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
             this.name = this.data.player.name;
         } else {
             this.name = '-';
+            this.loaderService.hide();
         }
     }
 
@@ -130,6 +141,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
             this.city = this.data.player.city;
         } else {
             this.city = '-';
+            this.loaderService.hide();
         }
     }
 
@@ -138,6 +150,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
             this.img_url = this.data.player.img_url;
         } else {
             this.img_url = '-';
+            this.loaderService.hide();
         }
     }
 
