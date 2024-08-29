@@ -37,7 +37,6 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 
 const palette = {
@@ -114,7 +113,6 @@ const COMPONENTS = [
     WeatherPortalLayoutComponent,
     LoaderComponent,
     KiteSearchComponent,
-    LoadingSpinnerComponent,
 ];
 const PIPES = [
     CapitalizePipe,

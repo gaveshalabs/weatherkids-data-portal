@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SharedDataService } from '../../../services/shared-data.service';
 import { Player } from '../../../@components/leaderboard/leaderboard.interface';
+import { LoaderService } from '../../../@theme/components/loader/loader.service';
 
 @Component({
     selector: 'ngx-kite',
@@ -17,7 +18,8 @@ export class KiteComponent implements OnInit {
     constructor(
         private sharedDataService: SharedDataService,
         private router: Router,
-        private breakpointObserver: BreakpointObserver
+        private breakpointObserver: BreakpointObserver,
+        private loaderService: LoaderService
     ) {
         // Listen for route changes and update view accordingly
         this.router.events.subscribe((event) => {
@@ -28,10 +30,12 @@ export class KiteComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.showLoader();
 
         this.sharedDataService.players$.subscribe(players => {
             this.combinedPlayers = players;
             console.log('Received players in kiteComponent:', this.combinedPlayers);
+            this.hideLoader();
         });
 
         // Detect if the view is on mobile devices (below 768px)
@@ -40,6 +44,13 @@ export class KiteComponent implements OnInit {
                 this.isMobile = result.matches;
                 this.updateViewBasedOnRoute(); // Update view based on current route and device type
             });
+    }
+    private showLoader(): void {
+        this.loaderService.show(); // Show loader
+    }
+
+    private hideLoader(): void {
+        this.loaderService.hide(); // Hide loader
     }
 
     private updateViewBasedOnRoute(): void {

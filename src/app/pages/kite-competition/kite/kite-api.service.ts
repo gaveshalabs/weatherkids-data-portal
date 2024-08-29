@@ -44,9 +44,9 @@ export class KiteApiService {
 
     }
 
-    getKitePlayerByUserId(userId: string): Observable<KitePlayer> {
-        return this.httpClient.get<KitePlayer>(`${environment.apiBaseUrl}/kite-players/users/${userId}`);
-    }
+    // getKitePlayerByUserId(userId: string): Observable<KitePlayer> {
+    //     return this.httpClient.get<KitePlayer>(`${environment.apiBaseUrl}/kite-players/users/${userId}`);
+    // }
 
     // Get Nearest District Data
     getNearestDistrictData(): Observable<DistrictData[]> {
@@ -61,6 +61,8 @@ export class KiteApiService {
 
 
     getAttemptData(playerId: string, attemptTimestamp: string): Observable<AttemptData> {
+        // attemptTimestamp= "2024-08-28T02:02:00Z";
+        console.log(attemptTimestamp) ;
         return this.httpClient.get<AttemptData>
         (`${environment.apiBaseUrl}/kite-players/${playerId}/attempts/${attemptTimestamp}`);
     }

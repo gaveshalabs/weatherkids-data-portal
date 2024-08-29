@@ -4,6 +4,7 @@ import { Player } from '../leaderboard.interface';
 import { KiteApiService } from '../../../pages/kite-competition/kite/kite-api.service';
 import { SharedDataService } from '../../../services/shared-data.service';
 import { PlayersComponent } from '../players/players.component';
+import { LoaderService } from '../../../@theme/components/loader/loader.service';
 
 
 @Component({
@@ -19,17 +20,19 @@ export class KiteLeaderboardComponent implements OnInit {
     remainingPlayers: Player[] = [];
     combinedPlayers: Player[] = []; // Combined list of top and remaining players
 
-    constructor(private router: Router,
+    constructor(
+        private router: Router,
         private kiteApiService: KiteApiService,
         private sharedDataService: SharedDataService,
-
-    ) { }
+        private loaderService: LoaderService,
+    ) {}
 
     ngOnInit(): void {
         this.loadLeaderboard();
     }
 
     loadLeaderboard() {
+        this.loaderService.show();
         this.kiteApiService.getPlayersLeaderboard().subscribe(
             (data) => {
                 // Sort players by kite height in descending order
@@ -64,6 +67,9 @@ export class KiteLeaderboardComponent implements OnInit {
             },
             (error) => {
                 console.error('Error fetching leaderboard:', error);
+            },
+            () => {
+                this.loaderService.hide();
             }
         );
     }
@@ -71,25 +77,10 @@ export class KiteLeaderboardComponent implements OnInit {
         this.router.navigate(['/kite/player/all']);
     }
 
-    // selectTopPlayer(player: Player) {
-    //     if (this.playersComponent) {
-    //         this.playersComponent.clearHoverAndActiveState();
-    //     }
-    //     this.router.navigate(['/kite/player', player.id], {
-    //         state: {
-    //             player,
-    //         },
-    //     });
-    // }
-
     selectTopPlayer(player: Player) {
         if (this.playersComponent) {
             this.playersComponent.clearHoverAndActiveState();
         }
-
-        // Clear the activePlayerId from local storage
-        localStorage.removeItem('activePlayerId');
-
         this.router.navigate(['/kite/player', player.id], {
             state: {
                 player,
@@ -97,5 +88,21 @@ export class KiteLeaderboardComponent implements OnInit {
         });
     }
 
+    // selectTopPlayer(player: Player) {
+    //     if (this.playersComponent) {
+    //         this.playersComponent.clearHoverAndActiveState();
+    //     }
+
+    //     // Clear the activePlayerId from local storage
+    //     localStorage.removeItem('activePlayerId');
+
+    //     this.router.navigate(['/kite/player', player.id], {
+    //         state: {
+    //             player,
+    //         },
+    //     });
+    // }
+
 }
+
 

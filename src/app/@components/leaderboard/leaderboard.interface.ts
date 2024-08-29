@@ -14,6 +14,7 @@ export interface TotalKiteData {
         rank: number;
         img_url: string;
         user_id: string;
+        id: string;
     };
     stat: { all_time: {
         max_height: number;

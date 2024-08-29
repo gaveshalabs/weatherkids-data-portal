@@ -1,17 +1,20 @@
-import { Component, AfterViewInit, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, OnDestroy } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { Attempt, PlayerData } from '../../../@components/leaderboard/leaderboard.interface';
 import { KiteApiService } from '../kite/kite-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatExpansionPanel } from '@angular/material/expansion';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'ngx-playerattemptchart',
     styleUrls: ['./player-attempt-chart.component.scss'],
     templateUrl: './player-attempt-chart.component.html',
 })
-export class PlayerAttemptChartComponent implements OnInit {
+export class PlayerAttemptChartComponent implements OnInit, OnDestroy {
     playerData: PlayerData | null = null;
+    attemptDataCache: { [key: string]: any } = {};
+    private destroy$ = new Subject<void>();
     @ViewChildren('lineChart') lineCharts: QueryList<any>;
 
     constructor(private kiteApiService: KiteApiService, private route: ActivatedRoute) {
@@ -19,57 +22,81 @@ export class PlayerAttemptChartComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.route.paramMap.subscribe(params => {
-            const playerId = params.get('id');
-            if (playerId) {
-                this.fetchPlayerData(playerId);
-            }
-        });
+        this.route.paramMap
+            .pipe(
+                debounceTime(300),
+                distinctUntilChanged(),
+                takeUntil(this.destroy$)
+            )
+            .subscribe(params => {
+                const playerId = params.get('id');
+                if (playerId) {
+                    this.fetchPlayerData(playerId);
+                }
+            });
     }
 
     fetchPlayerData(playerId: string): void {
-        this.kiteApiService.getPlayerData(playerId).subscribe(
-            (data: PlayerData) => {
-                if (data && data.attempts) {
-                    data.attempts = data.attempts.map((attempt: Attempt) => ({
-                        ...attempt,
-                        height: Math.round(attempt.height),
-                    }));
-                }
-                this.playerData = data;
-            },
-            (error) => {
-                console.error('Error fetching player data', error);
-            }
-        );
+        // Fetch data only if playerId is different from the current player
+        if (!this.playerData || this.playerData.kitePlayer._id !== playerId) {
+            this.kiteApiService.getPlayerData(playerId)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(
+                    (data: PlayerData) => {
+                        if (data && data.attempts) {
+                            data.attempts = data.attempts.map((attempt: Attempt) => ({
+                                ...attempt,
+                                height: Math.round(attempt.height),
+                            }));
+                        }
+                        this.playerData = data;
+                    },
+                    (error) => {
+                        console.error('Error fetching player data', error);
+                    }
+                );
+        }
     }
 
     fetchAttemptData(playerId: string, attemptTimestamp: string, panelIndex: number): void {
-        this.kiteApiService.getAttemptData(playerId, attemptTimestamp).subscribe(
-            (data: { data: { timestamp: string; height: number }[] }) => {
-                const chartData = {
-                    labels: data.data.map(d => new Date(d.timestamp).toLocaleTimeString([], {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: false,
-                    })),
-                    datasets: [{
-                        label: 'Height',
-                        backgroundColor: 'rgb(102, 187, 106)',
-                        data: data.data.map(d => d.height),
-                        fill: false,
-                        borderColor: 'rgb(102, 187, 106)',
-                        tension: 0.1,
-                        pointRadius: 0,
-                    }],
-                };
+        const cacheKey = `${playerId}-${attemptTimestamp}`;
 
-                this.renderChart(panelIndex, chartData);
-            },
-            (error) => {
-                console.error('Error fetching attempt data', error);
-            }
-        );
+        // Check if the data is already cached
+        if (this.attemptDataCache[cacheKey]) {
+            this.renderChart(panelIndex, this.attemptDataCache[cacheKey]);
+        } else {
+            this.kiteApiService.getAttemptData(playerId, attemptTimestamp)
+                .pipe(takeUntil(this.destroy$))
+                .subscribe(
+                    (data: { data: { timestamp: string; height: number }[] }) => {
+                        const chartData = {
+                            labels: data.data.map(d => new Date(d.timestamp).toLocaleTimeString([], {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false,
+                            })),
+                            datasets: [{
+                                label: 'Height',
+                                backgroundColor: 'rgb(102, 187, 106)',
+                                data: data.data.map(d => d.height),
+                                fill: false,
+                                borderColor: 'rgb(102, 187, 106)',
+                                tension: 0.1,
+                                pointRadius: 0,
+                            }],
+                        };
+
+                        // Cache the data
+                        this.attemptDataCache[cacheKey] = chartData;
+
+                        // Render the chart
+                        this.renderChart(panelIndex, chartData);
+                    },
+                    (error) => {
+                        console.error('Error fetching attempt data', error);
+                    }
+                );
+        }
     }
 
     renderChart(panelIndex: number, chartData: any): void {
@@ -93,6 +120,7 @@ export class PlayerAttemptChartComponent implements OnInit {
             });
         }
     }
+
     onPanelOpened(panelIndex: number): void {
         const attempt = this.playerData?.attempts[panelIndex];
         if (attempt && this.playerData) {
@@ -101,4 +129,9 @@ export class PlayerAttemptChartComponent implements OnInit {
         }
     }
 
+    ngOnDestroy(): void {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
 }
+
