@@ -1,6 +1,5 @@
-<div class="progress-loader" *ngIf="loading">
-  <mat-progress-spinner [mode]="'indeterminate'">
-  </mat-progress-spinner>
+<div class="progress-loader" *ngIf="loading" [ngClass]="{'loader-dark': isDarkTheme, 'loader-light': !isDarkTheme}">
+  <mat-spinner ></mat-spinner>
 </div>
 
 
