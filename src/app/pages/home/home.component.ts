@@ -7,6 +7,7 @@ import { AlertMessageService } from '../../@components/alert-message/alert-messa
 import { Title } from '@angular/platform-browser';
 import { RegisterNowComponent } from '../kite-competition/register-now-dialog/register-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ngx-home',
@@ -29,7 +30,8 @@ export class HomeComponent implements OnInit {
         private loader: LoaderService,
         private alert: AlertMessageService,
         titleService: Title,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        public router: Router
     ) {
         titleService.setTitle('Gavesha Data Collective | Home');
     }
@@ -129,4 +131,8 @@ export class HomeComponent implements OnInit {
             }
         );
     }
+
+    isWeatherRoute(): boolean {
+        return this.router.url.includes('/weather');
+      }
 }
