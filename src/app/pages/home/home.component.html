@@ -6,6 +6,7 @@
     </a>
   </div>
   <ngx-weather-station-search 
+  [isWeatherPage]="isWeatherRoute()" 
     [wsList]="weatherStations" 
     (selected)="onWeatherStationSelected($event)" 
     *ngIf="!renderWSOutline" 

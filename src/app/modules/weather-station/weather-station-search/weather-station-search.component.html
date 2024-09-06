@@ -1,4 +1,4 @@
-<div class="overlay search-bar" [ngClass]="{'padding-rigt-none': showClose}">
+<div class="overlay search-bar" [ngClass]="{'padding-rigt-none': showClose}" [ngClass]="{'weather-page': isWeatherPage}">
   <input type="text" matInput placeholder="Search Weather Observations" autofocus="autofocus"
   autocomplete="off" spellcheck="false" class="search-input"
   [matAutocomplete]="auto" [(ngModel)]="searchInput" #searchInputCtrl="ngModel" (ngModelChange)="filterWSes()" />
