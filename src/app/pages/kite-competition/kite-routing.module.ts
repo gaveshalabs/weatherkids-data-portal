@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { KiteComponent } from './kite/kite.component';
-import { FlyingchartComponent } from './flying-timechart/flying-chart.component';
-import { AirtimeRecordComponent } from './airtime-record/airtime-record.component';
-import { kitedetailsComponent } from './kite-detailscard/kite-detailscard.component';
-import { HeightComparisonComponent } from './height-comparison/height-comparison.component';
 import { KiteDashboardComponent } from './kite-dashboard/kite-dashboard.component';
 
 const routes: Routes = [

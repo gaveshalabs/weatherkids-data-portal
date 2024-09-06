@@ -1,20 +1,21 @@
 <div class="kite-leaderboard-container">
-  <div class="leaderboard-upper-part">
+  <div class="myrecords-div"><ngx-myrecords></ngx-myrecords></div>
+  <div class="leaderboard-upper-part" (click)="navigateToAllPlayers()">
     <div class="leaderboard-header">
       <h2>Leaderboard</h2>
     </div>
     <div class="leaderboard-top-3">
       <div class="second-div">
         <ngx-top-players *ngIf="topPlayers.length >= 2" [topPlayer]="topPlayers[1]"
-          (click)="selectTopPlayer(topPlayers[1])"></ngx-top-players>
+          (click)="selectTopPlayer(topPlayers[1]);$event.stopPropagation()"></ngx-top-players>
       </div>
       <div class="first-div">
         <ngx-best-player *ngIf="bestPlayer" [bestPlayer]="bestPlayer"
-          (click)="selectTopPlayer(bestPlayer)"></ngx-best-player>
+          (click)="selectTopPlayer(bestPlayer);$event.stopPropagation()"></ngx-best-player>
       </div>
       <div class="third-div">
         <ngx-top-players *ngIf="topPlayers.length >= 3" [topPlayer]="topPlayers[2]"
-          (click)="selectTopPlayer(topPlayers[2])"></ngx-top-players>
+          (click)="selectTopPlayer(topPlayers[2]);$event.stopPropagation()"></ngx-top-players>
       </div>
     </div>
     <div *ngIf="topPlayers.length == 0" class="no-players-text">
@@ -31,3 +32,6 @@
     </div>
   </div>
 </div>
+
+
+

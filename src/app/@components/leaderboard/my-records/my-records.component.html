@@ -1,0 +1,21 @@
+<nb-card (click)="onCardClick()" >
+  <nb-card-body>
+    <h5>My Records</h5>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    
+    <div *ngIf="playerData && playerData.player">
+      <div class="today">
+        <div class="image-container">
+          <mat-icon class="rank-image">brightness_low</mat-icon>
+          <div class="image-text">{{ playerData.player.rank }}</div>
+        </div>
+        <div class="right-text">
+          <p>{{ playerData.player.name }}</p>
+          <p>{{ playerData.player.city }}</p>
+          <p class="bheight">{{ playerData.stat.all_time.max_height }} m</p>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+

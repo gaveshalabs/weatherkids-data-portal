@@ -1,0 +1,105 @@
+@import '../../../@theme/styles/overlay';
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component {
+  nb-card-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  mat-grid-tile {
+    background: rgb(57, 72, 117);
+  }
+
+  .grid-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .icon2 {
+    position: absolute;
+    top: 8px;
+    right: 6px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    cursor: pointer;
+  
+    @include media-breakpoint-down(md) {
+      font-size: 12px;
+    }
+    
+  }
+
+  .text-content-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .text-content-2 h6 {
+    font-size: 0.7rem;
+  }
+  
+  .text-content-2 h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #66bb6a;
+  }
+  
+  .mat-tooltip {
+    font-size: 14px;
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .title{
+    margin: 10px 0;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: bold;
+  }
+  
+  .description-link {
+    text-decoration: none; // Remove underline from the link
+    color: inherit; 
+  }
+  
+  .description-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: purple;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .today {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .see-more-text {
+    font-size: 15px;
+    margin-left: 10px;
+    color: rgb(101, 163, 244);
+    
+    a {
+      text-decoration: underline;
+      color: inherit;
+
+    }
+  }
+
+}

@@ -1,0 +1,24 @@
+<nb-card>
+  <nb-card-body class="nb-card-body-scrollable">
+    <mat-accordion *ngIf="playerData">
+      <mat-expansion-panel disabled class="header-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="atno">Attempt <br> No.</mat-panel-title>
+          <mat-panel-title  class="dates">Date</mat-panel-title>
+          <mat-panel-title class="hrecord">Height</mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+      
+      <mat-expansion-panel *ngFor="let attempt of playerData.attempts; let i = index" (opened)="onPanelOpened(i)">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="atno">{{ i + 1 }}</mat-panel-title>
+          <mat-panel-title class="dates">{{ attempt.attempt_timestamp | date: 'yyyy-MM-dd' }}</mat-panel-title>
+          <mat-panel-title class="hrecord">{{ attempt.height }}m</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="chart-container">
+          <canvas #lineChart></canvas>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </nb-card-body>
+</nb-card>

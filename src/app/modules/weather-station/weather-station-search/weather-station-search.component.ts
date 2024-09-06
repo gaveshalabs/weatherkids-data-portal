@@ -8,6 +8,7 @@ import { WeatherStation } from '../../../common/interfaces/weather-station.inter
     styleUrls: ['./weather-station-search.component.scss'],
 })
 export class WeatherStationSearchComponent implements OnInit {
+    @Input() isWeatherPage: boolean = false;
     @Output() selected: EventEmitter<WeatherStation> = new EventEmitter();
     @Output() close: EventEmitter<void> = new EventEmitter();
     @Input() wsList: WeatherStation[] = [];

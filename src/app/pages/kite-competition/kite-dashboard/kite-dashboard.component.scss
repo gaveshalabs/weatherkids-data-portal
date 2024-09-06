@@ -1,9 +1,11 @@
-.dashboard {
-  .col-md-6:nth-child() {
-    padding-right: 0;
-  }
+.upper-half-image-kite {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom:10px ;
+}
 
-  .col-md-6:last-child {
-    padding-right: inherit;
-  }
+
+.desktop-playercard{
+  margin-bottom: -20px;
 }

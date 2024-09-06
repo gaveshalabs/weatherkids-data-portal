@@ -24,7 +24,6 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OAuth2Module } from './modules/oauth2/oauth2.module';
-// import { HomeComponent } from './pages/home/home.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -34,7 +33,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { environment } from '../environments/environment';
 import { AlertMessageComponent } from './@components/alert-message/alert-message.component';
 import { ApiModule } from './api/api.module';
-
 
 
 @NgModule({

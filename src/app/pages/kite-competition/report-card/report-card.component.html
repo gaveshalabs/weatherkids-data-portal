@@ -1,0 +1,76 @@
+<nb-card>
+  <nb-card-body>
+
+    <mat-form-field>
+      <mat-select [(value)]="selected" (selectionChange)="onSelectionChange($event)">
+        <mat-option value="week report">මේ සතියේ වාර්තාව</mat-option>
+        <mat-option value="all time report">සමස්ත වාර්තාව</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <div class="player-data-grid-2">
+      <mat-grid-list cols="2" rowHeight="2:1.5">
+
+        <mat-grid-tile>
+          <div class="grid-content">
+            <div class="icon2">
+              <i class="fas fa-info-circle" matTooltip="සරුංගලය ගියපු වැඩිම උස" (click)="showTooltip($event)"></i>
+            </div>
+            <div class="text-content-2">
+              <h6>BEST HEIGHT</h6>
+              <h2>{{ reportData?.max_height}}</h2>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="grid-content">
+            <div class="icon2">
+              <i class="fas fa-info-circle" matTooltip="සෙල්ලම් කරපු වේලාව" (click)="showTooltip($event)"></i>
+            </div>
+            <div class="text-content-2">
+              <h6>TOTAL FLYING TIME</h6>
+              <h2>{{ reportData?.total_flying_mins }}</h2>
+            </div>
+          </div>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <div class="grid-content">
+            <div class="icon2">
+              <i class="fas fa-info-circle" matTooltip="සරුංගලය යැවූ වාර ගණන" (click)="showTooltip($event)"></i>
+            </div>
+            <div class="text-content-2">
+              <h6>TOTAL ATTEMPTS</h6>
+              <h2>{{ reportData?.total_attempts }}</h2>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="showPlayerCount">
+          <div class="grid-content">
+            <div class="icon2">
+              <i class="fas fa-info-circle" matTooltip="තරඟකරුවන් ගණන" (click)="showTooltip($event)"></i>
+            </div>
+            <div class="text-content-2">
+              <h6 class="vname">PLAYER COUNT</h6>
+              <h2>{{ reportData?.player_count }}</h2>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    
+    <div>
+      <div class="title">තව ඕන මොනවද?</div>
+      <div class="today">
+        ගවේෂ සරුංගල් තරඟය සුපිරි එකක් කරන්න උදව් කරන්න ඔයාගෙ සුපිරි අදහස් මෙතන ලියන්න
+        <!-- If you have any questions or want to know any further details please fill out the google form attached below. -->
+      </div>
+      <a href="https://forms.gle/6SKrEGqidPDSCASb7" target="_blank" class="description-link">
+        <div class="description-icon">
+          <mat-icon style="font-size: 30px;">description</mat-icon>
+          <span class="see-more-text"><a target="_blank">see more</a></span>
+        </div>
+      </a>
+    </div>
+  </nb-card-body>
+</nb-card>

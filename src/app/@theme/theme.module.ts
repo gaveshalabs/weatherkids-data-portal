@@ -32,6 +32,12 @@ import {
 import { LoaderComponent } from './components/loader/loader.component';
 import { RouterModule } from '@angular/router';
 import { NbJSThemeOptions } from '@nebular/theme';
+import { KiteSearchComponent } from './components/kite-search-bar/kite-search.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 
 const palette = {
     primary: '#1976d2',
@@ -92,6 +98,11 @@ const NB_MODULES = [
     NbContextMenuModule,
     NbSecurityModule,
     NbEvaIconsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+
 ];
 const COMPONENTS = [
     HeaderComponent,
@@ -101,6 +112,7 @@ const COMPONENTS = [
     TwoColumnsLayoutComponent,
     WeatherPortalLayoutComponent,
     LoaderComponent,
+    KiteSearchComponent,
 ];
 const PIPES = [
     CapitalizePipe,

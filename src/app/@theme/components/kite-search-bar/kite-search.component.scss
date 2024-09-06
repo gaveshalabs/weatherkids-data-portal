@@ -1,0 +1,41 @@
+@import 'node_modules/@nebular/theme/styles/global/typography/typography';
+@import '../../../@theme/styles/overlay';
+
+.overlay {
+  height: 30px;
+  width:auto ;
+  float: none;
+  background-color: nb-theme(color-basic-800); 
+}
+
+.search-bar {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: nb-theme(color-basic-100); 
+  background-color: nb-theme(color-basic-800); 
+  border-radius: 4px;
+}
+
+.search-input {
+  border: none;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  background-color: nb-theme(color-basic-800); 
+  color: nb-theme(color-basic-100); 
+
+}
+
+
+.ws-info {
+  line-height: 20px;
+}
+
+.ws-info-line {
+  color: nb-theme(color-basic-600);
+}
+
+
