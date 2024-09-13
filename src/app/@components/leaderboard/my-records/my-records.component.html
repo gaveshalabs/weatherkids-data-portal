@@ -12,7 +12,7 @@
         <div class="right-text">
           <p>{{ playerData.player.name }}</p>
           <p>{{ playerData.player.city }}</p>
-          <p class="bheight">{{ playerData.stat.all_time.max_height }} m</p>
+          <p class="bheight">{{ playerData.stat.all_time.max_height | number:'1.0-0'}} m</p>
         </div>
       </div>
     </div>
