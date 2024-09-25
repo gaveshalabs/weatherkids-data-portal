@@ -3,7 +3,7 @@ export const environment = {
     production: true,
     firebaseConfig: {
         apiKey: 'AIzaSyC0V6RtLwN9SGbm_O13HxOJXe5tCoS1_ak',
-        authDomain: 'weatherkids-f85f4.firebaseapp.com',
+        authDomain: 'data.gavesha.space',
         projectId: 'weatherkids-f85f4',
         storageBucket: 'weatherkids-f85f4.appspot.com',
         messagingSenderId: '373844308744',
