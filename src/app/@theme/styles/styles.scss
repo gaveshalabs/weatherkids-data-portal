@@ -24,8 +24,8 @@
 
 // install the framework and custom global styles
 @include nb-install {
-  @include purple-green-theme;
-  @include clownfish-theme;
+  // @include clownfish-theme;
+  // @include purple-green-theme;
 
   // framework global styles
   @include nb-theme-global;
