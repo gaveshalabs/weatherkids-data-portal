@@ -8,6 +8,7 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'ngx-playerattemptchart',
+    standalone: false,
     styleUrls: ['./player-attempt-chart.component.scss'],
     templateUrl: './player-attempt-chart.component.html',
 })

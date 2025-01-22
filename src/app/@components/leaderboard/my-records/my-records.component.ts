@@ -9,6 +9,7 @@ import { LoaderService } from '../../../@theme/components/loader/loader.service'
 
 @Component({
     selector: 'ngx-myrecords',
+    standalone: false,
     styleUrls: ['./my-records.component.scss'],
     templateUrl: './my-records.component.html',
 })

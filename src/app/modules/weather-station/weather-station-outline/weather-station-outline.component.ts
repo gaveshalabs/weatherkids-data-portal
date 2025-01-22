@@ -5,6 +5,7 @@ import { WeatherStation, WeatherStationSummary } from '../../../common/interface
 
 @Component({
     selector: 'ngx-weather-station-outline',
+    standalone: false,
     templateUrl: './weather-station-outline.component.html',
     styleUrls: ['./weather-station-outline.component.scss'],
 })

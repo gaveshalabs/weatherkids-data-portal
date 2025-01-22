@@ -10,6 +10,7 @@ import { LoaderService } from '../../../@theme/components/loader/loader.service'
 
 @Component({
     selector: 'ngx-kite',
+    standalone: false,
     templateUrl: './kite-dashboard.component.html',
     styleUrls: ['./kite-dashboard.component.scss'],
 })

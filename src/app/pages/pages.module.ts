@@ -8,12 +8,14 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { WeatherStationHistoryModule } from './weather-station-history/weather-station-history.module';
 import { MatIconModule } from '@angular/material/icon';
+import { WeatherPortalLayoutComponent } from '../@theme/layouts';
 
 
 @NgModule({
     imports: [
         PagesRoutingModule,
-        ThemeModule,
+        // ThemeModule,
+        WeatherPortalLayoutComponent,
         NbMenuModule,
         DashboardModule,
         HomeModule,

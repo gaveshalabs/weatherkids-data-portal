@@ -16,10 +16,15 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { WeatherStationModule } from '../../modules/weather-station/weather-station.module';
 import { HomeComponent } from './home.component';
 import { SharedModule } from '../../modules/shared/shared.module';
+import { MapComponent } from '../../@components/map/map.component';
+import { HeaderComponent } from '../../@theme/components';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
-        ThemeModule,
+        HeaderComponent,
+        CommonModule,
+        // ThemeModule,
         // NbCardModule,
         // NbUserModule,
         // NbButtonModule,
@@ -31,7 +36,8 @@ import { SharedModule } from '../../modules/shared/shared.module';
         // NbIconModule,
         // NbButtonModule,
         WeatherStationModule,
-        SharedModule,
+        // SharedModule,
+        MapComponent,
     ],
     declarations: [
         HomeComponent,

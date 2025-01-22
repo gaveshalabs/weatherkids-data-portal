@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'ngx-reportcard',
+    standalone: false,
     templateUrl: './report-card.component.html',
     styleUrls: ['./report-card.component.scss'],
 })

@@ -12,6 +12,7 @@ null ;
 
 @Component({
     selector: 'ngx-sensor-reading',
+    standalone: false,
     templateUrl: './sensor-reading.component.html',
     styleUrls: ['./sensor-reading.component.scss'],
 })

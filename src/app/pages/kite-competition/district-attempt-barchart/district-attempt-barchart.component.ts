@@ -10,7 +10,7 @@ Chart.register(...registerables);
 @Component({
     selector: 'ngx-heightbarchart',
     standalone: true,
-    imports: [RouterOutlet, RouterLink, NbCardModule],
+    imports: [NbCardModule],
     templateUrl: './district-attempt-barchart.component.html',
     styleUrls: ['./district-attempt-barchart.component.scss'],
 })

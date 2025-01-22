@@ -5,6 +5,7 @@ import { Player } from '../../../@components/leaderboard/leaderboard.interface';
 
 @Component({
     selector: 'ngx-kite-search',
+    standalone: false,
     templateUrl: './kite-search.component.html',
     styleUrls: ['./kite-search.component.scss'],
 })

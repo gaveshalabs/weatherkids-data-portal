@@ -1,8 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
+  NbActionsModule,
+    NbContextMenuModule,
     NbMediaBreakpointsService,
     NbMenuService,
     NbThemeService,
+    NbUserModule,
 } from '@nebular/theme';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -21,12 +24,15 @@ import { NavigationEnd, Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Player } from '../../../@components/leaderboard/leaderboard.interface';
 import { SharedDataService } from '../../../services/shared-data.service';
+import { CommonModule } from '@angular/common';
+import { NbSecurityModule } from '@nebular/security';
 
 
 @Component({
     selector: 'ngx-header',
     styleUrls: ['./header.component.scss'],
     templateUrl: './header.component.html',
+    imports: [CommonModule, NbActionsModule, NbUserModule, NbSecurityModule, NbContextMenuModule],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -267,10 +273,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     //   return false;
     // }
-
-    // openDialog(): void {
-    //     const config: MatDialogConfig = {
-    //     };
-    //     this.dialog.open(RegisterNowComponent, config);
-    // };
 }

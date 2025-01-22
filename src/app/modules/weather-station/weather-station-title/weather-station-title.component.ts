@@ -3,6 +3,7 @@ import { WeatherStation } from '../../../common/interfaces/weather-station.inter
 
 @Component({
     selector: 'ngx-weather-station-title',
+    standalone: false,
     templateUrl: './weather-station-title.component.html',
     styleUrls: ['./weather-station-title.component.scss'],
 })

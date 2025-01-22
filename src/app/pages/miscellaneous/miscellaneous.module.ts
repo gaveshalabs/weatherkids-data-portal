@@ -13,6 +13,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
         NbButtonModule,
         MiscellaneousRoutingModule,
     ],
-    declarations: [MiscellaneousComponent, NotFoundComponent],
+    // declarations: [MiscellaneousComponent, NotFoundComponent],
 })
 export class MiscellaneousModule {}

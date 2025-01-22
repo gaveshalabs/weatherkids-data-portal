@@ -5,6 +5,7 @@ import { players } from '../leaderboard-player-data';
 
 @Component({
     selector: 'ngx-top-players',
+    standalone: false,
     templateUrl: './top-players.component.html',
     styleUrls: ['./top-players.component.scss'],
 })

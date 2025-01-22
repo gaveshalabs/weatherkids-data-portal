@@ -25,6 +25,7 @@ interface DatePreset {
 
 @Component({
     selector: 'ngx-weather-station-history',
+    standalone: false,
     templateUrl: './weather-station-history.component.html',
     styleUrls: ['./weather-station-history.component.scss'],
     animations: [

@@ -128,6 +128,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
     selector: 'ngx-desktopplayerdatacard',
+    standalone: false,
     styleUrls: ['./desktop-player-data-card.component.scss'],
     templateUrl: './desktop-player-data-card.component.html',
 })

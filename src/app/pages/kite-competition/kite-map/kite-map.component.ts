@@ -5,6 +5,7 @@ import { LatLngTuple } from 'leaflet';
 
 @Component({
     selector: 'ngx-kite-competition-map',
+    standalone: false,
     templateUrl: './kite-map.component.html',
     styleUrls: ['./kite-map.component.scss'],
 })

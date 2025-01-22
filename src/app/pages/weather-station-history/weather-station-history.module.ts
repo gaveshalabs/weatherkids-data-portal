@@ -19,6 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ThemeModule } from '../../@theme/theme.module';
 // import { NbSidebarModule } from '@nebular/theme';
 import { SharedModule } from '../../modules/shared/shared.module';
+import { MapComponent } from '../../@components/map/map.component';
+import { HeaderComponent } from '../../@theme/components';
 
 
 @NgModule({
@@ -47,8 +49,10 @@ import { SharedModule } from '../../modules/shared/shared.module';
         MatSelectModule,
         NgChartsModule,
         WeatherStationModule,
-        ThemeModule,
-        SharedModule,
+        // ThemeModule,
+        // SharedModule,
+        HeaderComponent,
+        MapComponent,
     ],
 })
 export class WeatherStationHistoryModule { }

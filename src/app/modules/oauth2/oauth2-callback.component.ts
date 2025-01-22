@@ -15,6 +15,7 @@ import { AlertMessageService } from '../../@components/alert-message/alert-messa
 
 @Component({
     selector: 'ngx-nb-oauth2-callback',
+    standalone: false,
     template: `
         <nb-layout>
             <nb-layout-column>Authenticating...</nb-layout-column>

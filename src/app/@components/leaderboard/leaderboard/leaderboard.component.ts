@@ -9,6 +9,7 @@ import { LoaderService } from '../../../@theme/components/loader/loader.service'
 
 @Component({
     selector: 'ngx-kite-leaderboard',
+    standalone: false,
     templateUrl: './leaderboard.component.html',
     styleUrls: ['./leaderboard.component.scss'],
 })

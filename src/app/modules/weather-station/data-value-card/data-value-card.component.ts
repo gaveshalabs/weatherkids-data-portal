@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'ngx-data-value-card',
+    standalone: false,
     templateUrl: './data-value-card.component.html',
     styleUrls: ['./data-value-card.component.scss'],
 })

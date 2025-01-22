@@ -4,6 +4,7 @@ import { WeatherStation } from '../../../common/interfaces/weather-station.inter
 
 @Component({
     selector: 'ngx-weather-station-search',
+    standalone: false,
     templateUrl: './weather-station-search.component.html',
     styleUrls: ['./weather-station-search.component.scss'],
 })

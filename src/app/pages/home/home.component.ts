@@ -5,12 +5,12 @@ import { WeatherStation, WeatherStationSummary } from '../../common/interfaces/w
 import { LoaderService } from '../../@theme/components/loader/loader.service';
 import { AlertMessageService } from '../../@components/alert-message/alert-message.service';
 import { Title } from '@angular/platform-browser';
-import { RegisterNowComponent } from '../kite-competition/register-now-dialog/register-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 @Component({
     selector: 'ngx-home',
+    standalone: false,
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
 })
@@ -39,16 +39,6 @@ export class HomeComponent implements OnInit {
     ngOnInit(): void {
         this.loader.show();
         this.loadWeatherStations(10);
-        this.openRegisterNowDialog();
-    }
-
-
-    openRegisterNowDialog(): void {
-        this.dialog.open(RegisterNowComponent, {
-            width: '85vh',
-            height: '68vh',
-            panelClass: 'full-screen-dialog',
-        });
     }
 
     async onWeatherStationSelected(selectedMarker: WeatherStation | {lat: number; lng: number}) {

@@ -5,6 +5,7 @@ import { LoaderService } from '../../../@theme/components/loader/loader.service'
 
 @Component({
     selector: 'ngx-playerdatacard',
+    standalone: false,
     styleUrls: ['./player-data-card.component.scss'],
     templateUrl: './player-data-card.component.html',
 })

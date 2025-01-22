@@ -24,7 +24,8 @@ import { MatButtonModule } from '@angular/material/button';
         WeatherStationOutlineComponent,
     ],
     imports: [
-        ThemeModule,
+        // ThemeModule,
+        CommonModule,
         NbUserModule,
         FormsModule,
         MatAutocompleteModule,

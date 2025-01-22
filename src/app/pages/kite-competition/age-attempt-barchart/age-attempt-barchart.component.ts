@@ -63,7 +63,7 @@ Chart.register(...registerables);
 @Component({
     selector: 'ngx-ageattemptbarchart',
     standalone: true,
-    imports: [RouterOutlet, RouterLink, NbCardModule],
+    imports: [NbCardModule],
     templateUrl: './age-attempt-barchart.component.html',
     styleUrls: ['./age-attempt-barchart.component.scss'],
 })

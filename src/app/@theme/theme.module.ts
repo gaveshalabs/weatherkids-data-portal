@@ -30,9 +30,8 @@ import {
     TimingPipe,
 } from './pipes';
 import { LoaderComponent } from './components/loader/loader.component';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { NbJSThemeOptions } from '@nebular/theme';
-import { KiteSearchComponent } from './components/kite-search-bar/kite-search.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -98,7 +97,7 @@ const NB_MODULES = [
     NbContextMenuModule,
     NbSecurityModule,
     NbEvaIconsModule,
-    MatAutocompleteModule,
+    // MatAutocompleteModule,
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
@@ -112,7 +111,6 @@ const COMPONENTS = [
     TwoColumnsLayoutComponent,
     WeatherPortalLayoutComponent,
     LoaderComponent,
-    KiteSearchComponent,
 ];
 const PIPES = [
     CapitalizePipe,
@@ -123,16 +121,17 @@ const PIPES = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENTS, ...PIPES],
+    // declarations: [...COMPONENTS, ...PIPES],
     imports: [
-        CommonModule,
-        MatButtonModule,
-        MatIconModule,
-        MatProgressSpinnerModule,
-        RouterModule,
+        // CommonModule,
+        // MatButtonModule,
+        // MatIconModule,
+        // MatProgressSpinnerModule,
+        // RouterModule,
+        // RouterLink,
         ...NB_MODULES,
     ],
-    exports: [CommonModule, ...COMPONENTS, ...PIPES],
+    // exports: [CommonModule, ...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
     static forRoot(): ModuleWithProviders<ThemeModule> {
