@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, NgZone } from '@angular/core';
+import { inject, Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
@@ -24,6 +24,7 @@ import { SessionApiService } from '../../api/session-api.service';
 export class OAuth2Service {
 
     private destroy$: Subject<void> = new Subject<void>();
+    private afAuth: Auth = inject(Auth);
 
     // userData: User;
     userData: UserProfile | null = null;
@@ -35,7 +36,7 @@ export class OAuth2Service {
 
     constructor(
         private sessionApiService: SessionApiService,
-        private afAuth: Auth,
+        // private afAuth: Auth,
         // public afAuth: AngularFireAuth,
         // public authService: NbAuthService,
         public ngZone: NgZone,

@@ -6,17 +6,13 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import {
-    // NbChatModule,
-    // NbDatepickerModule,
-    // NbDialogModule,
     NbMenuModule,
     NbSidebarModule,
     NbToastrModule,
     NbWindowModule,
 } from '@nebular/theme';
-// import { MapComponent } from './@components/map/map.component';
 import { PrivacyPolicyComponent } from './@components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionsComponent } from './@components/terms-and-conditions/terms-and-conditions.component';
 import { CoreModule } from './@core/core.module';
@@ -38,8 +34,6 @@ import { ApiModule } from './api/api.module';
 @NgModule({
     declarations: [
         AppComponent,
-        // HomeComponent,
-        // MapComponent,
         AlertMessageComponent,
         PrivacyPolicyComponent,
         TermsAndConditionsComponent,
@@ -47,24 +41,21 @@ import { ApiModule } from './api/api.module';
 
 
     ],
-    imports: [
+    providers: [
+        provideAnimations(),
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
+    ],
+    imports: [
         ApiModule,
-
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         AppRoutingModule,
         NbSidebarModule.forRoot(),
         NbMenuModule.forRoot(),
-        // NbDatepickerModule.forRoot(),
-        // NbDialogModule.forRoot(),
         NbWindowModule.forRoot(),
         NbToastrModule.forRoot(),
-        // NbChatModule.forRoot({
-        //   messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
-        // }),
         CoreModule.forRoot(),
         ThemeModule.forRoot(),
 

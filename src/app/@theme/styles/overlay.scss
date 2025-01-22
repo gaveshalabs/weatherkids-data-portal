@@ -1,6 +1,6 @@
 @use 'sass:string';
 @import 'bootstrap/scss/mixins/breakpoints';
-@import 'node_modules/@nebular/theme/styles/global/breakpoints';
+@import '../../../../node_modules/@nebular/theme/styles/global/breakpoints';
 @import 'themes';
 
 .overlay {
