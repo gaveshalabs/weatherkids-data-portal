@@ -26,13 +26,14 @@ import { Player } from '../../../@components/leaderboard/leaderboard.interface';
 import { SharedDataService } from '../../../services/shared-data.service';
 import { CommonModule } from '@angular/common';
 import { NbSecurityModule } from '@nebular/security';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
     selector: 'ngx-header',
     styleUrls: ['./header.component.scss'],
     templateUrl: './header.component.html',
-    imports: [CommonModule, NbActionsModule, NbUserModule, NbSecurityModule, NbContextMenuModule],
+    imports: [CommonModule, NbActionsModule, NbUserModule, NbSecurityModule, NbContextMenuModule, MatButtonModule],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
