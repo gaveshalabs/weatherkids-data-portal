@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
-  NbActionsModule,
+    NbActionsModule,
     NbContextMenuModule,
     NbMediaBreakpointsService,
     NbMenuService,
@@ -21,7 +21,7 @@ import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
 import { UserProfile } from '../../../common/interfaces/user.interface';
 import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Player } from '../../../@components/leaderboard/leaderboard.interface';
 import { SharedDataService } from '../../../services/shared-data.service';
 import { CommonModule } from '@angular/common';
@@ -211,7 +211,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
         this.sharedDataService.players$.subscribe(players => {
             this.combinedPlayers = players;
-            console.log('Received players in HeaderComponent:', this.combinedPlayers);
         });
         // Ensure showSearchBar is correctly initialized based on the current URL
 

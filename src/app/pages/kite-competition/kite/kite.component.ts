@@ -35,7 +35,6 @@ export class KiteComponent implements OnInit {
 
         this.sharedDataService.players$.subscribe(players => {
             this.combinedPlayers = players;
-            console.log('Received players in kiteComponent:', this.combinedPlayers);
             this.hideLoader();
         });
 

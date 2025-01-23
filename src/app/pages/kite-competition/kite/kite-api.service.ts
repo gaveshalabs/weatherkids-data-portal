@@ -1,12 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
-    AgeGroupData, AttemptData, DistrictData, KitePlayer, PlayerData, TotalKiteData,
+    AgeGroupData, AttemptData, DistrictData, PlayerData, TotalKiteData,
 } from '../../../@components/leaderboard/leaderboard.interface';
 import { environment } from '../../../../environments/environment';
-import { catchError, map } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
-import { Attempt } from '../../../@components/leaderboard/leaderboard.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -62,7 +61,6 @@ export class KiteApiService {
 
     getAttemptData(playerId: string, attemptTimestamp: string): Observable<AttemptData> {
         // attemptTimestamp= "2024-08-28T02:02:00Z";
-        console.log(attemptTimestamp) ;
         return this.httpClient.get<AttemptData>
         (`${environment.apiBaseUrl}/kite-players/${playerId}/attempts/${attemptTimestamp}`);
     }

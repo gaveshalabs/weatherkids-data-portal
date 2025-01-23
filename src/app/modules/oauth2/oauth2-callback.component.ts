@@ -8,9 +8,8 @@ import { Component, OnDestroy } from '@angular/core';
 import { NbAuthResult, NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { OAuth2Service } from './oauth2.service';
-import { UserProfile } from '../../common/interfaces/user.interface';
 import { AlertMessageService } from '../../@components/alert-message/alert-message.service';
 
 @Component({

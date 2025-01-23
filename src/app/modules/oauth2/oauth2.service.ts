@@ -179,7 +179,7 @@ export class OAuth2Service {
 
     logout() {
         return signOut(this.afAuth).then(
-            result => {
+            () => {
                 localStorage.removeItem('user');
                 this.userSubject.next(null);
                 this.router.navigate(['/']);

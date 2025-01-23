@@ -6,10 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class SharedDataService {
-    private playersSource = new BehaviorSubject<any[]>([]);
+    private playersSource = new BehaviorSubject<never[]>([]);
     players$ = this.playersSource.asObservable();
 
-    setPlayers(players: any[]) {
+    setPlayers(players: never[]) {
         this.playersSource.next(players);
     }
 }

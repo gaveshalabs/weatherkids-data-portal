@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, OnDestroy, ElementRef } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { Attempt, PlayerData } from '../../../@components/leaderboard/leaderboard.interface';
 import { KiteApiService } from '../kite/kite-api.service';
@@ -14,9 +14,10 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 })
 export class PlayerAttemptChartComponent implements OnInit, OnDestroy {
     playerData: PlayerData | null = null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     attemptDataCache: { [key: string]: any } = {};
     private destroy$ = new Subject<void>();
-    @ViewChildren('lineChart') lineCharts: QueryList<any>;
+    @ViewChildren('lineChart') lineCharts: QueryList<ElementRef>;
 
     constructor(private kiteApiService: KiteApiService, private route: ActivatedRoute) {
         Chart.register(...registerables);
@@ -100,7 +101,7 @@ export class PlayerAttemptChartComponent implements OnInit, OnDestroy {
         }
     }
 
-    renderChart(panelIndex: number, chartData: any): void {
+    renderChart(panelIndex: number, chartData): void {
         const canvasElement = this.lineCharts.toArray()[panelIndex].nativeElement;
         const ctx = canvasElement.getContext('2d');
         if (ctx) {

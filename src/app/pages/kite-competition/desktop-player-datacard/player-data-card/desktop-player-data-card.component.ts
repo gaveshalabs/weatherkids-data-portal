@@ -279,6 +279,7 @@ export class DesktopPlayerDataCardComponent implements OnInit, OnChanges {
         return `assets/avatars/Avatar_Icons/${filename}`;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     showTooltip(event: MouseEvent) {
         this.tooltip.show();
     }

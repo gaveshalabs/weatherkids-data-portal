@@ -26,8 +26,8 @@ export class TemperatureComponent implements OnDestroy {
     humidityOff = false;
     humidityMode = 'heat';
 
-    theme: any;
-    themeSubscription: any;
+    theme;
+    themeSubscription;
 
     constructor(
         private themeService: NbThemeService,

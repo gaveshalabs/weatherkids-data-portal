@@ -10,6 +10,6 @@ interface NodeModule {
     id: string;
 }
 
-declare let tinymce: any;
+declare let tinymce: never;
 
 // declare let echarts: any;

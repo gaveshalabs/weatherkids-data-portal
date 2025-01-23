@@ -33,7 +33,7 @@ export class TemperatureDraggerComponent implements AfterViewInit, OnChanges {
     @Input() thumbBorderColor;
     @Input() maxLeap = 0.4;
 
-    @Output() valueChange = new EventEmitter<Number>();
+    @Output() valueChange = new EventEmitter<number>();
     @Input() value = 50;
 
     @Input() min = 0; // min output value
@@ -54,7 +54,7 @@ export class TemperatureDraggerComponent implements AfterViewInit, OnChanges {
     }
 
     @HostListener('window:resize', ['$event'])
-    onResize(event) {
+    onResize() {
         this.invalidate();
     }
 
@@ -69,7 +69,7 @@ export class TemperatureDraggerComponent implements AfterViewInit, OnChanges {
     translateYValue = 0;
     thickness = 6;
     pinRadius = 10;
-    colors: any = [];
+    colors = [];
 
     styles = {
         viewBox: '0 0 300 300',

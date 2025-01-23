@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit {
     }
 
     async onWeatherStationSelected(selectedMarker: WeatherStation | {lat: number; lng: number}) {
-        function isLatLng(obj: any): obj is {lat: number; lng: number} {
-            return obj.lat !== undefined;
+        function isLatLng(obj: unknown): obj is {lat: number; lng: number} {
+            return obj['lat'] !== undefined;
         }
         let station!: WeatherStation;
         if (isLatLng(selectedMarker)) {
@@ -124,5 +124,5 @@ export class HomeComponent implements OnInit {
 
     isWeatherRoute(): boolean {
         return this.router.url.includes('/weather');
-      }
+    }
 }

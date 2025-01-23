@@ -63,7 +63,6 @@ export class KiteLeaderboardComponent implements OnInit {
 
                 // Combine top and remaining players for search
                 this.combinedPlayers = [...this.topPlayers, ...this.remainingPlayers];
-                console.log('Combined Players:', this.combinedPlayers);
                 this.sharedDataService.setPlayers(this.combinedPlayers);
             },
             (error) => {

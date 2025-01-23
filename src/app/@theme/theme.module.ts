@@ -1,6 +1,4 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './components/header/header.component';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbSecurityModule } from '@nebular/security';
 import {
@@ -12,30 +10,10 @@ import {
     NbThemeModule,
     NbUserModule,
 } from '@nebular/theme';
-import { FooterComponent } from './components/footer/footer.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {
-    OneColumnLayoutComponent,
-    ThreeColumnsLayoutComponent,
-    TwoColumnsLayoutComponent,
-    WeatherPortalLayoutComponent,
-} from './layouts';
-import {
-    CapitalizePipe,
-    NumberWithCommasPipe,
-    PluralPipe,
-    RoundPipe,
-    TimingPipe,
-} from './pipes';
-import { LoaderComponent } from './components/loader/loader.component';
-import { RouterLink, RouterModule } from '@angular/router';
 import { NbJSThemeOptions } from '@nebular/theme';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 const palette = {
@@ -103,35 +81,11 @@ const NB_MODULES = [
     ReactiveFormsModule,
 
 ];
-const COMPONENTS = [
-    HeaderComponent,
-    FooterComponent,
-    OneColumnLayoutComponent,
-    ThreeColumnsLayoutComponent,
-    TwoColumnsLayoutComponent,
-    WeatherPortalLayoutComponent,
-    LoaderComponent,
-];
-const PIPES = [
-    CapitalizePipe,
-    PluralPipe,
-    RoundPipe,
-    TimingPipe,
-    NumberWithCommasPipe,
-];
 
 @NgModule({
-    // declarations: [...COMPONENTS, ...PIPES],
     imports: [
-        // CommonModule,
-        // MatButtonModule,
-        // MatIconModule,
-        // MatProgressSpinnerModule,
-        // RouterModule,
-        // RouterLink,
         ...NB_MODULES,
     ],
-    // exports: [CommonModule, ...COMPONENTS, ...PIPES],
 })
 export class ThemeModule {
     static forRoot(): ModuleWithProviders<ThemeModule> {

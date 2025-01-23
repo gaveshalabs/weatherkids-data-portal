@@ -1,12 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { of as observableOf, Observable, BehaviorSubject } from 'rxjs';
+import { of as observableOf, BehaviorSubject } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 
 import { NbLayoutDirectionService, NbLayoutDirection } from '@nebular/theme';
 
 @Injectable()
 export class StateService implements OnDestroy {
-    protected layouts: any = [
+    protected layouts = [
         {
             name: 'One Column',
             icon: 'nb-layout-default',
@@ -25,7 +25,7 @@ export class StateService implements OnDestroy {
         },
     ];
 
-    protected sidebars: any = [
+    protected sidebars = [
         {
             name: 'Sidebar at layout start',
             icon: 'nb-layout-sidebar-left',
@@ -70,27 +70,29 @@ export class StateService implements OnDestroy {
         endSidebar.icon = endIconClass;
     }
 
-    setLayoutState(state: any): any {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setLayoutState(state: any) {
         this.layoutState$.next(state);
     }
 
-    getLayoutStates(): Observable<any[]> {
+    getLayoutStates() {
         return observableOf(this.layouts);
     }
 
-    onLayoutState(): Observable<any> {
+    onLayoutState() {
         return this.layoutState$.asObservable();
     }
 
-    setSidebarState(state: any): any {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setSidebarState(state: any) {
         this.sidebarState$.next(state);
     }
 
-    getSidebarStates(): Observable<any[]> {
+    getSidebarStates() {
         return observableOf(this.sidebars);
     }
 
-    onSidebarState(): Observable<any> {
+    onSidebarState() {
         return this.sidebarState$.asObservable();
     }
 }

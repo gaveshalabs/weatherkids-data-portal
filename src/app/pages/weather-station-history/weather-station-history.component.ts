@@ -154,7 +154,7 @@ export class WeatherStationHistoryComponent implements OnInit {
 
         percentage_light_intensity: ChartOptions<'line'>;
         tvoc: ChartOptions<'line'>;
-    } = {} as any;
+    };
 
     dataFilteringForm: FormGroup;
     presetDateRanges: DatePreset[] = [
@@ -433,15 +433,9 @@ export class WeatherStationHistoryComponent implements OnInit {
         const filterConfig = this.dataFilteringForm.value;
         if (!this._lastRequestedDateRange.start.isSame(filterConfig.dateRangeStart) ||
             !this._lastRequestedDateRange.end.isSame(filterConfig.dateRangeEnd)) {
-            let end: moment.Moment = filterConfig.dateRangeEnd;
-            end = end.endOf('d');
             this._renderCharts(this._currentWeatherStationId, filterConfig.dateRangeStart, filterConfig.dateRangeEnd);
         }
         this._setPresetNameIfApplicable();
-    }
-
-    deselectAllWS() {
-
     }
 
     private loadWeatherStations(retryCount: number) {
@@ -549,13 +543,15 @@ export class WeatherStationHistoryComponent implements OnInit {
                         precipitation: precipitationHourlyMap[key],
                     }));
 
-                    this.sensorReadings.temperature.datasets[0].data = resp as any;
-                    this.sensorReadings.humidity.datasets[0].data = resp as any;
-                    this.sensorReadings.pressure.datasets[0].data = resp as any;
-                    this.sensorReadings.precipitation.datasets[0].data = processedPrecipitationHourlyData as any;
+                    this.sensorReadings.temperature.datasets[0].data = resp as never;
+                    this.sensorReadings.humidity.datasets[0].data = resp as never;
+                    this.sensorReadings.pressure.datasets[0].data = resp as never;
+                    this.sensorReadings.precipitation.datasets[0].data = processedPrecipitationHourlyData as never;
                     this.sensorReadings.percentage_light_intensity.datasets[0].data = resp.map(d =>
-                        ({ timestamp: d.timestamp, percentage_light_intensity: d.percentage_light_intensity })) as any;
-                    // this.sensorReadings.precipitation.datasets[0].data = resp as any;
+                        ({
+                          timestamp: d.timestamp,
+                          percentage_light_intensity: d.percentage_light_intensity,
+                        })) as never;
                     this.charts.forEach(child => {
                         child.update();
                     });

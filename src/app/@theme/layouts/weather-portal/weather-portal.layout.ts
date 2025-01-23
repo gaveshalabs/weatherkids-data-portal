@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NbLayoutColumnComponent, NbLayoutModule } from '@nebular/theme';
+import { NbLayoutModule } from '@nebular/theme';
 
 @Component({
     selector: 'ngx-weather-portal-layout',
@@ -11,6 +11,6 @@ import { NbLayoutColumnComponent, NbLayoutModule } from '@nebular/theme';
       </nb-layout-column>
     </nb-layout>
     `,
-    imports: [NbLayoutModule]
+    imports: [NbLayoutModule],
 })
 export class WeatherPortalLayoutComponent {}

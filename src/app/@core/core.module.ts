@@ -8,8 +8,6 @@ import { CommonModule } from '@angular/common';
 import {
     NbAuthModule,
     NbDummyAuthStrategy,
-    NbOAuth2AuthStrategy,
-    NbOAuth2ResponseType,
 } from '@nebular/auth';
 import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
 import { of as observableOf } from 'rxjs';
@@ -26,7 +24,6 @@ import { TemperatureHumidityData } from './data/temperature-humidity';
 
 import { TemperatureHumidityService } from './mock/temperature-humidity.service';
 import { MockDataModule } from './mock/mock-data.module';
-import { environment } from '../../environments/environment';
 
 const socialLinks = [
     {

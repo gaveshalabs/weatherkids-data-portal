@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { NbLayoutModule } from '@nebular/theme';
 import { OAuth2CallbackComponent } from './oauth2-callback.component';
 import { OAuth2Service } from './oauth2.service';
-import { HeaderComponent } from '../../@theme/components';
 
 @NgModule({
     declarations: [OAuth2CallbackComponent],
