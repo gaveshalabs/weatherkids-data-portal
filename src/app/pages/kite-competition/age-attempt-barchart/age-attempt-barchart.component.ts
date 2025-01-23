@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart, registerables } from 'chart.js';
+import { Chart, ChartConfiguration, registerables } from 'chart.js';
 import { NbCardModule } from '@nebular/theme';
 import { KiteApiService } from '../kite/kite-api.service';
 import { AgeGroupData } from '../../../@components/leaderboard/leaderboard.interface';
@@ -41,7 +41,7 @@ export class AgeAttemptbarchartComponent implements OnInit {
         });
     }
 
-    public config = {
+    public config: ChartConfiguration<"bar"> = {
         type: 'bar',
         data: {
             labels: [],

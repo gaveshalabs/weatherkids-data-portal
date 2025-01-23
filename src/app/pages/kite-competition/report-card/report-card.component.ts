@@ -15,7 +15,13 @@ export class ReportCardComponent implements OnChanges, OnDestroy {
 
     @Input() data: TotalKiteData | null = null;
     selected: string;
-    reportData = {};
+    reportData = {
+      total_height: 0,
+      total_attempts: 0,
+      total_flying_mins: 0,
+      max_height: 0,
+      player_count: 0,
+    };
     showPlayerCount = false;
 
     private routerSubscription: Subscription;
