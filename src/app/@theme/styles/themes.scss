@@ -7,7 +7,6 @@
 @import '@nebular/theme/styles/themes/default';
 @import '@nebular/theme/styles/themes/dark';
 @import './material-dark';
-// @import '@angular/material/theming';
 
 $nb-themes: nb-register-theme((
     color-primary-100: #bbdefb,

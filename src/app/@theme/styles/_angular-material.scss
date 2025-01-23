@@ -1,8 +1,6 @@
 @use '@angular/material' as mat;
 @use 'sass:string';
-
-
-@include mat.core();
+@include mat.core;
 
 $blue-palette: (
   primary: #1976d2,
@@ -30,7 +28,6 @@ $custom-light-theme: mat.m2-define-light-theme((color: (primary: $my-primary,
     ),
     typography: $my-typography,
   ));
-
 $purple-palette: mat.m2-define-palette(mat.$m2-purple-palette);
 $green-palette: mat.m2-define-palette(mat.$m2-green-palette);
 $pg-typography: mat.m2-define-typography-config($font-family: string.unquote('Outfit, Noto Sans Sinhala, sans-serif'));
@@ -44,35 +41,10 @@ $dark-theme: mat.m2-define-dark-theme((color: (primary: $purple-palette,
 @mixin clownfish-theme {
   // Apply the custom light theme
   @include mat.all-component-themes($custom-light-theme);
-
-// Emit theme-dependent styles for common features used across multiple components.
-// @include mat.core-theme($custom-light-theme);
-// @include mat.autocomplete-theme($custom-light-theme);
-// @include mat.button-theme($custom-light-theme);
-// @include mat.icon-theme($custom-light-theme);
-// @include mat.tooltip-theme($custom-light-theme);
-// @include mat.card-theme($custom-light-theme);
-// @include mat.select-theme($custom-light-theme);
-// @include mat.datepicker-theme($custom-light-theme);
-// @include mat.form-field-theme($custom-light-theme);
-// @include mat.progress-spinner-theme($custom-light-theme);
 }
 
 @mixin purple-green-theme {
   @include mat.all-component-colors($dark-theme);
-
-  // Emit theme-dependent styles for common features used across multiple components.
-  // @include mat.core-color($dark-theme);
-  // @include mat.autocomplete-color($dark-theme);
-  // @include mat.button-color($dark-theme);
-  // @include mat.icon-color($dark-theme);
-  // @include mat.tooltip-color($dark-theme);
-  // @include mat.card-color($dark-theme);
-  // @include mat.select-color($dark-theme);
-  // @include mat.datepicker-color($dark-theme);
-  // @include mat.form-field-color($dark-theme);
-  // @include mat.progress-spinner-color($dark-theme);
-  // @include mat.list-color($dark-theme);
 }
 
 .clownfish-theme {
