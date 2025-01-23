@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { delay, shareReplay, debounceTime } from 'rxjs/operators';
 
 @Injectable()
@@ -13,11 +13,11 @@ export class LayoutService {
         this.layoutSize$.next();
     }
 
-    onChangeLayoutSize(): Observable<any> {
+    onChangeLayoutSize() {
         return this.layoutSizeChange$.pipe(delay(1));
     }
 
-    onSafeChangeLayoutSize(): Observable<any> {
+    onSafeChangeLayoutSize() {
         return this.layoutSizeChange$.pipe(debounceTime(350));
     }
 }

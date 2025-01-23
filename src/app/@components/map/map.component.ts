@@ -52,7 +52,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     constructor() {
         // const CustomIcon: {new(options: any): any} & typeof Class = DivIcon.extend({
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        const CustomIcon: (new (options: any) => any) & typeof Class =
+        const CustomIcon: (new (options) => never) & typeof Class =
             Icon.extend({
                 options: {
                     // iconRetinaUrl: 'assets/marker-icon-2x.png',

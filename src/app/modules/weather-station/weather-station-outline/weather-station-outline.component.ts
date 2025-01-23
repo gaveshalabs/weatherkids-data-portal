@@ -1,10 +1,15 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
-import { WeatherStation, WeatherStationSummary } from '../../../common/interfaces/weather-station.interface';
+import {
+  WeatherDataSummary,
+  WeatherStation,
+  WeatherStationSummary,
+} from '../../../common/interfaces/weather-station.interface';
 
 @Component({
     selector: 'ngx-weather-station-outline',
+    standalone: false,
     templateUrl: './weather-station-outline.component.html',
     styleUrls: ['./weather-station-outline.component.scss'],
 })
@@ -20,10 +25,10 @@ export class WeatherStationOutlineComponent implements OnInit, OnChanges {
             // solar_irradiance: 0,
             percentage_light_intensity: 0,
             timestamp: new Date().getTime(),
-        } as any,
+        } as WeatherDataSummary,
         pointsOfUser: {
             amount: 0,
-        } as any,
+        } as WeatherStationSummary['pointsOfUser'],
     };
     @Input() ws: WeatherStation = {
         _id: null,

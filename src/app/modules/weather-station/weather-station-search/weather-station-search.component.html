@@ -8,10 +8,12 @@
   </button>
   <mat-autocomplete #auto="matAutocomplete"
     (optionSelected)="loadWeatherStationSummary($event)" [displayWith]="selectedOptionDisplay">
-    <mat-option *ngFor="let ws of wsFiltered" [value]="ws" class="ws-info">
-      <div style="display: inline-block;">
-        {{ws.name}}<br/><sub class="ws-info-line">{{ws.nearest_city}}</sub>
-      </div>
-    </mat-option>
+    @for (ws of wsFiltered; track ws) {
+      <mat-option [value]="ws">
+        <div style="display: inline-block;">
+          {{ws.name}}<br/><sub class="ws-info-line">{{ws.nearest_city}}</sub>
+        </div>
+      </mat-option>
+    }
   </mat-autocomplete>
 </div>

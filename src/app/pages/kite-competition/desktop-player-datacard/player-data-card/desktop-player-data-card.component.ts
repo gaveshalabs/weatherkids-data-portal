@@ -128,6 +128,7 @@ import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
     selector: 'ngx-desktopplayerdatacard',
+    standalone: false,
     styleUrls: ['./desktop-player-data-card.component.scss'],
     templateUrl: './desktop-player-data-card.component.html',
 })
@@ -278,6 +279,7 @@ export class DesktopPlayerDataCardComponent implements OnInit, OnChanges {
         return `assets/avatars/Avatar_Icons/${filename}`;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     showTooltip(event: MouseEvent) {
         this.tooltip.show();
     }

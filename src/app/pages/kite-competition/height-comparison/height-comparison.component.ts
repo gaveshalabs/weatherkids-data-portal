@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'ngx-height-comparison',
+    standalone: false,
     templateUrl: './height-comparison.component.html',
     styleUrls: ['./height-comparison.component.scss'],
 })

@@ -7,6 +7,7 @@ import { LoaderService } from '../../../@theme/components/loader/loader.service'
 
 @Component({
     selector: 'ngx-kite',
+    standalone: false,
     templateUrl: './kite.component.html',
     styleUrls: ['./kite.component.scss'],
 })
@@ -34,7 +35,6 @@ export class KiteComponent implements OnInit {
 
         this.sharedDataService.players$.subscribe(players => {
             this.combinedPlayers = players;
-            console.log('Received players in kiteComponent:', this.combinedPlayers);
             this.hideLoader();
         });
 

@@ -1,8 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
+    NbActionsModule,
+    NbContextMenuModule,
     NbMediaBreakpointsService,
     NbMenuService,
     NbThemeService,
+    NbUserModule,
 } from '@nebular/theme';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -18,15 +21,19 @@ import { EnumUserContextMenu } from '../../../common/enums/user-action-context';
 import { UserProfile } from '../../../common/interfaces/user.interface';
 import { OAuth2Service } from '../../../modules/oauth2/oauth2.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Player } from '../../../@components/leaderboard/leaderboard.interface';
 import { SharedDataService } from '../../../services/shared-data.service';
+import { CommonModule } from '@angular/common';
+import { NbSecurityModule } from '@nebular/security';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
     selector: 'ngx-header',
     styleUrls: ['./header.component.scss'],
     templateUrl: './header.component.html',
+    imports: [CommonModule, NbActionsModule, NbUserModule, NbSecurityModule, NbContextMenuModule, MatButtonModule],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
@@ -204,7 +211,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
         this.sharedDataService.players$.subscribe(players => {
             this.combinedPlayers = players;
-            console.log('Received players in HeaderComponent:', this.combinedPlayers);
         });
         // Ensure showSearchBar is correctly initialized based on the current URL
 
@@ -267,10 +273,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     //   return false;
     // }
-
-    // openDialog(): void {
-    //     const config: MatDialogConfig = {
-    //     };
-    //     this.dialog.open(RegisterNowComponent, config);
-    // };
 }

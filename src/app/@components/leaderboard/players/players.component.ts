@@ -6,6 +6,7 @@ import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'ngx-players',
+    standalone: false,
     templateUrl: './players.component.html',
     styleUrls: ['./players.component.scss'],
 })

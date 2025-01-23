@@ -8,13 +8,12 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import packageJson from '../../package.json';
 import { AnalyticsService } from './@core/utils/analytics.service';
 import { SeoService } from './@core/utils/seo.service';
-import {
-    Router, NavigationEnd, NavigationStart, NavigationCancel,
-    NavigationError, Event as RouterEvent } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { ThemeService } from './@core/services/theme.service';
 
 @Component({
     selector: 'ngx-app',
+    standalone: false,
     template: `
     <ngx-loader></ngx-loader>
     <router-outlet ></router-outlet>

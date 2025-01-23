@@ -9,6 +9,7 @@ import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'ngx-temperature',
+    standalone: false,
     styleUrls: ['./temperature.component.scss'],
     templateUrl: './temperature.component.html',
 })
@@ -25,8 +26,8 @@ export class TemperatureComponent implements OnDestroy {
     humidityOff = false;
     humidityMode = 'heat';
 
-    theme: any;
-    themeSubscription: any;
+    theme;
+    themeSubscription;
 
     constructor(
         private themeService: NbThemeService,

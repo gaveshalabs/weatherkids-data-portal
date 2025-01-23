@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'ngx-reportcard',
+    standalone: false,
     templateUrl: './report-card.component.html',
     styleUrls: ['./report-card.component.scss'],
 })
@@ -14,8 +15,14 @@ export class ReportCardComponent implements OnChanges, OnDestroy {
 
     @Input() data: TotalKiteData | null = null;
     selected: string;
-    reportData: any = {};
-    showPlayerCount: boolean = false;
+    reportData = {
+      total_height: 0,
+      total_attempts: 0,
+      total_flying_mins: 0,
+      max_height: 0,
+      player_count: 0,
+    };
+    showPlayerCount = false;
 
     private routerSubscription: Subscription;
     constructor(private route: ActivatedRoute, private router: Router) {
@@ -52,7 +59,8 @@ export class ReportCardComponent implements OnChanges, OnDestroy {
         }
     }
 
-    roundValues(data: any): any {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    roundValues(data: any) {
         if (data) {
             return {
                 ...data,
@@ -67,6 +75,7 @@ export class ReportCardComponent implements OnChanges, OnDestroy {
         return {};
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onSelectionChange(event: any): void {
         this.selected = event.value;
         this.updateReportData();
@@ -74,6 +83,7 @@ export class ReportCardComponent implements OnChanges, OnDestroy {
 
     @ViewChild(MatTooltip) tooltip: MatTooltip;
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     showTooltip(event: MouseEvent) {
         this.tooltip.show();
     }

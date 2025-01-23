@@ -10,19 +10,18 @@ import {
     NbListModule,
     NbIconModule,
 } from '@nebular/theme';
-// import { NgxEchartsModule } from 'ngx-echarts';
-
-import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
 import { TemperatureComponent } from './temperature/temperature.component';
 import { TemperatureDraggerComponent } from './temperature/temperature-dragger/temperature-dragger.component';
 import { WeatherComponent } from './weather/weather.component';
 import { FormsModule } from '@angular/forms';
+import { RoundPipe } from '../../@theme/pipes';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     imports: [
         FormsModule,
-        ThemeModule,
+        CommonModule,
         NbCardModule,
         NbUserModule,
         NbButtonModule,
@@ -33,6 +32,7 @@ import { FormsModule } from '@angular/forms';
         NbListModule,
         NbIconModule,
         NbButtonModule,
+        RoundPipe,
     ],
     declarations: [
         DashboardComponent,

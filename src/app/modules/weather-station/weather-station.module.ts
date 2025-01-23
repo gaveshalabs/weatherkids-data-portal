@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeModule } from '../../@theme/theme.module';
 import { WeatherStationSearchComponent } from './weather-station-search/weather-station-search.component';
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -24,7 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
         WeatherStationOutlineComponent,
     ],
     imports: [
-        ThemeModule,
+        CommonModule,
         NbUserModule,
         FormsModule,
         MatAutocompleteModule,

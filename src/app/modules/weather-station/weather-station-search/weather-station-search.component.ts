@@ -4,20 +4,19 @@ import { WeatherStation } from '../../../common/interfaces/weather-station.inter
 
 @Component({
     selector: 'ngx-weather-station-search',
+    standalone: false,
     templateUrl: './weather-station-search.component.html',
     styleUrls: ['./weather-station-search.component.scss'],
 })
 export class WeatherStationSearchComponent implements OnInit {
-    @Input() isWeatherPage: boolean = false;
+    @Input() isWeatherPage = false;
     @Output() selected: EventEmitter<WeatherStation> = new EventEmitter();
     @Output() close: EventEmitter<void> = new EventEmitter();
     @Input() wsList: WeatherStation[] = [];
 
     searchInput: string | WeatherStation = '';
-    wsFiltered: any[] = [];
+    wsFiltered = [];
     showClose = false;
-
-    constructor() { }
 
     ngOnInit(): void {
         if (this.close.observers.length) {

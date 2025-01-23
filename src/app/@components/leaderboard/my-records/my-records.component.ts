@@ -9,6 +9,7 @@ import { LoaderService } from '../../../@theme/components/loader/loader.service'
 
 @Component({
     selector: 'ngx-myrecords',
+    standalone: false,
     styleUrls: ['./my-records.component.scss'],
     templateUrl: './my-records.component.html',
 })
@@ -83,7 +84,7 @@ export class MyRecordsComponent implements OnInit, OnDestroy {
             const playerId = this.playerData.player.id;
             this.router.navigate([`/kite/player/${playerId}`]);
         } else {
-            console.log('Player data not found or player ID missing. Not navigating.');
+            console.error('Player data not found or player ID missing. Not navigating.');
         }
     }
 

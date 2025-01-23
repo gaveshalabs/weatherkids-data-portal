@@ -5,12 +5,14 @@ import { LatLngTuple } from 'leaflet';
 
 @Component({
     selector: 'ngx-kite-competition-map',
+    standalone: false,
     templateUrl: './kite-map.component.html',
     styleUrls: ['./kite-map.component.scss'],
 })
 export class KiteCompetitionMapComponent implements OnInit {
 
     @Input() locations: Array<[number, number] | { lat: number; lng: number }> = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     map: any;
     kiteIcon: L.Icon;
     private kiteMarkers: L.Marker[] = [];

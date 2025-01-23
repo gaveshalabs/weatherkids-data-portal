@@ -13,9 +13,9 @@ import { LocationStrategy } from '@angular/common';
     template: '',
 })
 export class TinyMCEComponent implements OnDestroy, AfterViewInit {
-    @Output() editorKeyup = new EventEmitter<any>();
+    @Output() editorKeyup = new EventEmitter();
 
-    editor: any;
+    editor;
 
     constructor(
         private host: ElementRef,

@@ -5,6 +5,7 @@ import { Player } from '../../../@components/leaderboard/leaderboard.interface';
 
 @Component({
     selector: 'ngx-kite-search',
+    standalone: false,
     templateUrl: './kite-search.component.html',
     styleUrls: ['./kite-search.component.scss'],
 })
@@ -28,16 +29,12 @@ export class KiteSearchComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes.playerList && changes.playerList.currentValue) {
-            console.log('playerList changed:', this.playerList);
             this.filterPlayer();
         } else {
             console.warn('playerList is undefined or empty');
         }
     }
     filterPlayer() {
-        console.log('filterPlayer called');
-        console.log('searchInput:', this.searchInput);
-
         // Ensure the player list exists and is not empty
         if (!this.playerList || !this.playerList.length) {
             console.error('playerList is empty or not populated');
@@ -60,8 +57,6 @@ export class KiteSearchComponent implements OnInit, OnChanges {
             // Clear the filtered list if the search input is empty
             this.playerFiltered = [];
         }
-
-        console.log('Filtered Players:', this.playerFiltered);
     }
 
     loadPlayerSummary(event: MatAutocompleteSelectedEvent) {

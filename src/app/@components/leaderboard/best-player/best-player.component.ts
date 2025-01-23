@@ -4,6 +4,7 @@ import { Player } from '../leaderboard.interface';
 
 @Component({
     selector: 'ngx-best-player',
+    standalone: false,
     templateUrl: './best-player.component.html',
     styleUrls: ['./best-player.component.scss'],
 })

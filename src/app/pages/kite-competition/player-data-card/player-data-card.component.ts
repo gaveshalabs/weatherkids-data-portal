@@ -5,6 +5,7 @@ import { LoaderService } from '../../../@theme/components/loader/loader.service'
 
 @Component({
     selector: 'ngx-playerdatacard',
+    standalone: false,
     styleUrls: ['./player-data-card.component.scss'],
     templateUrl: './player-data-card.component.html',
 })
@@ -167,6 +168,7 @@ export class PlayerDataCardComponent implements OnInit, OnChanges {
         return `assets/avatars/Avatar_Icons/${filename}`;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     showTooltip(event: MouseEvent) {
         this.tooltip.show();
     }

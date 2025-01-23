@@ -8,10 +8,12 @@
   </button>
   <mat-autocomplete #auto="matAutocomplete"
     (optionSelected)="loadPlayerSummary($event)" [displayWith]="selectedOptionDisplay">
-    <mat-option *ngFor="let player of playerFiltered" [value]="player" class="ws-info">
-      <div style="display: inline-block;">
-        {{player.name}}<br/><sub class="ws-info-line">{{player.city}}</sub>
-      </div>
-    </mat-option>
+    @for (player of playerFiltered; track player) {
+      <mat-option [value]="player" class="ws-info">
+        <div style="display: inline-block;">
+          {{player.name}}<br/><sub class="ws-info-line">{{player.city}}</sub>
+        </div>
+      </mat-option>
+    }
   </mat-autocomplete>
 </div>

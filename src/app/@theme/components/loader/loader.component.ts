@@ -3,11 +3,13 @@ import { Subscription } from 'rxjs';
 import { LoaderService, LoaderState } from './loader.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'ngx-loader',
     templateUrl: './loader.component.html',
     styleUrls: ['./loader.component.scss'],
+    imports: [CommonModule],
 })
 export class LoaderComponent implements OnInit {
     loading = false;

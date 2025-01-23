@@ -8,7 +8,7 @@
       <ngx-weather-station-search [wsList]="weatherStations" (selected)="onWeatherStationSelected($event)" class="history-search"></ngx-weather-station-search>
       <mat-card class="col-12">
         <mat-card-content>
-          <ngx-map mapId="history-map" [zoom]=7 [center]="mapCenter" (markerSelect)="onWeatherStationSelected($event)" (mapSelect)="deselectAllWS()" class="ws-map" style="margin-bottom: 5px;"></ngx-map>
+          <ngx-map mapId="history-map" [zoom]=7 [center]="mapCenter" (markerSelect)="onWeatherStationSelected($event)" class="ws-map" style="margin-bottom: 5px;"></ngx-map>
           <ngx-weather-station-title [user]="thisWeatherStation" [showPicture]="false"></ngx-weather-station-title>
         </mat-card-content>
       </mat-card>
@@ -197,7 +197,7 @@
           </div>
         </mat-card-content>
       </mat-card>
-      
+
       <mat-card class="col-12">
         <mat-card-title class="uppercase-small-title title-with-icon">
           <span class="material-symbols-outlined">solar_power</span>

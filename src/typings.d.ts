@@ -10,6 +10,7 @@ interface NodeModule {
     id: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare let tinymce: any;
 
 // declare let echarts: any;

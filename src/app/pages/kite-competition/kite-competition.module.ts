@@ -3,11 +3,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { LeaderboardModule } from '../../@components/leaderboard/leaderboard.module';
-import { SharedModule } from '../../modules/shared/shared.module';
 import { KiteCompetitionMapComponent } from './kite-map/kite-map.component';
 import { KiteComponent } from './kite/kite.component';
-import { RegisterNowComponent } from './register-now-dialog/register-dialog.component';
-import { NbCardModule, NbIconModule, NbSelectModule, NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbCardModule, NbIconModule, NbSelectModule } from '@nebular/theme';
 import { CommonModule } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { DistrictvsAttemptbarchartComponent } from './district-attempt-barchart/district-attempt-barchart.component';
@@ -15,7 +13,6 @@ import { HeightComparisonComponent } from './height-comparison/height-comparison
 import { KiteDashboardComponent } from './kite-dashboard/kite-dashboard.component';
 import { KiteRoutingModule } from './kite-routing.module';
 import { NbActionsModule, NbUserModule } from '@nebular/theme';
-import { ThemeModule } from '../../@theme/theme.module';
 import { MatIconModule } from '@angular/material/icon';
 import { KiteApiService } from './kite/kite-api.service';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -41,12 +38,12 @@ import {
     DesktopPlayerDataCardComponent,
 } from './desktop-player-datacard/player-data-card/desktop-player-data-card.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HeaderComponent } from '../../@theme/components';
 
 register();
 
 @NgModule({
     declarations: [
-        RegisterNowComponent,
         KiteComponent,
         KiteCompetitionMapComponent,
         HeightComparisonComponent,
@@ -59,10 +56,10 @@ register();
     ],
     imports: [
         RouterModule.forChild([]),
+        MatAutocompleteModule,
         MatDialogModule,
         MatListModule,
         LeaderboardModule,
-        SharedModule,
         CommonModule,
         NbCardModule,
         NbIconModule,
@@ -72,7 +69,6 @@ register();
         KiteRoutingModule,
         NbActionsModule,
         NbUserModule,
-        ThemeModule,
         MatIconModule,
         MatSlideToggleModule,
         MatButtonModule,
@@ -90,14 +86,9 @@ register();
         MatFormFieldModule,
         MatSelectModule,
         MatTooltipModule ,
-
-        // ToggleCardComponent,
-
-
-
+        HeaderComponent,
     ],
-    exports: [ HeightComparisonComponent, AgeAttemptbarchartComponent,
-    ],
+    exports: [ HeightComparisonComponent, AgeAttemptbarchartComponent],
 
     providers: [KiteApiService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
